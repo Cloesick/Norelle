@@ -1,0 +1,32 @@
+# WordPress core files (managed by Docker)
+wordpress_data/
+
+# Environment
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker volumes
+db_data/
+
+# Uploads (large media files)
+uploads/*
+!uploads/.gitkeep
+
+# Node (if added later)
+node_modules/
+
+# Logs
+*.log
+
+# Large files (exceed GitHub 100MB limit)
+NORELLE.pdf

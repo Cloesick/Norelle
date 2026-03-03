@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Norelle Webshop — Test Suite</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; color: #333; padding: 2rem; }
+  h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .subtitle { color: #666; margin-bottom: 2rem; }
+  .controls { display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .controls button { padding: 0.6rem 1.5rem; border: 1px solid #ccc; background: #fff; border-radius: 4px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+  .controls button:hover { background: #3b0505; color: #fff; border-color: #3b0505; }
+  .controls button.active { background: #3b0505; color: #fff; border-color: #3b0505; }
+  .config { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; background: #fff; padding: 1rem; border-radius: 6px; border: 1px solid #e0e0e0; }
+  .config label { font-size: 0.85rem; font-weight: 600; }
+  .config input { padding: 0.4rem 0.8rem; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem; width: 300px; }
+  .summary { display: flex; gap: 2rem; margin-bottom: 2rem; }
+  .summary-box { background: #fff; padding: 1.25rem 1.5rem; border-radius: 6px; border: 1px solid #e0e0e0; flex: 1; text-align: center; }
+  .summary-box .num { font-size: 2rem; font-weight: 700; }
+  .summary-box .label { font-size: 0.8rem; color: #666; text-transform: uppercase; letter-spacing: 0.05em; }
+  .pass .num { color: #2e7d32; }
+  .fail .num { color: #c62828; }
+  .skip .num { color: #f57f17; }
+  .total .num { color: #333; }
+  .category { margin-bottom: 2rem; }
+  .category-header { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid #3b0505; display: flex; justify-content: space-between; align-items: center; }
+  .category-count { font-size: 0.8rem; color: #666; font-weight: 400; }
+  .test-row { display: flex; align-items: center; gap: 1rem; padding: 0.6rem 1rem; background: #fff; margin-bottom: 2px; border-radius: 4px; border-left: 3px solid transparent; font-size: 0.85rem; }
+  .test-row.pass { border-left-color: #2e7d32; }
+  .test-row.fail { border-left-color: #c62828; background: #fff5f5; }
+  .test-row.skip { border-left-color: #f57f17; background: #fffde7; }
+  .test-row.running { border-left-color: #1565c0; background: #e3f2fd; }
+  .test-row .status { width: 24px; text-align: center; font-size: 1rem; }
+  .test-row .name { flex: 1; }
+  .test-row .detail { font-size: 0.75rem; color: #666; max-width: 400px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .test-row .time { font-size: 0.75rem; color: #999; width: 60px; text-align: right; }
+  .progress-bar { height: 4px; background: #e0e0e0; border-radius: 2px; margin-bottom: 2rem; overflow: hidden; }
+  .progress-fill { height: 100%; background: #3b0505; transition: width 0.3s; width: 0%; }
+  .log { background: #1e1e1e; color: #d4d4d4; padding: 1rem; border-radius: 6px; font-family: 'Consolas', monospace; font-size: 0.75rem; max-height: 300px; overflow-y: auto; margin-top: 2rem; display: none; }
+  .log.visible { display: block; }
+  .log .error { color: #f44336; }
+  .log .success { color: #4caf50; }
+  .log .info { color: #64b5f6; }
+</style>
+</head>
+<body>
+
+<h1>Norelle Webshop — Test Suite</h1>
+<p class="subtitle">Automated browser tests for UI, UX, readability, and sales pipeline</p>
+
+<div class="config">
+  <label>Base URL:</label>
+  <input type="text" id="baseUrl" value="http://localhost/norelle">
+  <button onclick="runAllTests()" id="runBtn">Run All Tests</button>
+  <button onclick="toggleLog()">Toggle Log</button>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="summary">
+  <div class="summary-box total"><div class="num" id="totalCount">0</div><div class="label">Total</div></div>
+  <div class="summary-box pass"><div class="num" id="passCount">0</div><div class="label">Passed</div></div>
+  <div class="summary-box fail"><div class="num" id="failCount">0</div><div class="label">Failed</div></div>
+  <div class="summary-box skip"><div class="num" id="skipCount">0</div><div class="label">Skipped</div></div>
+</div>
+
+<div class="controls">
+  <button class="active" onclick="filterTests('all', this)">All</button>
+  <button onclick="filterTests('fail', this)">Failed Only</button>
+  <button onclick="filterTests('pass', this)">Passed Only</button>
+</div>
+
+<div id="results"></div>
+<div class="log" id="logPanel"></div>
+
+<script>
+const BASE = () => document.getElementById('baseUrl').value.replace(/\/+$/, '');
+let results = [];
+let logLines = [];
+
+function log(msg, type = 'info') {
+  const ts = new Date().toLocaleTimeString();
+  logLines.push({ ts, msg, type });
+  const panel = document.getElementById('logPanel');
+  panel.innerHTML += `<div class="${type}">[${ts}] ${msg}</div>`;
+  panel.scrollTop = panel.scrollHeight;
+}
+
+function toggleLog() {
+  document.getElementById('logPanel').classList.toggle('visible');
+}
+
+async function fetchPage(path) {
+  const url = BASE() + path;
+  log(`Fetching ${url}`);
+  const start = performance.now();
+  try {
+    const resp = await fetch(url, { mode: 'cors', credentials: 'omit' });
+    const html = await resp.text();
+    const time = Math.round(performance.now() - start);
+    log(`Got ${url} (${resp.status}, ${time}ms, ${html.length} chars)`, 'success');
+    return { ok: resp.ok, status: resp.status, html, time, url };
+  } catch (e) {
+    const time = Math.round(performance.now() - start);
+    log(`FAILED ${url}: ${e.message}`, 'error');
+    return { ok: false, status: 0, html: '', time, url, error: e.message };
+  }
+}
+
+function htmlHas(html, selector_or_text, isText = false) {
+  if (isText) return html.includes(selector_or_text);
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  return doc.querySelector(selector_or_text) !== null;
+}
+
+function htmlCount(html, selector) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  return doc.querySelectorAll(selector).length;
+}
+
+function htmlText(html, selector) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const el = doc.querySelector(selector);
+  return el ? el.textContent.trim() : '';
+}
+
+// ============================================================
+// TEST DEFINITIONS
+// ============================================================
+
+const tests = [
+  // --- HOMEPAGE & LAYOUT ---
+  {
+    category: 'Homepage & Layout',
+    name: 'Homepage loads (HTTP 200)',
+    run: async () => {
+      const r = await fetchPage('/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Homepage & Layout',
+    name: 'Homepage loads under 3 seconds',
+    run: async () => {
+      const r = await fetchPage('/');
+      return { pass: r.time < 3000, detail: `${r.time}ms` };
+    }
+  },
+  {
+    category: 'Homepage & Layout',
+    name: 'Hero section present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = htmlHas(r.html, '.norelle-hero') || r.html.includes('norelle-hero');
+      return { pass: has, detail: has ? 'Found .norelle-hero' : 'Missing hero section' };
+    }
+  },
+  {
+    category: 'Homepage & Layout',
+    name: 'Hero has CTA button (Discover the Collection)',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('Discover the Collection');
+      return { pass: has, detail: has ? 'CTA found' : 'CTA missing' };
+    }
+  },
+  {
+    category: 'Homepage & Layout',
+    name: 'Trust bar present (4 USPs)',
+    run: async () => {
+      const r = await fetchPage('/');
+      const count = (r.html.match(/norelle-trust-item/g) || []).length;
+      return { pass: count === 4, detail: `${count}/4 trust items found` };
+    }
+  },
+  {
+    category: 'Homepage & Layout',
+    name: 'Featured products section present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('Featured');
+      return { pass: has, detail: has ? 'Section found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Homepage & Layout',
+    name: 'New Arrivals section present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('New Arrivals');
+      return { pass: has, detail: has ? 'Section found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Homepage & Layout',
+    name: 'On Sale section present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('On Sale');
+      return { pass: has, detail: has ? 'Section found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Homepage & Layout',
+    name: 'Newsletter email capture present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('norelle-newsletter');
+      return { pass: has, detail: has ? 'Newsletter section found' : 'Missing' };
+    }
+  },
+
+  // --- HEADER ---
+  {
+    category: 'Header & Navigation',
+    name: 'Site branding / logo present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = htmlHas(r.html, '.site-branding') || r.html.includes('site-branding');
+      return { pass: has, detail: has ? 'Logo found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Header & Navigation',
+    name: 'Primary navigation present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('main-navigation');
+      return { pass: has, detail: has ? 'Nav found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Header & Navigation',
+    name: 'Nav has Home link',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('menu-item-home');
+      return { pass: has, detail: has ? 'Home link found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Header & Navigation',
+    name: 'Nav has Shop with dropdown',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('menu-item-has-children') && r.html.includes('sub-menu');
+      return { pass: has, detail: has ? 'Shop dropdown found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Header & Navigation',
+    name: 'Account / Login link present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('norelle-account-link');
+      return { pass: has, detail: has ? 'Account link found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Header & Navigation',
+    name: 'Cart icon present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('site-header-cart');
+      return { pass: has, detail: has ? 'Cart found' : 'Missing' };
+    }
+  },
+
+  // --- FOOTER ---
+  {
+    category: 'Footer',
+    name: 'Custom footer grid present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('norelle-footer-grid');
+      return { pass: has, detail: has ? 'Footer grid found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Footer',
+    name: 'Footer has 4 columns',
+    run: async () => {
+      const r = await fetchPage('/');
+      const count = (r.html.match(/norelle-footer-col/g) || []).length;
+      return { pass: count === 4, detail: `${count}/4 columns` };
+    }
+  },
+  {
+    category: 'Footer',
+    name: 'Footer has copyright',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('norelle-footer-bottom') && r.html.includes('All rights reserved');
+      return { pass: has, detail: has ? 'Copyright found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Footer',
+    name: 'Footer has social links',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('norelle-footer-social');
+      return { pass: has, detail: has ? 'Social links found' : 'Missing' };
+    }
+  },
+
+  // --- SHOP & PRODUCTS ---
+  {
+    category: 'Shop & Products',
+    name: 'Shop page loads',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Shop & Products',
+    name: 'Shop has products listed',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      const count = (r.html.match(/class="product[\s"]/g) || []).length;
+      return { pass: count > 0, detail: `${count} products found` };
+    }
+  },
+  {
+    category: 'Shop & Products',
+    name: 'Products have Add to Bag button',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      const has = r.html.includes('Add to Bag');
+      return { pass: has, detail: has ? '"Add to Bag" found' : 'Default text or missing' };
+    }
+  },
+  {
+    category: 'Shop & Products',
+    name: 'Sale products have percentage badge',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      const has = r.html.includes('norelle-sale-pct') || r.html.includes('onsale');
+      return { pass: has, detail: has ? 'Sale badge found' : 'No sale badges' };
+    }
+  },
+  {
+    category: 'Shop & Products',
+    name: 'Product prices displayed in EUR (€)',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      const has = r.html.includes('€') || r.html.includes('&euro;');
+      return { pass: has, detail: has ? 'EUR prices found' : 'No EUR symbol' };
+    }
+  },
+
+  // --- SINGLE PRODUCT ---
+  {
+    category: 'Single Product (Sales Pipeline)',
+    name: 'Single product page loads',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(r.html, 'text/html');
+      const link = doc.querySelector('.woocommerce-LoopProduct-link');
+      if (!link) return { pass: false, detail: 'No product link found on shop' };
+      const href = link.getAttribute('href');
+      const path = href.replace(BASE(), '');
+      const p = await fetchPage(path);
+      return { pass: p.ok, detail: `${path} — ${p.status}, ${p.time}ms` };
+    }
+  },
+  {
+    category: 'Single Product (Sales Pipeline)',
+    name: 'Product has Add to Bag button',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(r.html, 'text/html');
+      const link = doc.querySelector('.woocommerce-LoopProduct-link');
+      if (!link) return { pass: false, detail: 'No product link found' };
+      const href = link.getAttribute('href');
+      const p = await fetchPage(href.replace(BASE(), ''));
+      const has = p.html.includes('Add to Bag');
+      return { pass: has, detail: has ? 'CTA button found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Single Product (Sales Pipeline)',
+    name: 'Social proof text present',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(r.html, 'text/html');
+      const link = doc.querySelector('.woocommerce-LoopProduct-link');
+      if (!link) return { pass: false, detail: 'No product link found' };
+      const p = await fetchPage(link.getAttribute('href').replace(BASE(), ''));
+      const has = p.html.includes('people viewed this today');
+      return { pass: has, detail: has ? 'Social proof found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Single Product (Sales Pipeline)',
+    name: 'Product has description tabs',
+    run: async () => {
+      const r = await fetchPage('/shop/');
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(r.html, 'text/html');
+      const link = doc.querySelector('.woocommerce-LoopProduct-link');
+      if (!link) return { pass: false, detail: 'No product link found' };
+      const p = await fetchPage(link.getAttribute('href').replace(BASE(), ''));
+      const has = p.html.includes('woocommerce-tabs');
+      return { pass: has, detail: has ? 'Tabs found' : 'Missing' };
+    }
+  },
+
+  // --- CART & CHECKOUT ---
+  {
+    category: 'Cart & Checkout Pipeline',
+    name: 'Cart page loads',
+    run: async () => {
+      const r = await fetchPage('/cart/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Cart & Checkout Pipeline',
+    name: 'Checkout page loads',
+    run: async () => {
+      const r = await fetchPage('/checkout/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Cart & Checkout Pipeline',
+    name: 'My Account page loads',
+    run: async () => {
+      const r = await fetchPage('/my-account/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Cart & Checkout Pipeline',
+    name: 'Login form present on My Account',
+    run: async () => {
+      const r = await fetchPage('/my-account/');
+      const has = r.html.includes('woocommerce-form-login') || r.html.includes('login');
+      return { pass: has, detail: has ? 'Login form found' : 'Missing' };
+    }
+  },
+
+  // --- LEGAL PAGES ---
+  {
+    category: 'Legal & GDPR Pages',
+    name: 'Privacy Policy page loads',
+    run: async () => {
+      const r = await fetchPage('/privacy-policy/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Legal & GDPR Pages',
+    name: 'Terms & Conditions page loads',
+    run: async () => {
+      const r = await fetchPage('/terms-and-conditions/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Legal & GDPR Pages',
+    name: 'Returns & Refunds page loads',
+    run: async () => {
+      const r = await fetchPage('/returns-refunds/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Legal & GDPR Pages',
+    name: 'Shipping Policy page loads',
+    run: async () => {
+      const r = await fetchPage('/shipping-policy/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Legal & GDPR Pages',
+    name: 'Cookie consent banner configured',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('cookie-notice') || r.html.includes('cookie-law-info') || r.html.includes('cn-') || r.html.includes('Cookie');
+      return { pass: has, detail: has ? 'Cookie notice found' : 'Not detected in HTML' };
+    }
+  },
+
+  // --- SEO & PERFORMANCE ---
+  {
+    category: 'SEO & Performance',
+    name: 'Page has <title> tag',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('<title>');
+      return { pass: has, detail: has ? 'Title tag found' : 'Missing' };
+    }
+  },
+  {
+    category: 'SEO & Performance',
+    name: 'Page has meta description (Yoast)',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('og:description') || r.html.includes('name="description"');
+      return { pass: has, detail: has ? 'Meta description found' : 'Missing — configure Yoast SEO' };
+    }
+  },
+  {
+    category: 'SEO & Performance',
+    name: 'Google Fonts loaded (Cormorant Garamond)',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('Cormorant+Garamond') || r.html.includes('Cormorant Garamond');
+      return { pass: has, detail: has ? 'Font loaded' : 'Missing' };
+    }
+  },
+  {
+    category: 'SEO & Performance',
+    name: 'Canonical URL present',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('rel="canonical"');
+      return { pass: has, detail: has ? 'Canonical URL found' : 'Missing' };
+    }
+  },
+  {
+    category: 'SEO & Performance',
+    name: 'Yoast SEO sitemap endpoint',
+    run: async () => {
+      const r = await fetchPage('/sitemap_index.xml');
+      return { pass: r.ok, detail: `Status: ${r.status}` };
+    }
+  },
+
+  // --- READABILITY ---
+  {
+    category: 'Readability & Design',
+    name: 'CSS custom properties defined',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('--norelle-burgundy') || r.html.includes('norelle-theme');
+      return { pass: has, detail: has ? 'Norelle CSS loaded' : 'Theme CSS missing' };
+    }
+  },
+  {
+    category: 'Readability & Design',
+    name: 'Body has .norelle-theme class',
+    run: async () => {
+      const r = await fetchPage('/');
+      const has = r.html.includes('norelle-theme');
+      return { pass: has, detail: has ? 'Class found' : 'Missing' };
+    }
+  },
+  {
+    category: 'Readability & Design',
+    name: 'No inline font-size below 12px in hero',
+    run: async () => {
+      const r = await fetchPage('/');
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(r.html, 'text/html');
+      const hero = doc.querySelector('.norelle-hero');
+      if (!hero) return { pass: true, detail: 'No hero to check' };
+      const smallText = hero.innerHTML.match(/font-size:\s*(\d+(\.\d+)?)(px|rem)/g) || [];
+      const tooSmall = smallText.filter(s => {
+        const val = parseFloat(s.match(/[\d.]+/)[0]);
+        const unit = s.includes('rem') ? 'rem' : 'px';
+        return unit === 'px' ? val < 12 : val < 0.75;
+      });
+      return { pass: tooSmall.length === 0, detail: tooSmall.length ? `Found ${tooSmall.join(', ')}` : 'All font sizes OK' };
+    }
+  },
+
+  // --- CATEGORY PAGES ---
+  {
+    category: 'Category Pages',
+    name: 'Necklaces category loads',
+    run: async () => {
+      const r = await fetchPage('/product-category/necklaces/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Category Pages',
+    name: 'Earrings category loads',
+    run: async () => {
+      const r = await fetchPage('/product-category/earrings/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Category Pages',
+    name: 'Bracelets category loads',
+    run: async () => {
+      const r = await fetchPage('/product-category/bracelets/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Category Pages',
+    name: 'Rings category loads',
+    run: async () => {
+      const r = await fetchPage('/product-category/rings/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+
+  // --- ABOUT & CONTACT ---
+  {
+    category: 'Info Pages',
+    name: 'About page loads',
+    run: async () => {
+      const r = await fetchPage('/about/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+  {
+    category: 'Info Pages',
+    name: 'Contact page loads',
+    run: async () => {
+      const r = await fetchPage('/contact/');
+      return { pass: r.ok, detail: `Status: ${r.status}, ${r.time}ms` };
+    }
+  },
+
+  // --- CROSS-PAGE CONSISTENCY ---
+  {
+    category: 'Cross-Page Consistency',
+    name: 'All pages have site-header',
+    run: async () => {
+      const pages = ['/', '/shop/', '/cart/', '/my-account/', '/contact/'];
+      const missing = [];
+      for (const p of pages) {
+        const r = await fetchPage(p);
+        if (!r.html.includes('site-header')) missing.push(p);
+      }
+      return { pass: missing.length === 0, detail: missing.length ? `Missing on: ${missing.join(', ')}` : 'Present on all 5 pages' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'All pages have site-footer',
+    run: async () => {
+      const pages = ['/', '/shop/', '/cart/', '/my-account/', '/contact/'];
+      const missing = [];
+      for (const p of pages) {
+        const r = await fetchPage(p);
+        if (!r.html.includes('site-footer')) missing.push(p);
+      }
+      return { pass: missing.length === 0, detail: missing.length ? `Missing on: ${missing.join(', ')}` : 'Present on all 5 pages' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'All pages have hamburger button',
+    run: async () => {
+      const pages = ['/', '/shop/', '/cart/', '/my-account/', '/contact/'];
+      const missing = [];
+      for (const p of pages) {
+        const r = await fetchPage(p);
+        if (!r.html.includes('norelle-hamburger')) missing.push(p);
+      }
+      return { pass: missing.length === 0, detail: missing.length ? `Missing on: ${missing.join(', ')}` : 'Present on all 5 pages' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'All pages have main-navigation',
+    run: async () => {
+      const pages = ['/', '/shop/', '/cart/', '/my-account/', '/contact/'];
+      const missing = [];
+      for (const p of pages) {
+        const r = await fetchPage(p);
+        if (!r.html.includes('main-navigation')) missing.push(p);
+      }
+      return { pass: missing.length === 0, detail: missing.length ? `Missing on: ${missing.join(', ')}` : 'Present on all 5 pages' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'All pages have norelle-header-actions (account + cart)',
+    run: async () => {
+      const pages = ['/', '/shop/', '/cart/', '/my-account/', '/contact/'];
+      const missing = [];
+      for (const p of pages) {
+        const r = await fetchPage(p);
+        if (!r.html.includes('norelle-header-actions')) missing.push(p);
+      }
+      return { pass: missing.length === 0, detail: missing.length ? `Missing on: ${missing.join(', ')}` : 'Present on all 5 pages' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'All pages have norelle-footer-grid',
+    run: async () => {
+      const pages = ['/', '/shop/', '/cart/', '/my-account/', '/contact/'];
+      const missing = [];
+      for (const p of pages) {
+        const r = await fetchPage(p);
+        if (!r.html.includes('norelle-footer-grid')) missing.push(p);
+      }
+      return { pass: missing.length === 0, detail: missing.length ? `Missing on: ${missing.join(', ')}` : 'Present on all 5 pages' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'Pipeline NOT shown on homepage or shop',
+    run: async () => {
+      const pages = ['/', '/shop/'];
+      const found = [];
+      for (const p of pages) {
+        const r = await fetchPage(p);
+        if (r.html.includes('norelle-pipeline')) found.push(p);
+      }
+      return { pass: found.length === 0, detail: found.length ? `Pipeline wrongly shown on: ${found.join(', ')}` : 'Correctly hidden' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'Pipeline shown on cart page',
+    run: async () => {
+      const r = await fetchPage('/cart/');
+      const has = r.html.includes('norelle-pipeline');
+      return { pass: has, detail: has ? 'Pipeline present on cart' : 'Missing on cart' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'Norelle child theme CSS loaded on all pages',
+    run: async () => {
+      const pages = ['/', '/shop/', '/cart/', '/my-account/', '/contact/'];
+      const missing = [];
+      for (const p of pages) {
+        const r = await fetchPage(p);
+        if (!r.html.includes('norelle/style.css')) missing.push(p);
+      }
+      return { pass: missing.length === 0, detail: missing.length ? `CSS missing on: ${missing.join(', ')}` : 'Loaded on all 5 pages' };
+    }
+  },
+  {
+    category: 'Cross-Page Consistency',
+    name: 'No white background (#ffffff) leaking through Storefront inline styles',
+    run: async () => {
+      const r = await fetchPage('/');
+      // Check if our child theme CSS is loaded AFTER the storefront inline styles
+      const storefrontInlinePos = r.html.indexOf('storefront-style-inline-css');
+      const childCssPos = r.html.indexOf('norelle/style.css');
+      const correctOrder = childCssPos > storefrontInlinePos;
+      return { pass: correctOrder, detail: correctOrder ? 'Child CSS loads after Storefront inline — overrides apply' : 'WARNING: Child CSS loads before Storefront inline' };
+    }
+  },
+];
+
+// ============================================================
+// RUNNER
+// ============================================================
+
+async function runAllTests() {
+  const btn = document.getElementById('runBtn');
+  btn.disabled = true;
+  btn.textContent = 'Running...';
+  results = [];
+  logLines = [];
+  document.getElementById('logPanel').innerHTML = '';
+  document.getElementById('results').innerHTML = '';
+  document.getElementById('progressFill').style.width = '0%';
+
+  log('Starting Norelle test suite...', 'info');
+  log(`Base URL: ${BASE()}`, 'info');
+
+  let passed = 0, failed = 0, skipped = 0;
+
+  for (let i = 0; i < tests.length; i++) {
+    const t = tests[i];
+    const pct = Math.round(((i + 1) / tests.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+
+    try {
+      const result = await t.run();
+      results.push({ ...t, ...result });
+      if (result.pass) passed++; else failed++;
+      log(`${result.pass ? 'PASS' : 'FAIL'} — ${t.name}: ${result.detail}`, result.pass ? 'success' : 'error');
+    } catch (e) {
+      results.push({ ...t, pass: false, detail: `Error: ${e.message}` });
+      failed++;
+      log(`ERROR — ${t.name}: ${e.message}`, 'error');
+    }
+
+    updateCounts(passed, failed, skipped, tests.length);
+    renderResults();
+  }
+
+  log(`Done! ${passed} passed, ${failed} failed, ${skipped} skipped out of ${tests.length}`, passed === tests.length ? 'success' : 'error');
+  btn.disabled = false;
+  btn.textContent = 'Run All Tests';
+}
+
+function updateCounts(p, f, s, t) {
+  document.getElementById('totalCount').textContent = t;
+  document.getElementById('passCount').textContent = p;
+  document.getElementById('failCount').textContent = f;
+  document.getElementById('skipCount').textContent = s;
+}
+
+function renderResults(filter = 'all') {
+  const container = document.getElementById('results');
+  const categories = [...new Set(results.map(r => r.category))];
+  let html = '';
+
+  for (const cat of categories) {
+    const catResults = results.filter(r => r.category === cat);
+    const filtered = filter === 'all' ? catResults : catResults.filter(r => filter === 'pass' ? r.pass : !r.pass);
+    if (filtered.length === 0) continue;
+
+    const catPass = catResults.filter(r => r.pass).length;
+    html += `<div class="category">`;
+    html += `<div class="category-header">${cat} <span class="category-count">${catPass}/${catResults.length} passed</span></div>`;
+    for (const r of filtered) {
+      const cls = r.pass ? 'pass' : 'fail';
+      const icon = r.pass ? '✓' : '✗';
+      html += `<div class="test-row ${cls}">
+        <span class="status">${icon}</span>
+        <span class="name">${r.name}</span>
+        <span class="detail">${r.detail || ''}</span>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+function filterTests(type, btn) {
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderResults(type);
+}
+</script>
+</body>
+</html>

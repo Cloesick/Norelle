@@ -1,0 +1,94 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: norelle-db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - norelle-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  wordpress:
+    image: wordpress:latest
+    container_name: norelle-wordpress
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG}
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./theme/norelle:/var/www/html/wp-content/themes/norelle
+      - ./plugins:/var/www/html/wp-content/plugins-custom
+      - ./uploads:/var/www/html/wp-content/uploads
+    ports:
+      - "8080:80"
+    networks:
+      - norelle-network
+
+  wpcli:
+    image: wordpress:cli
+    container_name: norelle-wpcli
+    depends_on:
+      db:
+        condition: service_healthy
+      wordpress:
+        condition: service_started
+    env_file: .env
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./theme/norelle:/var/www/html/wp-content/themes/norelle
+      - ./scripts:/scripts
+    networks:
+      - norelle-network
+    entrypoint: ["sh", "/scripts/setup.sh"]
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: norelle-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "8081:80"
+    networks:
+      - norelle-network
+
+volumes:
+  db_data:
+  wordpress_data:
+
+networks:
+  norelle-network:
+    driver: bridge

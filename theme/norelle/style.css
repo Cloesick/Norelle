@@ -1,0 +1,2703 @@
+/*
+ Theme Name:   Norelle
+ Theme URI:    https://norelle.com
+ Description:  Custom WooCommerce theme for Norelle — a premium brand experience built on Storefront.
+ Author:       Norelle
+ Author URI:   https://norelle.com
+ Template:     storefront
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:  norelle
+ Tags:         woocommerce, e-commerce, custom-colors, custom-logo
+*/
+
+/* ================================================
+   NORELLE — Mobile-First Brand Design System
+   ================================================
+   Background: #3b0505 (Deep Burgundy)
+   Text:       #eeefc9 (Warm Cream)
+   Accent:     #fffaea (Light Cream)
+   ================================================ */
+
+:root {
+  --norelle-burgundy: #3b0505;
+  --norelle-cream: #eeefc9;
+  --norelle-light-cream: #fffaea;
+  --norelle-burgundy-light: #5a1a1a;
+  --norelle-burgundy-dark: #2a0303;
+  --norelle-text: #eeefc9;
+  --norelle-text-muted: rgba(238, 239, 201, 0.6);
+  --norelle-border: rgba(238, 239, 201, 0.2);
+  --norelle-shadow: rgba(0, 0, 0, 0.2);
+  --norelle-radius: 2px;
+  --norelle-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================================================
+   STOREFRONT CUSTOMIZER INLINE OVERRIDES
+   Storefront injects inline <style> with white/gray
+   colors. We counter every rule here with !important.
+   ================================================ */
+
+/* Nav & header text colors */
+.main-navigation ul li a,
+.site-title a,
+ul.menu li a,
+.site-branding h1 a,
+button.menu-toggle,
+button.menu-toggle:hover,
+.handheld-navigation .dropdown-toggle {
+  color: var(--norelle-cream) !important;
+}
+
+button.menu-toggle,
+button.menu-toggle:hover {
+  border-color: var(--norelle-cream) !important;
+}
+
+.main-navigation ul li a:hover,
+.main-navigation ul li:hover > a,
+.site-title a:hover,
+.site-header ul.menu li.current-menu-item > a {
+  color: #ffffff !important;
+}
+
+/* Tables — dark theme */
+table:not(.has-background) th {
+  background-color: var(--norelle-burgundy-light) !important;
+  color: var(--norelle-cream) !important;
+}
+
+table:not(.has-background) tbody td {
+  background-color: var(--norelle-burgundy) !important;
+  color: var(--norelle-cream) !important;
+}
+
+table:not(.has-background) tbody tr:nth-child(2n) td,
+fieldset,
+fieldset legend {
+  background-color: var(--norelle-burgundy-dark) !important;
+  color: var(--norelle-cream) !important;
+}
+
+/* Header & handheld bar backgrounds */
+.secondary-navigation ul ul,
+.main-navigation ul.menu > li.menu-item-has-children:after,
+.secondary-navigation ul.menu ul,
+.storefront-handheld-footer-bar,
+.storefront-handheld-footer-bar ul li > a,
+.storefront-handheld-footer-bar ul li.search .site-search,
+button.menu-toggle {
+  background-color: var(--norelle-burgundy) !important;
+}
+
+p.site-description,
+.storefront-handheld-footer-bar {
+  color: var(--norelle-cream) !important;
+}
+
+button.menu-toggle:after,
+button.menu-toggle:before,
+button.menu-toggle span:before {
+  background-color: var(--norelle-cream) !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.wc-block-grid__product-title {
+  color: var(--norelle-cream) !important;
+}
+
+.widget h1 {
+  border-bottom-color: var(--norelle-border) !important;
+}
+
+/* Body & secondary nav text */
+.secondary-navigation a {
+  color: var(--norelle-cream) !important;
+}
+
+.widget-area .widget a,
+.hentry .entry-header .posted-on a,
+.hentry .entry-header .post-author a,
+.hentry .entry-header .post-comments a,
+.hentry .entry-header .byline a {
+  color: var(--norelle-cream) !important;
+}
+
+/* Links */
+a {
+  color: var(--norelle-cream) !important;
+}
+
+a:focus,
+button:focus,
+.button.alt:focus,
+input:focus,
+textarea:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus {
+  outline-color: var(--norelle-cream) !important;
+}
+
+/* Buttons — override Storefront gray #eeeeee */
+button, input[type="button"], input[type="reset"],
+input[type="submit"], .button, .widget a.button {
+  background-color: var(--norelle-cream) !important;
+  border-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+}
+
+button:hover, input[type="button"]:hover, input[type="reset"]:hover,
+input[type="submit"]:hover, .button:hover, .widget a.button:hover {
+  background-color: transparent !important;
+  border-color: var(--norelle-cream) !important;
+  color: var(--norelle-cream) !important;
+}
+
+button.alt, input[type="button"].alt, input[type="reset"].alt,
+input[type="submit"].alt, .button.alt,
+.widget-area .widget a.button.alt {
+  background-color: var(--norelle-cream) !important;
+  border-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+}
+
+button.alt:hover, input[type="button"].alt:hover,
+input[type="reset"].alt:hover, input[type="submit"].alt:hover,
+.button.alt:hover, .widget-area .widget a.button.alt:hover {
+  background-color: transparent !important;
+  border-color: var(--norelle-cream) !important;
+  color: var(--norelle-cream) !important;
+}
+
+/* Pagination */
+.pagination .page-numbers li .page-numbers.current {
+  background-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+}
+
+/* Comments */
+#comments .comment-list .comment-content .comment-text {
+  background-color: var(--norelle-burgundy-light) !important;
+  color: var(--norelle-cream) !important;
+}
+
+/* Footer — override Storefront #f0f0f0 */
+.site-footer {
+  background-color: var(--norelle-burgundy) !important;
+  color: var(--norelle-cream) !important;
+}
+
+.site-footer a:not(.button):not(.components-button) {
+  color: var(--norelle-cream) !important;
+}
+
+.site-footer .storefront-handheld-footer-bar a:not(.button):not(.components-button) {
+  color: var(--norelle-cream) !important;
+}
+
+.site-footer h1, .site-footer h2, .site-footer h3,
+.site-footer h4, .site-footer h5, .site-footer h6,
+.site-footer .widget .widget-title,
+.site-footer .widget .widgettitle {
+  color: var(--norelle-cream) !important;
+}
+
+/* Homepage hero text */
+.page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-title,
+.page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-content {
+  color: var(--norelle-cream) !important;
+}
+
+/* Secondary nav hover — override inline media query */
+@media screen and (min-width: 768px) {
+  .secondary-navigation ul.menu a:hover {
+    color: #ffffff !important;
+  }
+
+  .secondary-navigation ul.menu a {
+    color: var(--norelle-cream) !important;
+  }
+
+  .main-navigation ul.menu ul.sub-menu,
+  .main-navigation ul.nav-menu ul.children {
+    background-color: var(--norelle-burgundy) !important;
+  }
+
+  .site-header {
+    border-bottom-color: var(--norelle-border) !important;
+  }
+}
+
+/* WooCommerce blocks — white bg overrides */
+.wc-block-cart__submit-container {
+  background-color: var(--norelle-burgundy-light) !important;
+}
+
+.wc-block-cart__submit-container::before {
+  color: var(--norelle-border) !important;
+}
+
+.wc-block-components-order-summary-item__quantity {
+  background-color: var(--norelle-cream) !important;
+  border-color: var(--norelle-cream) !important;
+  box-shadow: 0 0 0 2px var(--norelle-burgundy) !important;
+  color: var(--norelle-burgundy) !important;
+}
+
+/* WooCommerce block buttons */
+.wc-block-grid__products .wc-block-grid__product .wp-block-button__link,
+.wc-block-components-button:not(.is-link) {
+  background-color: var(--norelle-cream) !important;
+  border-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+}
+
+.wc-block-components-button:not(.is-link):hover,
+.wc-block-components-button:not(.is-link):focus,
+.wc-block-components-button:not(.is-link):active {
+  background-color: transparent !important;
+  border-color: var(--norelle-cream) !important;
+  color: var(--norelle-cream) !important;
+}
+
+.wc-block-components-button:not(.is-link):disabled {
+  background-color: var(--norelle-burgundy-light) !important;
+  border-color: var(--norelle-border) !important;
+  color: var(--norelle-text-muted) !important;
+}
+
+/* WC block price slider */
+div.wc-block-components-price-slider__range-input-progress {
+  background: var(--norelle-cream) !important;
+}
+
+/* WC block product grid titles & prices */
+.wc-block-grid__product-title {
+  color: var(--norelle-cream) !important;
+}
+
+.wc-block-grid__product-price {
+  color: var(--norelle-cream) !important;
+}
+
+/* WC block checkout / cart surfaces */
+.wc-block-checkout,
+.wc-block-cart,
+.wp-block-woocommerce-cart,
+.wp-block-woocommerce-checkout {
+  color: var(--norelle-cream) !important;
+}
+
+.wc-block-components-totals-wrapper,
+.wc-block-components-totals-footer-item,
+.wc-block-components-totals-item {
+  color: var(--norelle-cream) !important;
+  border-color: var(--norelle-border) !important;
+}
+
+.wc-block-components-order-summary,
+.wc-block-components-sidebar {
+  background-color: var(--norelle-burgundy-light) !important;
+  color: var(--norelle-cream) !important;
+}
+
+.wc-block-components-checkout-step__title,
+.wc-block-components-checkout-step__description {
+  color: var(--norelle-cream) !important;
+}
+
+/* WC block form inputs */
+.wc-block-components-text-input input,
+.wc-block-components-text-input textarea,
+.wc-block-components-select .wc-block-components-select__container select {
+  background-color: var(--norelle-burgundy-light) !important;
+  border-color: var(--norelle-border) !important;
+  color: var(--norelle-cream) !important;
+}
+
+.wc-block-components-text-input label,
+.wc-block-components-select label {
+  color: var(--norelle-text-muted) !important;
+}
+
+/* WC block radio/checkbox controls */
+.wc-block-components-radio-control__label,
+.wc-block-components-radio-control__description,
+.wc-block-components-radio-control__secondary-label,
+.wc-block-components-radio-control__secondary-description,
+.wc-block-components-checkbox__label {
+  color: var(--norelle-cream) !important;
+}
+
+/* WC block notices */
+.wc-block-components-notices .wc-block-components-notice-banner {
+  color: var(--norelle-cream) !important;
+  background-color: var(--norelle-burgundy-light) !important;
+}
+
+/* Entry content — ensure dark bg */
+.hentry,
+.entry-content,
+.page .entry-content,
+.single .entry-content {
+  color: var(--norelle-cream) !important;
+}
+
+/* Storefront breadcrumb container */
+.storefront-breadcrumb {
+  background-color: var(--norelle-burgundy) !important;
+}
+
+/* Secondary navigation — hide or theme it */
+.secondary-navigation {
+  background-color: var(--norelle-burgundy) !important;
+}
+
+/* Storefront sidebar */
+.widget-area {
+  color: var(--norelle-cream) !important;
+}
+
+.widget-area .widget {
+  color: var(--norelle-cream) !important;
+}
+
+/* Star ratings */
+.star-rating span::before,
+.star-rating::before {
+  color: var(--norelle-cream) !important;
+}
+
+/* Select2 dropdowns (WooCommerce uses these) */
+.select2-container--default .select2-selection--single {
+  background-color: var(--norelle-burgundy-light) !important;
+  border-color: var(--norelle-border) !important;
+  color: var(--norelle-cream) !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: var(--norelle-cream) !important;
+}
+
+.select2-container--default .select2-results__option {
+  background-color: var(--norelle-burgundy) !important;
+  color: var(--norelle-cream) !important;
+}
+
+.select2-container--default .select2-results__option--highlighted {
+  background-color: var(--norelle-burgundy-light) !important;
+  color: var(--norelle-cream) !important;
+}
+
+.select2-dropdown {
+  background-color: var(--norelle-burgundy) !important;
+  border-color: var(--norelle-border) !important;
+}
+
+/* WooCommerce order details tables */
+.woocommerce-orders-table,
+.woocommerce-table--order-details,
+.woocommerce-table--order-downloads {
+  background-color: var(--norelle-burgundy) !important;
+  color: var(--norelle-cream) !important;
+}
+
+.woocommerce-orders-table th,
+.woocommerce-orders-table td,
+.woocommerce-table--order-details th,
+.woocommerce-table--order-details td {
+  color: var(--norelle-cream) !important;
+  border-color: var(--norelle-border) !important;
+}
+
+/* Ensure all WooCommerce link colors */
+.woocommerce a,
+.woocommerce-page a {
+  color: var(--norelle-cream) !important;
+}
+
+.woocommerce a:hover,
+.woocommerce-page a:hover {
+  color: #ffffff !important;
+}
+
+/* ================================================
+   GLOBAL RESET & BASE (mobile-first)
+   ================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(238, 239, 201, 0.1);
+}
+
+body,
+.site-content,
+.col-full {
+  background-color: var(--norelle-burgundy) !important;
+  color: var(--norelle-cream) !important;
+}
+
+body {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  padding-bottom: 2.5rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.col-full {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* ================================================
+   TYPOGRAPHY (mobile-first)
+   ================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 400;
+  color: var(--norelle-cream);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(1.25rem, 5vw, 1.6rem); }
+h2 { font-size: clamp(1.1rem, 4vw, 1.35rem); }
+h3 { font-size: 1.05rem; }
+h4 { font-size: 0.95rem; }
+
+p {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  color: var(--norelle-cream);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--norelle-cream);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--norelle-transition);
+  font-weight: 500;
+}
+
+a:hover,
+a:focus {
+  color: #ffffff;
+  border-bottom-color: var(--norelle-cream);
+}
+
+/* Scale up typography for tablet+ */
+@media (min-width: 481px) {
+  body { font-size: 15px; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.1rem; }
+
+  h1, h2, h3, h4, h5, h6 {
+    -webkit-hyphens: none;
+    hyphens: none;
+  }
+}
+
+@media (min-width: 769px) {
+  body { font-size: 17px; padding-bottom: 0; }
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+  h3 { font-size: 1.75rem; }
+  h4 { font-size: 1.35rem; }
+
+  .col-full {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
+/* ================================================
+   HEADER — Mobile-first: hamburger by default
+   ================================================ */
+
+.site-header {
+  background-color: var(--norelle-burgundy) !important;
+  border-bottom: 1px solid var(--norelle-border) !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  padding: 0.5rem 1rem !important;
+  gap: 0 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  transition: transform 0.3s ease;
+}
+
+.site-header.header-hidden {
+  transform: translateY(-100%);
+}
+
+/* First col-full: just the logo */
+.site-header > .col-full {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+}
+
+/* Second wrapper: nav + account + cart */
+.storefront-primary-navigation {
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  grid-column: 1 / -1;
+  order: 10;
+}
+
+.storefront-primary-navigation .col-full {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+}
+
+/* Logo / Site branding */
+.site-header .site-branding {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0.4rem 0;
+  text-align: left;
+}
+
+.site-header .site-title,
+.site-header .site-branding h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.site-header .site-title a,
+.site-header .site-branding h1 a {
+  color: #ffffff !important;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  font-size: 1.1rem;
+  border-bottom: none !important;
+  white-space: nowrap;
+}
+
+.site-header .site-title a:hover,
+.site-header .site-branding h1 a:hover {
+  opacity: 0.85;
+}
+
+.site-header .site-description {
+  display: none;
+}
+
+.custom-logo-link {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.custom-logo {
+  width: 140px;
+  height: auto;
+  display: block;
+  margin: 0;
+}
+
+/* Hide text title when logo is active */
+.has-custom-logo .site-title,
+.has-custom-logo .site-branding h1:not(:has(.custom-logo-link)) {
+  display: none;
+}
+
+/* Hamburger button — visible by default (mobile-first) */
+.norelle-hamburger {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  border: 1px solid var(--norelle-border) !important;
+  color: var(--norelle-cream) !important;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 !important;
+  font-size: 1.3rem;
+  cursor: pointer;
+  border-radius: var(--norelle-radius);
+  line-height: 1;
+}
+
+.norelle-hamburger:hover {
+  background: rgba(238, 239, 201, 0.1) !important;
+  border-color: var(--norelle-cream) !important;
+}
+
+/* Navigation — hidden by default, toggled via JS (mobile) */
+.main-navigation {
+  background-color: transparent !important;
+  display: none !important;
+  flex-direction: column;
+  overflow: hidden;
+  float: none !important;
+  clear: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.main-navigation.norelle-nav-open {
+  display: flex !important;
+}
+
+.main-navigation .primary-navigation {
+  display: flex;
+}
+
+.main-navigation ul,
+.main-navigation ul.menu,
+.main-navigation ul.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main-navigation ul li {
+  float: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.main-navigation ul li a {
+  color: #ffffff !important;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.85rem 1rem;
+  transition: opacity var(--norelle-transition);
+  border-bottom: 1px solid var(--norelle-border) !important;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+}
+
+.main-navigation ul li:last-child a {
+  border-bottom: none !important;
+}
+
+.main-navigation ul li a:hover {
+  opacity: 0.7;
+}
+
+.main-navigation ul.menu > li.current-menu-item > a,
+.main-navigation ul.menu > li.current-menu-parent > a {
+  font-weight: 700;
+}
+
+/* Sub-menus — mobile: always visible, indented */
+.main-navigation ul.menu li ul.sub-menu {
+  position: static;
+  display: flex !important;
+  flex-direction: column;
+  background-color: var(--norelle-burgundy-dark);
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  z-index: 9999;
+}
+
+.main-navigation ul.menu li ul.sub-menu li {
+  width: 100%;
+}
+
+.main-navigation ul.menu li ul.sub-menu li a {
+  font-size: 0.75rem;
+  padding-left: 2.5rem;
+  letter-spacing: 0.1em;
+}
+
+.main-navigation ul.menu li ul.sub-menu li a:hover {
+  background-color: rgba(255,255,255,0.1);
+  opacity: 1;
+}
+
+
+.site-header-cart {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-header-cart .cart-contents {
+  color: #ffffff !important;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: none !important;
+}
+
+.site-header-cart .cart-contents:hover {
+  opacity: 0.7;
+}
+
+.site-header-cart .widget_shopping_cart {
+  background-color: var(--norelle-burgundy-light);
+  border: 1px solid var(--norelle-border);
+}
+
+/* Hide Storefront's handheld nav */
+.handheld-navigation {
+  display: none !important;
+}
+
+/* ================================================
+   HEADER — Desktop (≥ 769px): single-row, no hamburger
+   ================================================ */
+@media (min-width: 769px) {
+  .site-header {
+    grid-template-columns: auto 1fr;
+    max-width: 1400px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 2rem !important;
+    gap: 0;
+  }
+
+  .site-header .site-branding {
+    margin-right: 2rem;
+    padding: 0.6rem 0;
+  }
+
+  .site-header .site-title a,
+  .site-header .site-branding h1 a {
+    font-size: 2rem;
+    letter-spacing: 0.14em;
+  }
+
+  .custom-logo {
+    width: 220px;
+  }
+
+  /* Hide hamburger on desktop */
+  .norelle-hamburger {
+    display: none !important;
+  }
+
+  /* Show nav inline on desktop */
+  .storefront-primary-navigation {
+    grid-column: auto;
+    order: 0;
+  }
+
+  .storefront-primary-navigation .col-full {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .main-navigation {
+    display: flex !important;
+    flex-direction: row;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .main-navigation ul,
+  .main-navigation ul.menu,
+  .main-navigation ul.nav-menu {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .main-navigation ul li a {
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    padding: 0.75rem 1rem;
+    border-bottom: none !important;
+    min-height: auto;
+    display: block;
+  }
+
+  /* Restore wider letter-spacing on desktop */
+  .button,
+  .woocommerce a.button,
+  .woocommerce button.button,
+  .woocommerce input.button {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    padding: 0.85rem 2.5rem;
+  }
+
+  .main-navigation ul.menu > li.current-menu-item > a,
+  .main-navigation ul.menu > li.current-menu-parent > a {
+    border-bottom: 2px solid #ffffff !important;
+    font-weight: 500;
+  }
+
+  /* Desktop dropdown sub-menus */
+  .main-navigation ul.menu li ul.sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: var(--norelle-burgundy);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    min-width: 190px;
+    padding: 0.5rem 0;
+  }
+
+  .main-navigation ul.menu li:hover > ul.sub-menu {
+    display: flex;
+  }
+
+  .main-navigation ul.menu li ul.sub-menu li a {
+    font-size: 0.75rem;
+    padding: 0.55rem 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+
+  .site-header-cart .cart-contents {
+    font-size: 0.8rem;
+  }
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+
+.site-footer {
+  background-color: var(--norelle-burgundy) !important;
+  color: var(--norelle-cream) !important;
+  padding: 4rem 0 0 !important;
+}
+
+.site-footer .col-full {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  background-color: var(--norelle-burgundy) !important;
+  color: var(--norelle-cream) !important;
+}
+
+/* Footer grid: mobile-first single column, scales up */
+.norelle-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(238, 239, 201, 0.15);
+}
+
+.norelle-footer-col {
+  color: var(--norelle-cream);
+}
+
+.norelle-footer-col .widget-title {
+  color: var(--norelle-cream) !important;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.norelle-footer-col p {
+  color: var(--norelle-cream) !important;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+.norelle-footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.norelle-footer-col ul li {
+  margin-bottom: 0.6rem;
+}
+
+.norelle-footer-col ul li a {
+  color: var(--norelle-cream) !important;
+  opacity: 0.7;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-bottom: none !important;
+  transition: opacity var(--norelle-transition);
+}
+
+.norelle-footer-col ul li a:hover {
+  opacity: 1;
+}
+
+/* Footer social links */
+.norelle-footer-social {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.norelle-footer-social a {
+  color: var(--norelle-cream) !important;
+  opacity: 0.7;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(238, 239, 201, 0.3);
+  border-radius: 50%;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-bottom: none !important;
+  transition: opacity var(--norelle-transition);
+}
+
+.norelle-footer-social a:hover {
+  opacity: 1;
+}
+
+/* Footer bottom bar — fixed on mobile */
+.norelle-footer-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9990;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  background-color: var(--norelle-burgundy-dark);
+  border-top: 1px solid var(--norelle-border);
+  color: var(--norelle-cream);
+  opacity: 0.85;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+/* Desktop: static in footer */
+@media (min-width: 769px) {
+  .norelle-footer-bottom {
+    position: static;
+    padding: 1.5rem 0;
+    background-color: transparent;
+    border-top: none;
+    opacity: 0.5;
+    font-size: 0.8rem;
+  }
+}
+
+/* Footer responsive — scale up */
+@media (min-width: 481px) {
+  .norelle-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 769px) {
+  .norelle-footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.site-footer h1,
+.site-footer h2,
+.site-footer h3,
+.site-footer h4 {
+  color: var(--norelle-cream) !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.site-info {
+  display: none;
+}
+
+/* ================================================
+   BUTTONS
+   ================================================ */
+
+button,
+input[type="button"],
+input[type="submit"],
+.button,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+  background-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+  border: 1px solid var(--norelle-cream) !important;
+  border-radius: var(--norelle-radius);
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: all var(--norelle-transition);
+  cursor: pointer;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+.button:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit:hover {
+  background-color: transparent !important;
+  color: var(--norelle-cream) !important;
+  border-color: var(--norelle-cream) !important;
+}
+
+/* Alt/outline buttons */
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit.alt {
+  background-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+}
+
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover {
+  background-color: transparent !important;
+  color: var(--norelle-cream) !important;
+  border-color: var(--norelle-cream) !important;
+}
+
+/* ================================================
+   FORMS
+   ================================================ */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+  background-color: var(--norelle-burgundy-light);
+  border: 1px solid var(--norelle-border);
+  border-radius: var(--norelle-radius);
+  color: var(--norelle-cream);
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  transition: border-color var(--norelle-transition);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--norelle-cream);
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(238, 239, 201, 0.3);
+}
+
+/* ================================================
+   WOOCOMMERCE — PRODUCT GRID
+   ================================================ */
+
+.woocommerce ul.products li.product {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.woocommerce ul.products li.product .woocommerce-LoopProduct-link {
+  text-decoration: none;
+}
+
+.woocommerce ul.products li.product a img {
+  border-radius: var(--norelle-radius);
+  transition: opacity var(--norelle-transition);
+}
+
+.woocommerce ul.products li.product a img:hover {
+  opacity: 0.9;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--norelle-text);
+  padding-top: 1rem;
+}
+
+.woocommerce ul.products li.product .price {
+  color: var(--norelle-text);
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.woocommerce ul.products li.product .price del {
+  opacity: 0.5;
+}
+
+.woocommerce ul.products li.product .star-rating {
+  color: var(--norelle-cream);
+}
+
+/* Sale badge */
+.woocommerce span.onsale {
+  background-color: var(--norelle-cream);
+  color: var(--norelle-burgundy);
+  border-radius: var(--norelle-radius);
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  min-height: auto;
+  line-height: 1.4;
+}
+
+/* ================================================
+   WOOCOMMERCE — SINGLE PRODUCT
+   ================================================ */
+
+.single-product div.product {
+  margin-top: 2rem;
+}
+
+.single-product div.product .product_title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.single-product div.product .price {
+  font-size: 1.5rem;
+  color: var(--norelle-cream);
+  font-weight: 600;
+}
+
+.single-product div.product .woocommerce-product-gallery img {
+  border-radius: var(--norelle-radius);
+}
+
+.single-product div.product .woocommerce-tabs {
+  margin-top: 3rem;
+}
+
+.single-product div.product .woocommerce-tabs ul.tabs li a {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--norelle-cream);
+}
+
+.single-product div.product .woocommerce-tabs ul.tabs li.active a {
+  border-bottom: 2px solid var(--norelle-cream);
+}
+
+/* Quantity input */
+.woocommerce .quantity .qty {
+  border: 1px solid var(--norelle-border);
+  border-radius: var(--norelle-radius);
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  color: var(--norelle-text);
+}
+
+/* ================================================
+   WOOCOMMERCE — CART
+   ================================================ */
+
+.woocommerce-cart table.cart {
+  border-color: var(--norelle-border);
+}
+
+.woocommerce-cart table.cart th {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--norelle-text);
+}
+
+.woocommerce-cart .cart-collaterals .cart_totals {
+  background-color: var(--norelle-burgundy-light);
+  padding: 2rem;
+  border: 1px solid var(--norelle-border);
+  border-radius: var(--norelle-radius);
+}
+
+/* ================================================
+   WOOCOMMERCE — CHECKOUT
+   ================================================ */
+
+.woocommerce-checkout #payment {
+  background-color: var(--norelle-burgundy-light);
+  border: 1px solid var(--norelle-border);
+  border-radius: var(--norelle-radius);
+}
+
+.woocommerce-checkout #payment div.payment_box {
+  background-color: var(--norelle-burgundy-dark);
+  color: var(--norelle-cream);
+}
+
+/* ================================================
+   WOOCOMMERCE — MY ACCOUNT
+   ================================================ */
+
+.woocommerce-MyAccount-navigation ul li a {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  letter-spacing: 0.06em;
+  color: var(--norelle-text);
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--norelle-border);
+  display: block;
+}
+
+.woocommerce-MyAccount-navigation ul li.is-active a {
+  font-weight: 700;
+  border-bottom-color: var(--norelle-cream);
+}
+
+/* ================================================
+   BREADCRUMBS
+   ================================================ */
+
+.woocommerce-breadcrumb,
+.storefront-breadcrumb {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--norelle-text-muted);
+  margin: 1.5rem 0;
+}
+
+/* ================================================
+   PAGINATION
+   ================================================ */
+
+.woocommerce nav.woocommerce-pagination ul li a,
+.woocommerce nav.woocommerce-pagination ul li span {
+  color: var(--norelle-text);
+  border-color: var(--norelle-border);
+  font-family: "Cormorant Garamond", "Georgia", serif;
+}
+
+.woocommerce nav.woocommerce-pagination ul li span.current {
+  background-color: var(--norelle-cream);
+  color: var(--norelle-burgundy);
+  border-color: var(--norelle-cream);
+}
+
+/* ================================================
+   WIDGETS & SIDEBAR
+   ================================================ */
+
+.widget {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+}
+
+.widget-title,
+.widgettitle {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--norelle-text);
+  border-bottom: 1px solid var(--norelle-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ================================================
+   NOTICES & MESSAGES
+   ================================================ */
+
+.woocommerce-message,
+.woocommerce-info {
+  border-top-color: var(--norelle-cream);
+  background-color: var(--norelle-burgundy-light);
+  color: var(--norelle-cream);
+}
+
+.woocommerce-message::before,
+.woocommerce-info::before {
+  color: var(--norelle-cream);
+}
+
+.woocommerce-error {
+  border-top-color: #c62828;
+}
+
+/* ================================================
+   RESPONSIVE — Mobile-First Layout
+   Base = mobile. Scale up with min-width queries.
+   ================================================ */
+
+/* --- Mobile base: buttons, grids, products, cart, checkout --- */
+
+/* Buttons — touch-friendly, full-width on mobile */
+button,
+.button,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+  min-height: 48px;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+/* ================================================
+   VIEW TOGGLE — Grid / List switch
+   ================================================ */
+
+.norelle-view-toggle {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.norelle-view-btn {
+  width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: transparent !important;
+  border: 1px solid var(--norelle-border) !important;
+  color: var(--norelle-text-muted) !important;
+  border-radius: var(--norelle-radius);
+  cursor: pointer;
+  font-size: 0.7rem;
+  line-height: 1;
+  transition: all var(--norelle-transition);
+}
+
+.norelle-view-btn.active {
+  background: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+  border-color: var(--norelle-cream) !important;
+}
+
+/* Product grid — 2-column mobile base */
+.woocommerce ul.products {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.woocommerce ul.products li.product {
+  margin: 0 !important;
+  width: 100% !important;
+  float: none !important;
+  text-align: center;
+}
+
+.woocommerce ul.products li.product img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--norelle-radius);
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  margin: 0.4rem 0 0.15rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.woocommerce ul.products li.product .price {
+  font-size: 0.7rem;
+  margin-bottom: 0.3rem;
+}
+
+.woocommerce ul.products li.product .button {
+  font-size: 0.65rem !important;
+  padding: 0.4rem 0.5rem !important;
+  min-height: 32px !important;
+  width: 100% !important;
+  letter-spacing: 0.04em !important;
+}
+
+.woocommerce ul.products.columns-4 li.product,
+.woocommerce ul.products.columns-3 li.product,
+.woocommerce ul.products.columns-2 li.product {
+  width: 100% !important;
+  margin-right: 0 !important;
+}
+
+/* ================================================
+   LIST VIEW — compact horizontal rows
+   ================================================ */
+
+.woocommerce ul.products.norelle-list-view {
+  grid-template-columns: 1fr !important;
+  gap: 0.5rem;
+}
+
+.woocommerce ul.products.norelle-list-view li.product {
+  display: grid !important;
+  grid-template-columns: 80px 1fr auto;
+  grid-template-rows: auto;
+  gap: 0 0.75rem;
+  align-items: center;
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--norelle-border);
+}
+
+.woocommerce ul.products.norelle-list-view li.product img {
+  width: 80px;
+  height: 80px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  grid-row: 1 / 3;
+  border-radius: var(--norelle-radius);
+}
+
+.woocommerce ul.products.norelle-list-view li.product .woocommerce-loop-product__title {
+  font-size: 0.8rem;
+  margin: 0;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.woocommerce ul.products.norelle-list-view li.product .price {
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.woocommerce ul.products.norelle-list-view li.product .button {
+  font-size: 0.6rem !important;
+  padding: 0.35rem 0.6rem !important;
+  min-height: 28px !important;
+  width: auto !important;
+  white-space: nowrap;
+}
+
+.woocommerce ul.products.norelle-list-view li.product .star-rating,
+.woocommerce ul.products.norelle-list-view li.product .onsale {
+  display: none;
+}
+
+/* Related / cross-sells — always 2-col on mobile */
+.related.products ul.products li.product,
+.cross-sells ul.products li.product,
+.up-sells ul.products li.product {
+  width: 100% !important;
+  margin-right: 0 !important;
+}
+
+/* Single product — stacked mobile layout */
+.single-product div.product .woocommerce-product-gallery,
+.single-product div.product .entry-summary {
+  width: 100% !important;
+  float: none !important;
+}
+
+.single-product div.product .quantity {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.single-product div.product .quantity .qty {
+  width: 100%;
+  min-height: 48px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.single-product div.product form.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.single-product div.product form.cart .button {
+  width: 100%;
+}
+
+/* Tabs — flex-wrap on mobile */
+.single-product div.product .woocommerce-tabs ul.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.single-product div.product .woocommerce-tabs ul.tabs li {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.single-product div.product .woocommerce-tabs ul.tabs li a {
+  padding: 0.75rem 0.5rem;
+  font-size: 0.75rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cart table — horizontal scroll on mobile */
+.woocommerce-cart table.cart {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.woocommerce-cart .cart-collaterals .cart_totals {
+  width: 100% !important;
+  float: none !important;
+}
+
+.woocommerce-cart table.cart td.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.woocommerce-cart table.cart td.actions .coupon {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.woocommerce-cart table.cart td.actions .coupon input {
+  width: 100% !important;
+  min-height: 48px;
+}
+
+/* Checkout — stacked columns (mobile base) */
+.woocommerce-checkout .col2-set {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.woocommerce-checkout .col2-set .col-1,
+.woocommerce-checkout .col2-set .col-2 {
+  width: 100% !important;
+  float: none !important;
+  padding: 0;
+}
+
+.woocommerce-checkout #order_review_heading,
+.woocommerce-checkout #order_review {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Checkout inputs — touch-friendly, 16px prevents iOS zoom */
+.woocommerce-checkout input[type="text"],
+.woocommerce-checkout input[type="email"],
+.woocommerce-checkout input[type="tel"],
+.woocommerce-checkout textarea,
+.woocommerce-checkout select {
+  min-height: 48px;
+  font-size: 16px;
+}
+
+/* My Account — stacked (mobile base) */
+.woocommerce-MyAccount-navigation {
+  width: 100% !important;
+  float: none !important;
+  margin-bottom: 1.5rem;
+}
+
+.woocommerce-MyAccount-navigation ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.woocommerce-MyAccount-navigation ul li {
+  flex: 1 1 auto;
+}
+
+.woocommerce-MyAccount-navigation ul li a {
+  text-align: center;
+  padding: 0.6rem 0.75rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  border: 1px solid var(--norelle-border);
+  border-bottom: none;
+}
+
+.woocommerce-MyAccount-content {
+  width: 100% !important;
+  float: none !important;
+}
+
+/* Share buttons — stacked on small screens */
+.norelle-share-buttons {
+  flex-direction: column;
+}
+
+.norelle-share-btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Sticky add-to-cart bar (mobile product pages) */
+.single-product .norelle-sticky-atc {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9990;
+  background-color: var(--norelle-burgundy-dark);
+  border-top: 1px solid var(--norelle-border);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+}
+
+.single-product .norelle-sticky-atc.visible {
+  transform: translateY(0);
+}
+
+.norelle-sticky-atc-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.norelle-sticky-atc-title {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--norelle-cream);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.norelle-sticky-atc-price {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.75rem;
+  color: var(--norelle-text-muted);
+}
+
+.norelle-sticky-atc .button {
+  flex: 0 0 auto;
+  width: auto !important;
+  min-width: 140px;
+  min-height: 44px;
+  font-size: 0.75rem !important;
+  padding: 0.6rem 1.25rem !important;
+}
+
+.single-product #page {
+  padding-bottom: 70px;
+}
+
+/* --- Tablet+ (≥ 481px): 2-column products --- */
+@media (min-width: 481px) {
+  .woocommerce ul.products.columns-4 li.product,
+  .woocommerce ul.products.columns-3 li.product,
+  .woocommerce ul.products.columns-2 li.product {
+    width: 48% !important;
+    margin-right: 4% !important;
+  }
+  .woocommerce ul.products li.product:nth-child(2n) {
+    margin-right: 0 !important;
+  }
+
+  .related.products ul.products li.product,
+  .cross-sells ul.products li.product,
+  .up-sells ul.products li.product {
+    width: 48% !important;
+    margin-right: 4% !important;
+  }
+  .related.products ul.products li.product:nth-child(2n),
+  .cross-sells ul.products li.product:nth-child(2n),
+  .up-sells ul.products li.product:nth-child(2n) {
+    margin-right: 0 !important;
+  }
+
+  .norelle-share-buttons {
+    flex-direction: row;
+  }
+
+  .norelle-share-btn {
+    width: auto;
+  }
+}
+
+/* --- Desktop (≥ 769px): full layout --- */
+@media (min-width: 769px) {
+  /* Buttons — inline, auto-width */
+  button,
+  .button,
+  .woocommerce a.button,
+  .woocommerce button.button,
+  .woocommerce input.button,
+  .woocommerce #respond input#submit {
+    width: auto;
+    display: inline-block;
+  }
+
+  /* Product grid — 3 columns on desktop */
+  .woocommerce ul.products {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .woocommerce ul.products li.product {
+    margin-bottom: 0;
+  }
+
+  .woocommerce ul.products li.product .woocommerce-loop-product__title {
+    font-size: 0.9rem;
+  }
+
+  .woocommerce ul.products li.product .price {
+    font-size: 0.85rem;
+  }
+
+  .woocommerce ul.products li.product .button {
+    font-size: 0.78rem !important;
+    padding: 0.6rem 1.2rem !important;
+    min-height: 40px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  /* List view on desktop — larger thumbnails */
+  .woocommerce ul.products.norelle-list-view {
+    grid-template-columns: 1fr !important;
+  }
+
+  .woocommerce ul.products.norelle-list-view li.product {
+    grid-template-columns: 120px 1fr auto;
+  }
+
+  .woocommerce ul.products.norelle-list-view li.product img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .woocommerce ul.products.norelle-list-view li.product .woocommerce-loop-product__title {
+    font-size: 1rem;
+  }
+
+  .woocommerce ul.products.norelle-list-view li.product .price {
+    font-size: 0.9rem;
+  }
+
+  .woocommerce ul.products.norelle-list-view li.product .button {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 1rem !important;
+    min-height: 36px !important;
+  }
+
+  /* Single product — side by side */
+  .single-product div.product .woocommerce-product-gallery {
+    width: 48% !important;
+    float: left !important;
+  }
+  .single-product div.product .entry-summary {
+    width: 48% !important;
+    float: right !important;
+  }
+
+  .single-product div.product .quantity {
+    width: auto;
+  }
+
+  .single-product div.product .quantity .qty {
+    width: auto;
+    min-height: auto;
+  }
+
+  .single-product div.product form.cart {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .single-product div.product form.cart .button {
+    width: auto;
+  }
+
+  /* Tabs — full inline */
+  .single-product div.product .woocommerce-tabs ul.tabs li a {
+    padding: 0.85rem 1.25rem;
+    font-size: 0.85rem;
+    min-height: auto;
+    display: block;
+  }
+
+  /* Cart — normal table */
+  .woocommerce-cart table.cart {
+    display: table;
+    overflow-x: visible;
+  }
+
+  .woocommerce-cart table.cart td.actions {
+    display: table-cell;
+  }
+
+  .woocommerce-cart table.cart td.actions .coupon {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: auto;
+  }
+
+  .woocommerce-cart table.cart td.actions .coupon input {
+    width: auto !important;
+    min-height: auto;
+  }
+
+  /* My Account — sidebar + content */
+  .woocommerce-MyAccount-navigation {
+    width: 30% !important;
+    float: left !important;
+    margin-bottom: 0;
+  }
+
+  .woocommerce-MyAccount-navigation ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .woocommerce-MyAccount-navigation ul li a {
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid var(--norelle-border);
+    font-size: inherit;
+    min-height: auto;
+    display: block;
+  }
+
+  .woocommerce-MyAccount-content {
+    width: 65% !important;
+    float: right !important;
+  }
+
+  /* Hide sticky ATC bar on desktop */
+  .single-product .norelle-sticky-atc {
+    display: none;
+  }
+
+  .single-product #page {
+    padding-bottom: 0;
+  }
+}
+
+/* ================================================
+   UTILITY CLASSES
+   ================================================ */
+
+.norelle-section {
+  padding: 4rem 0;
+}
+
+.norelle-section-cream {
+  background-color: var(--norelle-burgundy-light);
+}
+
+.norelle-text-center {
+  text-align: center;
+}
+
+.norelle-divider {
+  width: 60px;
+  height: 1px;
+  background-color: var(--norelle-cream);
+  margin: 2rem auto;
+  opacity: 0.3;
+}
+
+/* ================================================
+   SALES & UX — TRUST BAR
+   ================================================ */
+
+/* Mobile-first base: wrapped, compact */
+.norelle-trust-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  padding: 1rem;
+  background-color: var(--norelle-burgundy-light);
+  border-bottom: 1px solid var(--norelle-border);
+}
+
+.norelle-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--norelle-text);
+  flex: 0 0 45%;
+  justify-content: center;
+}
+
+.norelle-trust-icon {
+  font-size: 1.1rem;
+  color: var(--norelle-cream);
+}
+
+@media (min-width: 769px) {
+  .norelle-trust-bar {
+    flex-wrap: nowrap;
+    gap: 3rem;
+    padding: 1.5rem 2rem;
+  }
+  .norelle-trust-item {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+  }
+}
+
+/* ================================================
+   SALES & UX — CTA LINK
+   ================================================ */
+
+.norelle-cta-link {
+  display: inline-block;
+  margin-top: 2rem;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--norelle-cream) !important;
+  border-bottom: 1px solid var(--norelle-cream) !important;
+  padding-bottom: 2px;
+  transition: opacity var(--norelle-transition);
+}
+
+.norelle-cta-link:hover {
+  opacity: 0.6;
+}
+
+/* ================================================
+   SALES & UX — NEWSLETTER
+   ================================================ */
+
+.norelle-newsletter {
+  background-color: var(--norelle-burgundy);
+  color: var(--norelle-cream);
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.norelle-newsletter h2 {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 300;
+  font-size: 2.25rem;
+  letter-spacing: 0.06em;
+  color: var(--norelle-cream) !important;
+  margin-bottom: 0.75rem;
+}
+
+.norelle-newsletter p {
+  color: var(--norelle-cream) !important;
+  opacity: 0.8;
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+}
+
+/* Mobile-first: stacked column */
+.norelle-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.norelle-newsletter-form input[type="email"] {
+  flex: 1;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid rgba(238, 239, 201, 0.3);
+  border-radius: var(--norelle-radius);
+  background: rgba(255,255,255,0.08);
+  color: var(--norelle-cream);
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.95rem;
+}
+
+.norelle-newsletter-form input[type="email"]::placeholder {
+  color: rgba(238, 239, 201, 0.5);
+}
+
+.norelle-newsletter-btn {
+  padding: 0.85rem 2rem !important;
+  background-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+  border: 1px solid var(--norelle-cream) !important;
+  border-radius: var(--norelle-radius) !important;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--norelle-transition);
+  white-space: nowrap;
+}
+
+.norelle-newsletter-btn:hover {
+  background-color: transparent !important;
+  color: var(--norelle-cream) !important;
+}
+
+/* Tablet+: inline row */
+@media (min-width: 481px) {
+  .norelle-newsletter-form {
+    flex-direction: row;
+    gap: 0;
+  }
+  .norelle-newsletter-form input[type="email"] {
+    border-right: none;
+    border-radius: var(--norelle-radius) 0 0 var(--norelle-radius);
+  }
+  .norelle-newsletter-btn {
+    border-radius: 0 var(--norelle-radius) var(--norelle-radius) 0 !important;
+  }
+}
+
+/* ================================================
+   SALES & UX — URGENCY & SOCIAL PROOF
+   ================================================ */
+
+.norelle-urgency {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ef9a9a;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin: 0.75rem 0;
+}
+
+.norelle-urgency-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #ef9a9a;
+  border-radius: 50%;
+  animation: norelle-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes norelle-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.norelle-sale-badge-text {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.85rem;
+  color: var(--norelle-cream);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.norelle-social-proof {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.85rem;
+  color: var(--norelle-text-muted);
+  letter-spacing: 0.03em;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--norelle-border);
+}
+
+/* ================================================
+   SALES & UX — FREE SHIPPING BAR
+   ================================================ */
+
+.norelle-shipping-bar {
+  background-color: var(--norelle-burgundy-light);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--norelle-radius);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.norelle-shipping-bar p {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem;
+  color: var(--norelle-text) !important;
+}
+
+.norelle-shipping-free {
+  background-color: rgba(46, 125, 50, 0.15);
+}
+
+.norelle-shipping-free p {
+  color: #a5d6a7 !important;
+}
+
+.norelle-progress {
+  height: 6px;
+  background-color: rgba(238, 239, 201, 0.15);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.norelle-progress-fill {
+  height: 100%;
+  background-color: var(--norelle-cream);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ================================================
+   SALES & UX — CHECKOUT TRUST
+   ================================================ */
+
+/* Mobile-first: stacked column */
+.norelle-checkout-trust {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  margin-top: 1rem;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.8rem;
+  color: var(--norelle-text-muted);
+  letter-spacing: 0.04em;
+}
+
+@media (min-width: 481px) {
+  .norelle-checkout-trust {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+/* ================================================
+   SALES & UX — SALE PERCENTAGE BADGE
+   ================================================ */
+
+.norelle-sale-pct {
+  font-size: 0.8rem !important;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.75rem !important;
+}
+
+/* ================================================
+   SALES & UX — THANK YOU SHARE
+   ================================================ */
+
+.norelle-share-order {
+  text-align: center;
+  padding: 3rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid var(--norelle-border);
+}
+
+.norelle-share-order h3 {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.norelle-share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.norelle-share-btn {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  border: 1px solid var(--norelle-cream);
+  color: var(--norelle-cream) !important;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--norelle-radius);
+  transition: all var(--norelle-transition);
+}
+
+.norelle-share-btn:hover {
+  background-color: var(--norelle-cream);
+  color: var(--norelle-burgundy) !important;
+}
+
+/* ================================================
+   SALES & UX — EMPTY CART
+   ================================================ */
+
+.norelle-empty-cart {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.norelle-empty-cart-msg {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--norelle-text-muted);
+  margin-bottom: 2rem;
+}
+
+/* ================================================
+   SALES & UX — PRODUCT HOVER EFFECTS
+   ================================================ */
+
+.woocommerce ul.products li.product {
+  transition: transform var(--norelle-transition), box-shadow var(--norelle-transition);
+}
+
+.woocommerce ul.products li.product:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--norelle-shadow);
+}
+
+.woocommerce ul.products li.product a.button {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--norelle-transition), transform var(--norelle-transition);
+}
+
+.woocommerce ul.products li.product:hover a.button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================================
+   SALES & UX — HERO HOVER CTA
+   ================================================ */
+
+.norelle-hero a:hover {
+  background-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+}
+
+/* ================================================
+   CONTACT FORM
+   ================================================ */
+
+.norelle-contact-form {
+  margin: 2rem 0;
+}
+
+.norelle-form-row {
+  margin-bottom: 1.5rem;
+}
+
+/* Mobile-first: single column, 2-col on tablet+ */
+.norelle-form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 601px) {
+  .norelle-form-row-2col {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.norelle-form-field label {
+  display: block;
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--norelle-text);
+  margin-bottom: 0.5rem;
+}
+
+.norelle-form-field label .required {
+  color: #ef9a9a;
+}
+
+.norelle-form-field label .optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--norelle-text-muted);
+  font-size: 0.8rem;
+}
+
+.norelle-form-field input[type="text"],
+.norelle-form-field input[type="email"],
+.norelle-form-field input[type="tel"],
+.norelle-form-field textarea,
+.norelle-form-field select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--norelle-border);
+  border-radius: var(--norelle-radius);
+  background-color: var(--norelle-burgundy-light);
+  color: var(--norelle-cream);
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 1rem;
+  transition: border-color var(--norelle-transition), box-shadow var(--norelle-transition);
+}
+
+.norelle-form-field input:focus,
+.norelle-form-field textarea:focus,
+.norelle-form-field select:focus {
+  border-color: var(--norelle-cream);
+  box-shadow: 0 0 0 2px rgba(238, 239, 201, 0.15);
+  outline: none;
+}
+
+.norelle-form-field textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.norelle-form-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23eeefc9' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.norelle-form-checkbox label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.norelle-form-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--norelle-cream);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.norelle-form-privacy {
+  font-size: 0.8rem;
+  color: var(--norelle-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.norelle-form-privacy a {
+  color: var(--norelle-cream) !important;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.norelle-form-submit {
+  width: 100%;
+  padding: 1rem 2rem !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.14em !important;
+}
+
+/* Success state */
+.norelle-form-success {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: rgba(46, 125, 50, 0.15);
+  border-radius: var(--norelle-radius);
+}
+
+.norelle-form-success h3 {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-weight: 400;
+  color: #a5d6a7;
+  margin-bottom: 0.75rem;
+}
+
+.norelle-form-success p {
+  color: #a5d6a7 !important;
+  margin-bottom: 1.5rem;
+}
+
+/* Error state */
+.norelle-form-errors {
+  background-color: rgba(198, 40, 40, 0.15);
+  border-left: 3px solid #ef9a9a;
+  padding: 1rem 1.25rem;
+  border-radius: var(--norelle-radius);
+  margin-bottom: 1.5rem;
+}
+
+.norelle-form-errors p {
+  color: #ef9a9a !important;
+  font-size: 0.85rem;
+  margin: 0.25rem 0;
+}
+
+/* ================================================
+   SALES PIPELINE — Animated Step Indicator
+   5 stages: Discover → Select → Summary → Payment → Confirmed
+   ================================================ */
+
+/* Mobile-first base: small icons */
+.norelle-pipeline {
+  background-color: var(--norelle-burgundy-dark);
+  border-bottom: 1px solid var(--norelle-border);
+  padding: 1.25rem 1rem 1rem;
+  overflow: hidden;
+}
+
+.norelle-pipeline-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 720px;
+}
+
+/* Individual step (circle + label) */
+.norelle-pipeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  flex: 0 0 auto;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: norelle-pipe-in 0.5s ease forwards;
+}
+
+.norelle-pipeline-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  line-height: 1;
+  transition: all 0.4s ease;
+  border: 2px solid rgba(238, 239, 201, 0.25);
+  background-color: transparent;
+  color: rgba(238, 239, 201, 0.35);
+}
+
+.norelle-pipeline-label {
+  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(238, 239, 201, 0.35);
+  transition: color 0.4s ease;
+  white-space: nowrap;
+}
+
+/* Connector line between steps */
+.norelle-pipeline-connector {
+  flex: 1 1 0;
+  height: 2px;
+  min-width: 16px;
+  max-width: 80px;
+  margin: 0 0.25rem;
+  margin-bottom: 1.1rem;
+  border-radius: 1px;
+  background-color: rgba(238, 239, 201, 0.15);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: norelle-pipe-in 0.5s ease forwards;
+}
+
+.norelle-pipeline-connector::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--norelle-cream);
+  border-radius: 1px;
+  transition: width 0.6s ease;
+}
+
+.norelle-pipeline-connector-filled::after {
+  width: 100%;
+  animation: norelle-pipe-fill 0.8s ease forwards;
+}
+
+/* States */
+.norelle-pipeline-completed .norelle-pipeline-icon {
+  background-color: var(--norelle-cream);
+  border-color: var(--norelle-cream);
+  color: var(--norelle-burgundy);
+}
+
+.norelle-pipeline-completed .norelle-pipeline-label {
+  color: var(--norelle-cream);
+  opacity: 0.7;
+}
+
+.norelle-pipeline-active .norelle-pipeline-icon {
+  background-color: transparent;
+  border-color: var(--norelle-cream);
+  color: var(--norelle-cream);
+  box-shadow: 0 0 0 4px rgba(238, 239, 201, 0.15);
+  animation: norelle-pipe-in 0.5s ease forwards, norelle-glow 2s ease-in-out infinite;
+}
+
+.norelle-pipeline-active .norelle-pipeline-label {
+  color: var(--norelle-cream);
+  font-weight: 700;
+}
+
+.norelle-pipeline-upcoming .norelle-pipeline-icon {
+  background-color: transparent;
+  border-color: rgba(238, 239, 201, 0.2);
+  color: rgba(238, 239, 201, 0.3);
+}
+
+.norelle-pipeline-upcoming .norelle-pipeline-label {
+  color: rgba(238, 239, 201, 0.3);
+}
+
+/* Animations */
+@keyframes norelle-pipe-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes norelle-pipe-fill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@keyframes norelle-glow {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(238, 239, 201, 0.12); }
+  50%      { box-shadow: 0 0 0 8px rgba(238, 239, 201, 0.25); }
+}
+
+/* Pipeline: scale up for tablet+ */
+@media (min-width: 601px) {
+  .norelle-pipeline {
+    padding: 1.75rem 2rem 1.25rem;
+  }
+
+  .norelle-pipeline-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .norelle-pipeline-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .norelle-pipeline-connector {
+    min-width: 30px;
+    margin-bottom: 1.4rem;
+  }
+}
