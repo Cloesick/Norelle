@@ -28,5 +28,4 @@ node_modules/
 # Logs
 *.log
 
-# Large files (exceed GitHub 100MB limit)
-NORELLE.pdf
+# Large files tracked via Git LFS (see .gitattributes)
