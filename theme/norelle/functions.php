@@ -15,7 +15,7 @@ function norelle_enqueue_styles() {
     // Google Fonts — Cormorant Garamond (serif, elegant)
     wp_enqueue_style(
         'norelle-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap',
+        'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap',
         array(),
         null
     );
@@ -46,11 +46,28 @@ add_action('wp_enqueue_scripts', 'norelle_enqueue_styles', 20);
  */
 function norelle_custom_logo_svg( $html ) {
     $home = esc_url( home_url( '/' ) );
-    $svg  = '<a href="' . $home . '" class="custom-logo-link" rel="home" aria-label="Norelle — Home">';
-    $svg .= '<img src="' . esc_url( get_stylesheet_directory_uri() . '/images/logo-header.svg' ) . '"';
-    $svg .= ' class="custom-logo" alt="Norelle" width="310" height="110" />';
-    $svg .= '</a>';
-    return $svg;
+    $logo_url = '';
+    $uploads  = function_exists('wp_upload_dir') ? wp_upload_dir() : null;
+
+    if ( is_array($uploads) && ! empty($uploads['basedir']) && ! empty($uploads['baseurl']) ) {
+        $dir = trailingslashit($uploads['basedir']) . 'extracted-webp/';
+        if ( is_dir($dir) ) {
+            $candidates = glob($dir . 'pdf_p002_xref782_*.webp');
+            if ( is_array($candidates) && ! empty($candidates) ) {
+                $filename = basename($candidates[0]);
+                $logo_url = trailingslashit($uploads['baseurl']) . 'extracted-webp/' . $filename;
+            }
+        }
+    }
+
+    if ( ! $logo_url ) {
+        $logo_url = get_stylesheet_directory_uri() . '/images/logo-header.svg';
+    }
+
+    $out  = '<a href="' . $home . '" class="custom-logo-link" rel="home" aria-label="Norelle — Home">';
+    $out .= '<img src="' . esc_url( $logo_url ) . '" class="custom-logo" alt="Norelle" />';
+    $out .= '</a>';
+    return $out;
 }
 add_filter('get_custom_logo', 'norelle_custom_logo_svg');
 
@@ -61,6 +78,19 @@ function norelle_mobile_menu_button() {
     echo '<button class="norelle-hamburger" aria-expanded="false" aria-label="Menu">&#9776;</button>';
 }
 add_action('storefront_header', 'norelle_mobile_menu_button', 69);
+
+function norelle_header_quicklinks() {
+    $shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/');
+    $cart_url = function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart/');
+    $acct_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : home_url('/my-account/');
+
+    echo '<nav class="norelle-header-quicklinks" aria-label="Shop quick links">';
+    echo '<a class="norelle-quicklink" href="' . esc_url($shop_url) . '">Shop</a>';
+    echo '<a class="norelle-quicklink" href="' . esc_url($cart_url) . '">Cart</a>';
+    echo '<a class="norelle-quicklink" href="' . esc_url($acct_url) . '">Account</a>';
+    echo '</nav>';
+}
+add_action('storefront_header', 'norelle_header_quicklinks', 68);
 
 function norelle_mobile_menu_script() {
     ?>
@@ -201,6 +231,24 @@ function norelle_widgets_init() {
     ));
 }
 add_action('widgets_init', 'norelle_widgets_init');
+
+function norelle_maybe_remove_sidebar() {
+    if ( is_front_page() || (function_exists('is_woocommerce') && is_woocommerce()) || is_cart() || is_checkout() || is_account_page() ) {
+        remove_action('storefront_sidebar', 'storefront_get_sidebar', 10);
+    }
+}
+add_action('wp', 'norelle_maybe_remove_sidebar');
+
+function norelle_clear_default_sidebar_widgets() {
+    $widgets = get_option('sidebars_widgets');
+    if ( ! is_array($widgets) ) return;
+
+    if ( isset($widgets['sidebar-1']) && ! empty($widgets['sidebar-1']) ) {
+        $widgets['sidebar-1'] = array();
+        update_option('sidebars_widgets', $widgets);
+    }
+}
+add_action('after_switch_theme', 'norelle_clear_default_sidebar_widgets');
 
 /**
  * Customize WooCommerce: products per row & per page.
@@ -361,7 +409,80 @@ add_action('init', 'norelle_remove_storefront_defaults');
 /**
  * Add Norelle homepage sections.
  */
-/* Hero section removed — "Norelle" is now the header home button */
+
+function norelle_get_hero_image_url() {
+    $dir = wp_upload_dir();
+    $base = trailingslashit($dir['basedir']) . 'extracted-webp/';
+    $base_url = trailingslashit($dir['baseurl']) . 'extracted-webp/';
+
+    if ( is_dir($base) ) {
+        $files = glob($base . '*.webp');
+        if ( ! empty($files) ) {
+            sort($files);
+            $filename = basename($files[0]);
+            return $base_url . $filename;
+        }
+    }
+
+    return '';
+}
+
+/**
+ * Norelle homepage: Hero section (mobile-first).
+ */
+function norelle_homepage_hero() {
+    if ( ! is_front_page() ) return;
+
+    $hero_img = norelle_get_hero_image_url();
+    $shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/');
+    ?>
+    <section class="norelle-hero" <?php echo $hero_img ? 'style="--norelle-hero-image:url(' . esc_url($hero_img) . ');"' : ''; ?>>
+        <div class="norelle-hero-inner">
+            <p class="norelle-hero-kicker">For those we live with</p>
+            <h1 class="norelle-hero-title">Norelle</h1>
+            <p class="norelle-hero-subtitle">Timeless elegance, crafted with care. Discover pieces that elevate the everyday.</p>
+            <div class="norelle-hero-actions">
+                <a class="button" href="<?php echo esc_url($shop_url); ?>">Shop the Collection</a>
+                <a class="norelle-cta-link" href="<?php echo esc_url($shop_url); ?>">Explore new arrivals &rarr;</a>
+            </div>
+        </div>
+    </section>
+    <?php
+}
+add_action('homepage', 'norelle_homepage_hero', 5);
+
+/**
+ * Norelle homepage: Category tiles.
+ */
+function norelle_homepage_category_tiles() {
+    if ( ! is_front_page() ) return;
+
+    $cats = array(
+        array('slug' => 'necklaces', 'label' => 'Necklaces'),
+        array('slug' => 'rings', 'label' => 'Rings'),
+        array('slug' => 'earrings', 'label' => 'Earrings'),
+        array('slug' => 'bracelets', 'label' => 'Bracelets'),
+    );
+    ?>
+    <section class="norelle-category-tiles" aria-label="Shop by category">
+        <div class="norelle-tiles-inner">
+            <?php foreach ( $cats as $c ):
+                $term = get_term_by('slug', $c['slug'], 'product_cat');
+                $url = $term ? get_term_link($term) : (function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/'));
+                if ( is_wp_error($url) ) {
+                    $url = (function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/'));
+                }
+            ?>
+                <a class="norelle-tile" href="<?php echo esc_url($url); ?>">
+                    <span class="norelle-tile-label"><?php echo esc_html($c['label']); ?></span>
+                    <span class="norelle-tile-cta">Shop &rarr;</span>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php
+}
+add_action('homepage', 'norelle_homepage_category_tiles', 12);
 
 /**
  * Norelle homepage: Featured Products section.
@@ -369,13 +490,13 @@ add_action('init', 'norelle_remove_storefront_defaults');
 function norelle_homepage_featured() {
     if (is_front_page()) {
         ?>
-        <section class="norelle-section norelle-text-center" style="padding: 4rem 2rem; background-color: #3b0505;">
+        <section class="norelle-section norelle-text-center" style="padding: 4rem 2rem; background-color: var(--norelle-burgundy);">
             <h2 style="
-                font-family: 'Cormorant Garamond', Georgia, serif;
+                font-family: 'Montserrat', sans-serif;
                 font-weight: 300;
                 letter-spacing: 0.06em;
                 margin-bottom: 0.5rem;
-                color: #eeefc9;
+                color: var(--norelle-cream);
             "><?php esc_html_e('Featured', 'norelle'); ?></h2>
             <div class="norelle-divider"></div>
             <?php
@@ -393,13 +514,13 @@ add_action('homepage', 'norelle_homepage_featured', 20);
 function norelle_homepage_new_arrivals() {
     if (is_front_page()) {
         ?>
-        <section class="norelle-section norelle-section-cream norelle-text-center" style="padding: 4rem 2rem; background-color: #5a1a1a;">
+        <section class="norelle-section norelle-section-cream norelle-text-center" style="padding: 4rem 2rem; background-color: var(--norelle-burgundy-light);">
             <h2 style="
-                font-family: 'Cormorant Garamond', Georgia, serif;
+                font-family: 'Montserrat', sans-serif;
                 font-weight: 300;
                 letter-spacing: 0.06em;
                 margin-bottom: 0.5rem;
-                color: #eeefc9;
+                color: var(--norelle-cream);
             "><?php esc_html_e('New Arrivals', 'norelle'); ?></h2>
             <div class="norelle-divider"></div>
             <?php
@@ -509,11 +630,11 @@ function norelle_login_styles() {
     ?>
     <style>
         body.login {
-            background-color: #fffaea;
+            background-color: #fffaeb;
         }
         .login h1 a {
             background-image: none !important;
-            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 2rem;
             font-weight: 300;
             letter-spacing: 0.08em;
@@ -533,7 +654,7 @@ function norelle_login_styles() {
             background-color: #3b0505 !important;
             border-color: #3b0505 !important;
             border-radius: 2px;
-            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-family: 'Montserrat', sans-serif;
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }

@@ -445,12 +445,11 @@ html {
 body,
 .site-content,
 .col-full {
-  background-color: var(--norelle-burgundy) !important;
   color: var(--norelle-cream) !important;
 }
 
 body {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 14px;
   line-height: 1.7;
   letter-spacing: 0.01em;
@@ -478,7 +477,7 @@ img {
    ================================================ */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   color: var(--norelle-cream);
   letter-spacing: 0.04em;
@@ -491,7 +490,7 @@ h3 { font-size: 1.05rem; }
 h4 { font-size: 0.95rem; }
 
 p {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--norelle-cream);
   line-height: 1.7;
 }
@@ -547,7 +546,7 @@ a:focus {
   padding: 0 !important;
   margin-bottom: 0 !important;
   display: grid !important;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   padding: 0.5rem 1rem !important;
   gap: 0 0.5rem;
@@ -565,9 +564,38 @@ a:focus {
 .site-header > .col-full {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   padding: 0;
   margin: 0;
   gap: 0;
+}
+
+.norelle-header-quicklinks {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.norelle-header-quicklinks .norelle-quicklink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 0.85rem;
+  border: 1px solid var(--norelle-border);
+  border-radius: 999px;
+  color: var(--norelle-cream) !important;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: none !important;
+  background: rgba(255, 250, 235, 0.04);
+}
+
+.norelle-header-quicklinks .norelle-quicklink:hover {
+  opacity: 0.8;
 }
 
 /* Second wrapper: nav + account + cart */
@@ -595,6 +623,7 @@ a:focus {
   margin: 0;
   padding: 0.4rem 0;
   text-align: left;
+  justify-self: start;
 }
 
 .site-header .site-title,
@@ -606,7 +635,7 @@ a:focus {
 .site-header .site-title a,
 .site-header .site-branding h1 a {
   color: #ffffff !important;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   letter-spacing: 0.04em;
   font-size: 1.1rem;
@@ -630,10 +659,12 @@ a:focus {
 }
 
 .custom-logo {
-  width: 140px;
-  height: auto;
+  width: auto;
+  height: 34px;
+  max-width: 160px;
   display: block;
   margin: 0;
+  object-fit: contain;
 }
 
 /* Hide text title when logo is active */
@@ -705,7 +736,7 @@ a:focus {
 
 .main-navigation ul li a {
   color: #ffffff !important;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -769,7 +800,7 @@ a:focus {
 
 .site-header-cart .cart-contents {
   color: #ffffff !important;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -815,12 +846,18 @@ a:focus {
   }
 
   .custom-logo {
-    width: 220px;
+    height: 46px;
+    max-width: 240px;
+    width: auto;
   }
 
   /* Hide hamburger on desktop */
   .norelle-hamburger {
     display: none !important;
+  }
+
+  .norelle-header-quicklinks {
+    display: none;
   }
 
   /* Show nav inline on desktop */
@@ -936,7 +973,7 @@ a:focus {
 
 .norelle-footer-col .widget-title {
   color: var(--norelle-cream) !important;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 0.85rem;
@@ -991,8 +1028,9 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
   border: 1px solid rgba(238, 239, 201, 0.3);
   border-radius: 50%;
   letter-spacing: 0.06em;
@@ -1079,7 +1117,7 @@ input[type="submit"],
   color: var(--norelle-burgundy) !important;
   border: 1px solid var(--norelle-cream) !important;
   border-radius: var(--norelle-radius);
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1087,6 +1125,7 @@ input[type="submit"],
   padding: 0.75rem 1.5rem;
   transition: all var(--norelle-transition);
   cursor: pointer;
+  min-height: 44px;
 }
 
 button:hover,
@@ -1135,7 +1174,7 @@ select {
   border: 1px solid var(--norelle-border);
   border-radius: var(--norelle-radius);
   color: var(--norelle-cream);
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   padding: 0.75rem 1rem;
   transition: border-color var(--norelle-transition);
@@ -1148,16 +1187,28 @@ textarea:focus,
 select:focus {
   border-color: var(--norelle-cream);
   outline: none;
-  box-shadow: 0 0 0 1px rgba(238, 239, 201, 0.3);
+  box-shadow: 0 0 0 1px rgba(255, 250, 235, 0.3);
 }
 
 /* ================================================
    WOOCOMMERCE — PRODUCT GRID
    ================================================ */
 
+/* Product list baseline spacing (grid layout is defined in the Mobile-First Layout section) */
+.woocommerce ul.products {
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .woocommerce ul.products li.product {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--norelle-border);
+  border-radius: var(--norelle-radius);
+  background: linear-gradient(180deg, rgba(255, 250, 235, 0.04), rgba(255, 250, 235, 0));
 }
 
 .woocommerce ul.products li.product .woocommerce-LoopProduct-link {
@@ -1167,6 +1218,20 @@ select:focus {
 .woocommerce ul.products li.product a img {
   border-radius: var(--norelle-radius);
   transition: opacity var(--norelle-transition);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* Make product CTA a real mobile tap target */
+.woocommerce ul.products li.product a.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
 }
 
 .woocommerce ul.products li.product a img:hover {
@@ -1174,8 +1239,8 @@ select:focus {
 }
 
 .woocommerce ul.products li.product .woocommerce-loop-product__title {
-  font-family: "Cormorant Garamond", "Georgia", serif;
-  font-size: 1.15rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.05rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--norelle-text);
@@ -1184,7 +1249,7 @@ select:focus {
 
 .woocommerce ul.products li.product .price {
   color: var(--norelle-text);
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -1203,7 +1268,7 @@ select:focus {
   background-color: var(--norelle-cream);
   color: var(--norelle-burgundy);
   border-radius: var(--norelle-radius);
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1243,7 +1308,7 @@ select:focus {
 }
 
 .single-product div.product .woocommerce-tabs ul.tabs li a {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.85rem;
@@ -1259,7 +1324,7 @@ select:focus {
 .woocommerce .quantity .qty {
   border: 1px solid var(--norelle-border);
   border-radius: var(--norelle-radius);
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   color: var(--norelle-text);
 }
 
@@ -1272,7 +1337,7 @@ select:focus {
 }
 
 .woocommerce-cart table.cart th {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -1307,7 +1372,7 @@ select:focus {
    ================================================ */
 
 .woocommerce-MyAccount-navigation ul li a {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 0.06em;
   color: var(--norelle-text);
   padding: 0.75rem 0;
@@ -1341,7 +1406,7 @@ select:focus {
 .woocommerce nav.woocommerce-pagination ul li span {
   color: var(--norelle-text);
   border-color: var(--norelle-border);
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .woocommerce nav.woocommerce-pagination ul li span.current {
@@ -1355,7 +1420,7 @@ select:focus {
    ================================================ */
 
 .widget {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .widget-title,
@@ -1422,9 +1487,9 @@ button,
 }
 
 .norelle-view-btn {
-  width: 36px !important;
-  height: 36px !important;
-  min-height: 36px !important;
+  width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
   padding: 0 !important;
   display: flex !important;
   align-items: center;
@@ -1486,9 +1551,9 @@ button,
 }
 
 .woocommerce ul.products li.product .button {
-  font-size: 0.65rem !important;
-  padding: 0.4rem 0.5rem !important;
-  min-height: 32px !important;
+  font-size: 0.8rem !important;
+  padding: 0.65rem 0.75rem !important;
+  min-height: 44px !important;
   width: 100% !important;
   letter-spacing: 0.04em !important;
 }
@@ -1544,7 +1609,7 @@ button,
 .woocommerce ul.products.norelle-list-view li.product .button {
   font-size: 0.6rem !important;
   padding: 0.35rem 0.6rem !important;
-  min-height: 28px !important;
+  min-height: 44px !important;
   width: auto !important;
   white-space: nowrap;
 }
@@ -1744,7 +1809,7 @@ button,
 }
 
 .norelle-sticky-atc-title {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--norelle-cream);
@@ -1754,7 +1819,7 @@ button,
 }
 
 .norelle-sticky-atc-price {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.75rem;
   color: var(--norelle-text-muted);
 }
@@ -1868,7 +1933,7 @@ button,
   .woocommerce ul.products.norelle-list-view li.product .button {
     font-size: 0.75rem !important;
     padding: 0.5rem 1rem !important;
-    min-height: 36px !important;
+    min-height: 44px !important;
   }
 
   /* Single product — side by side */
@@ -1990,6 +2055,128 @@ button,
 }
 
 /* ================================================
+  HOMEPAGE — HERO + CATEGORY TILES
+  ================================================ */
+
+.norelle-hero {
+  position: relative;
+  padding: 4.25rem 1.5rem 3.25rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--norelle-border);
+}
+
+.norelle-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(59, 5, 5, 0.86), rgba(47, 27, 26, 0.92)),
+    var(--norelle-hero-image);
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.02);
+}
+
+.norelle-hero-inner {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.norelle-hero-kicker {
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  opacity: 0.85;
+  margin: 0 0 1.25rem;
+}
+
+.norelle-hero-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.85rem;
+}
+
+.norelle-hero-subtitle {
+  max-width: 52ch;
+  margin: 0 auto 1.75rem;
+  color: var(--norelle-cream);
+  opacity: 0.9;
+}
+
+.norelle-hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (min-width: 481px) {
+  .norelle-hero {
+    padding: 5.5rem 2rem 4rem;
+  }
+  .norelle-hero-actions {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+}
+
+.norelle-category-tiles {
+  padding: 1.25rem 1rem 0.5rem;
+  background-color: var(--norelle-burgundy);
+}
+
+.norelle-tiles-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.norelle-tile {
+  display: block;
+  padding: 1.25rem 1rem;
+  border: 1px solid var(--norelle-border);
+  border-radius: var(--norelle-radius);
+  text-decoration: none;
+  background: linear-gradient(180deg, rgba(255, 250, 235, 0.05), rgba(255, 250, 235, 0));
+}
+
+.norelle-tile-label {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--norelle-cream);
+}
+
+.norelle-tile-cta {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: "Montserrat", sans-serif;
+  color: var(--norelle-text-muted);
+  font-size: 0.85rem;
+}
+
+.norelle-tile:hover {
+  background: linear-gradient(180deg, rgba(255, 250, 235, 0.08), rgba(255, 250, 235, 0));
+}
+
+@media (min-width: 769px) {
+  .norelle-tiles-inner {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* ================================================
    SALES & UX — TRUST BAR
    ================================================ */
 
@@ -2008,7 +2195,7 @@ button,
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.85rem;
   letter-spacing: 0.04em;
   color: var(--norelle-text);
@@ -2040,7 +2227,7 @@ button,
 .norelle-cta-link {
   display: inline-block;
   margin-top: 2rem;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2066,7 +2253,7 @@ button,
 }
 
 .norelle-newsletter h2 {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 2.25rem;
   letter-spacing: 0.06em;
@@ -2099,12 +2286,12 @@ button,
   border-radius: var(--norelle-radius);
   background: rgba(255,255,255,0.08);
   color: var(--norelle-cream);
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
 }
 
 .norelle-newsletter-form input[type="email"]::placeholder {
-  color: rgba(238, 239, 201, 0.5);
+  color: rgba(255, 250, 235, 0.5);
 }
 
 .norelle-newsletter-btn {
@@ -2113,7 +2300,7 @@ button,
   color: var(--norelle-burgundy) !important;
   border: 1px solid var(--norelle-cream) !important;
   border-radius: var(--norelle-radius) !important;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -2152,7 +2339,7 @@ button,
   align-items: center;
   gap: 0.5rem;
   color: #ef9a9a;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -2174,7 +2361,7 @@ button,
 }
 
 .norelle-sale-badge-text {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.85rem;
   color: var(--norelle-cream);
   letter-spacing: 0.06em;
@@ -2184,7 +2371,7 @@ button,
 }
 
 .norelle-social-proof {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.85rem;
   color: var(--norelle-text-muted);
   letter-spacing: 0.03em;
@@ -2206,7 +2393,7 @@ button,
 }
 
 .norelle-shipping-bar p {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.95rem;
   margin: 0 0 0.75rem;
   color: var(--norelle-text) !important;
@@ -2247,7 +2434,7 @@ button,
   gap: 0.5rem;
   padding: 1.5rem 0;
   margin-top: 1rem;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   color: var(--norelle-text-muted);
   letter-spacing: 0.04em;
@@ -2283,7 +2470,7 @@ button,
 }
 
 .norelle-share-order h3 {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   letter-spacing: 0.04em;
 }
@@ -2300,7 +2487,7 @@ button,
   padding: 0.65rem 1.5rem;
   border: 1px solid var(--norelle-cream);
   color: var(--norelle-cream) !important;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -2324,7 +2511,7 @@ button,
 }
 
 .norelle-empty-cart-msg {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 0.06em;
@@ -2336,24 +2523,33 @@ button,
    SALES & UX — PRODUCT HOVER EFFECTS
    ================================================ */
 
+/* Mobile-first: keep CTAs visible (no hover dependency) */
 .woocommerce ul.products li.product {
   transition: transform var(--norelle-transition), box-shadow var(--norelle-transition);
 }
 
-.woocommerce ul.products li.product:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px var(--norelle-shadow);
-}
-
 .woocommerce ul.products li.product a.button {
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--norelle-transition), transform var(--norelle-transition);
+  opacity: 1;
+  transform: none;
 }
 
-.woocommerce ul.products li.product:hover a.button {
-  opacity: 1;
-  transform: translateY(0);
+/* Desktop enhancement: only apply hover animation on hover-capable devices */
+@media (hover: hover) and (pointer: fine) {
+  .woocommerce ul.products li.product:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--norelle-shadow);
+  }
+
+  .woocommerce ul.products li.product a.button {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity var(--norelle-transition), transform var(--norelle-transition);
+  }
+
+  .woocommerce ul.products li.product:hover a.button {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ================================================
@@ -2393,7 +2589,7 @@ button,
 
 .norelle-form-field label {
   display: block;
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -2425,7 +2621,7 @@ button,
   border-radius: var(--norelle-radius);
   background-color: var(--norelle-burgundy-light);
   color: var(--norelle-cream);
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   transition: border-color var(--norelle-transition), box-shadow var(--norelle-transition);
 }
@@ -2446,7 +2642,7 @@ button,
 .norelle-form-field select {
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23eeefc9' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23fffaeb' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
@@ -2502,7 +2698,7 @@ button,
 }
 
 .norelle-form-success h3 {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   color: #a5d6a7;
   margin-bottom: 0.75rem;
@@ -2579,7 +2775,7 @@ button,
 }
 
 .norelle-pipeline-label {
-  font-family: "Cormorant Garamond", "Georgia", serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 0.6rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;

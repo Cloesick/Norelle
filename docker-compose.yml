@@ -51,6 +51,7 @@ services:
   wpcli:
     image: wordpress:cli
     container_name: norelle-wpcli
+    user: "0:0"
     depends_on:
       db:
         condition: service_healthy
@@ -65,10 +66,11 @@ services:
     volumes:
       - wordpress_data:/var/www/html
       - ./theme/norelle:/var/www/html/wp-content/themes/norelle
+      - ./uploads:/var/www/html/wp-content/uploads
       - ./scripts:/scripts
     networks:
       - norelle-network
-    entrypoint: ["sh", "/scripts/setup.sh"]
+    entrypoint: ["bash", "/scripts/setup.sh"]
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

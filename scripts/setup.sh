@@ -1,5 +1,5 @@
 #!/bin/bash
-# Norelle WooCommerce — Automated Setup Script
+# Norelle WooCommerce â€” Automated Setup Script
 # ==============================================
 # This script runs via WP-CLI inside Docker to:
 # 1. Wait for WordPress to be ready
@@ -10,22 +10,40 @@
 
 set -e
 
-echo "⏳ Waiting for WordPress to be ready..."
+echo "â³ Waiting for WordPress to be ready..."
 sleep 15
 
 # Wait for WordPress database to be available
-until wp db check --allow-root 2>/dev/null; do
-  echo "⏳ Database not ready yet, retrying in 5s..."
+DB_HOST_ONLY="${WORDPRESS_DB_HOST%%:*}"
+DB_PORT_ONLY="${WORDPRESS_DB_HOST##*:}"
+if [ "${DB_PORT_ONLY}" = "${WORDPRESS_DB_HOST}" ]; then
+  DB_PORT_ONLY="3306"
+fi
+
+until mysqladmin ping \
+  -h "${DB_HOST_ONLY:-db}" \
+  -P "${DB_PORT_ONLY}" \
+  --protocol=tcp \
+  --skip-ssl \
+  --skip-ssl-verify-server-cert \
+  -u"${WORDPRESS_DB_USER:-root}" \
+  -p"${WORDPRESS_DB_PASSWORD:-${MYSQL_ROOT_PASSWORD:-}}" \
+  --silent 2>/dev/null; do
+  echo "â³ Database not ready yet, retrying in 5s..."
   sleep 5
 done
 
-echo "✅ Database is ready."
+echo "âœ… Database is ready."
+
+# Ensure required directories exist and are writable (WP-CLI installs/plugins need these)
+mkdir -p /var/www/html/wp-content/uploads /var/www/html/wp-content/upgrade
+chmod -R 777 /var/www/html/wp-content/uploads /var/www/html/wp-content/upgrade || true
 
 # Check if WordPress is already installed
 if wp core is-installed --allow-root 2>/dev/null; then
-  echo "✅ WordPress is already installed."
+  echo "âœ… WordPress is already installed."
 else
-  echo "🔧 Installing WordPress..."
+  echo "ðŸ”§ Installing WordPress..."
   wp core install \
     --url="${WP_SITE_URL:-http://localhost:8080}" \
     --title="${WP_SITE_TITLE:-Norelle}" \
@@ -34,50 +52,50 @@ else
     --admin_email="${WP_ADMIN_EMAIL:-admin@norelle.com}" \
     --skip-email \
     --allow-root
-  echo "✅ WordPress installed."
+  echo "âœ… WordPress installed."
 fi
 
 # Set permalink structure (important for WooCommerce)
-echo "🔧 Configuring permalinks..."
+echo "ðŸ”§ Configuring permalinks..."
 wp rewrite structure '/%postname%/' --allow-root
 wp rewrite flush --allow-root
 
 # Install and activate WooCommerce
 if wp plugin is-installed woocommerce --allow-root 2>/dev/null; then
-  echo "✅ WooCommerce is already installed."
+  echo "âœ… WooCommerce is already installed."
   wp plugin activate woocommerce --allow-root 2>/dev/null || true
 else
-  echo "🔧 Installing WooCommerce..."
+  echo "ðŸ”§ Installing WooCommerce..."
   wp plugin install woocommerce --activate --allow-root
-  echo "✅ WooCommerce installed and activated."
+  echo "âœ… WooCommerce installed and activated."
 fi
 
 # Install and activate Storefront parent theme (Norelle's parent)
 if wp theme is-installed storefront --allow-root 2>/dev/null; then
-  echo "✅ Storefront theme already installed."
+  echo "âœ… Storefront theme already installed."
 else
-  echo "🔧 Installing Storefront theme..."
+  echo "ðŸ”§ Installing Storefront theme..."
   wp theme install storefront --allow-root
-  echo "✅ Storefront theme installed."
+  echo "âœ… Storefront theme installed."
 fi
 
 # Activate Norelle child theme
 if wp theme is-installed norelle --allow-root 2>/dev/null; then
-  echo "🔧 Activating Norelle theme..."
+  echo "ðŸ”§ Activating Norelle theme..."
   wp theme activate norelle --allow-root
-  echo "✅ Norelle theme activated."
+  echo "âœ… Norelle theme activated."
 else
-  echo "⚠️  Norelle theme not found. Activating Storefront instead."
+  echo "âš ï¸  Norelle theme not found. Activating Storefront instead."
   wp theme activate storefront --allow-root
 fi
 
 # Create WooCommerce pages
-echo "🔧 Setting up WooCommerce pages..."
+echo "ðŸ”§ Setting up WooCommerce pages..."
 wp wc --user=admin tool run install_pages --allow-root 2>/dev/null || \
-  echo "⚠️  WooCommerce pages may need manual setup via admin."
+  echo "âš ï¸  WooCommerce pages may need manual setup via admin."
 
 # Configure WooCommerce settings
-echo "🔧 Configuring WooCommerce settings..."
+echo "ðŸ”§ Configuring WooCommerce settings..."
 wp option update woocommerce_currency 'EUR' --allow-root
 wp option update woocommerce_currency_pos 'left_space' --allow-root
 wp option update woocommerce_price_decimal_sep ',' --allow-root
@@ -96,32 +114,32 @@ wp post delete 1 --force --allow-root 2>/dev/null || true
 wp post delete 2 --force --allow-root 2>/dev/null || true
 
 # Install useful plugins
-echo "🔧 Installing additional plugins..."
+echo "ðŸ”§ Installing additional plugins..."
 
 # SEO
 wp plugin install wordpress-seo --activate --allow-root 2>/dev/null || \
-  echo "⚠️  Could not install Yoast SEO."
+  echo "âš ï¸  Could not install Yoast SEO."
 
 # Security
 wp plugin install wordfence --activate --allow-root 2>/dev/null || \
-  echo "⚠️  Could not install Wordfence."
+  echo "âš ï¸  Could not install Wordfence."
 
 # Performance
 wp plugin install wp-super-cache --activate --allow-root 2>/dev/null || \
-  echo "⚠️  Could not install WP Super Cache."
+  echo "âš ï¸  Could not install WP Super Cache."
 
 echo ""
 echo "=========================================="
-echo "  🎉 Norelle WooCommerce Setup Complete!"
+echo "  ðŸŽ‰ Norelle WooCommerce Setup Complete!"
 echo "=========================================="
 echo ""
-echo "  🌐 Store:      ${WP_SITE_URL:-http://localhost:8080}"
-echo "  🔧 Admin:      ${WP_SITE_URL:-http://localhost:8080}/wp-admin"
-echo "  📊 phpMyAdmin:  http://localhost:8081"
+echo "  ðŸŒ Store:      ${WP_SITE_URL:-http://localhost:8080}"
+echo "  ðŸ”§ Admin:      ${WP_SITE_URL:-http://localhost:8080}/wp-admin"
+echo "  ðŸ“Š phpMyAdmin:  http://localhost:8081"
 echo ""
-echo "  👤 Admin User:  ${WP_ADMIN_USER:-admin}"
-echo "  🔑 Admin Pass:  ${WP_ADMIN_PASSWORD:-norelle_admin_2024}"
+echo "  ðŸ‘¤ Admin User:  ${WP_ADMIN_USER:-admin}"
+echo "  ðŸ”‘ Admin Pass:  ${WP_ADMIN_PASSWORD:-norelle_admin_2024}"
 echo ""
-echo "  💰 Currency:    EUR (€)"
-echo "  🌍 Country:     Belgium"
+echo "  ðŸ’° Currency:    EUR (â‚¬)"
+echo "  ðŸŒ Country:     Belgium"
 echo "=========================================="

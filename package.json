@@ -1,0 +1,14 @@
+{
+  "name": "norelle",
+  "private": true,
+  "devDependencies": {
+    "@lhci/cli": "^0.14.0",
+    "@playwright/test": "^1.49.0"
+  },
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:report": "playwright show-report",
+    "test:perf": "lhci autorun --config=./lighthouserc.json"
+  }
+}

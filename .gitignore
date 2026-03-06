@@ -15,12 +15,20 @@ desktop.ini
 *.swp
 *.swo
 
+!.vscode/settings.json
+!.vscode/tasks.json
+
 # Docker volumes
 db_data/
 
 # Uploads (large media files)
 uploads/*
 !uploads/.gitkeep
+
+# Local / generated artifacts
+NORELLE-original.pdf
+docs/pdf-analysis/
+.docker-config-nocreds/
 
 # Node (if added later)
 node_modules/
