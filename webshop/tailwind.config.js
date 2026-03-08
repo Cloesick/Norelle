@@ -9,19 +9,44 @@ module.exports = {
     extend: {
       colors: {
         norelle: {
-          burgundy: '#3b0505',
-          'burgundy-light': '#5a1a1a',
-          'burgundy-dark': '#2a0303',
-          cream: '#eeefc9',
-          'light-cream': '#fffaea',
-          text: '#eeefc9',
-          'text-muted': 'rgba(238, 239, 201, 0.6)',
-          border: 'rgba(238, 239, 201, 0.2)',
+          /* Primary Brand Colors */
+          burgundy: '#722F37',
+          'burgundy-light': '#8B3F47',
+          'burgundy-dark': '#5A1F27',
+          gold: '#D4AF37',
+          'gold-light': '#E6C547',
+          'gold-dark': '#B8941F',
+          cream: '#F5F2E8',
+          'cream-light': '#FAF8F2',
+          'cream-dark': '#E8E5D8',
+          
+          /* Text Colors */
+          text: '#F5F2E8',
+          'text-muted': 'rgba(245, 242, 232, 0.7)',
+          'text-dim': 'rgba(245, 242, 232, 0.5)',
+          
+          /* Semantic Colors */
+          background: '#722F37',
+          border: 'rgba(245, 242, 232, 0.2)',
+          'border-light': 'rgba(245, 242, 232, 0.3)',
+          'border-dark': 'rgba(245, 242, 232, 0.1)',
+          
+          /* Supporting Colors */
+          charcoal: '#2C2C2C',
+          gray: '#666666',
+          silver: '#C0C0C0',
+          pearl: '#F8F6F0',
+          
+          /* Accent Colors */
+          'rose-gold': '#E8B4A0',
+          platinum: '#E5E4E2',
+          diamond: '#B9F2FF',
         },
       },
       fontFamily: {
-        serif: ['Cormorant Garamond', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+        mono: ['Courier New', 'monospace'],
       },
       spacing: {
         '18': '4.5rem',

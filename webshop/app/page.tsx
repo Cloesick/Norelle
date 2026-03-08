@@ -17,20 +17,20 @@ export default function HomePage() {
       <section className="bg-norelle-burgundy-light border-y border-norelle-border">
         <div className="container-max py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-2xl font-serif font-bold text-norelle-cream mb-1">500+</div>
+            <div className="group">
+              <div className="text-3xl font-serif font-bold text-norelle-gold mb-1 group-hover:text-norelle-gold-light transition-colors duration-300">500+</div>
               <div className="text-sm text-norelle-text-muted">Happy Customers</div>
             </div>
-            <div>
-              <div className="text-2xl font-serif font-bold text-norelle-cream mb-1">50+</div>
+            <div className="group">
+              <div className="text-3xl font-serif font-bold text-norelle-gold mb-1 group-hover:text-norelle-gold-light transition-colors duration-300">50+</div>
               <div className="text-sm text-norelle-text-muted">Unique Designs</div>
             </div>
-            <div>
-              <div className="text-2xl font-serif font-bold text-norelle-cream mb-1">2 Years</div>
+            <div className="group">
+              <div className="text-3xl font-serif font-bold text-norelle-gold mb-1 group-hover:text-norelle-gold-light transition-colors duration-300">2 Years</div>
               <div className="text-sm text-norelle-text-muted">Warranty</div>
             </div>
-            <div>
-              <div className="text-2xl font-serif font-bold text-norelle-cream mb-1">Free</div>
+            <div className="group">
+              <div className="text-3xl font-serif font-bold text-norelle-gold mb-1 group-hover:text-norelle-gold-light transition-colors duration-300">Free</div>
               <div className="text-sm text-norelle-text-muted">Shipping €75+</div>
             </div>
           </div>
@@ -41,11 +41,11 @@ export default function HomePage() {
       <section className="section-padding bg-norelle-burgundy">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-norelle-cream mb-4">
-              Featured Pieces
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-norelle-cream mb-4">
+              Featured <span className="text-norelle-gold">Pieces</span>
             </h2>
-            <p className="text-norelle-text-muted max-w-2xl mx-auto">
-              Handpicked selections from our collection, representing the finest in craftsmanship and design.
+            <p className="text-norelle-text-muted max-w-2xl mx-auto text-lg">
+              Handpicked selections from our collection, representing the finest in Belgian craftsmanship and timeless design.
             </p>
           </div>
 

@@ -2,12 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+/* Norelle Brand Fonts - Luxury Typography */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
 @layer base {
   :root {
-    --font-cormorant: 'Cormorant Garamond', serif;
-    --font-inter: 'Inter', system-ui, sans-serif;
+    /* Norelle Brand Color Palette */
+    --norelle-burgundy: #722F37;
+    --norelle-burgundy-light: #8B3F47;
+    --norelle-burgundy-dark: #5A1F27;
+    --norelle-gold: #D4AF37;
+    --norelle-gold-light: #E6C547;
+    --norelle-gold-dark: #B8941F;
+    --norelle-cream: #F5F2E8;
+    --norelle-cream-light: #FAF8F2;
+    --norelle-cream-dark: #E8E5D8;
+    --norelle-charcoal: #2C2C2C;
+    --norelle-gray: #666666;
+    --norelle-silver: #C0C0C0;
+    --norelle-pearl: #F8F6F0;
+    
+    /* Secondary Colors */
+    --norelle-rose-gold: #E8B4A0;
+    --norelle-platinum: #E5E4E2;
+    --norelle-diamond: #B9F2FF;
+    
+    /* Semantic Colors */
+    --norelle-primary: var(--norelle-gold);
+    --norelle-secondary: var(--norelle-cream);
+    --norelle-accent: var(--norelle-burgundy);
+    --norelle-text: var(--norelle-charcoal);
+    --norelle-background: var(--norelle-burgundy);
+    
+    /* Typography */
+    --norelle-font-primary: 'Playfair Display', serif;
+    --norelle-font-secondary: 'Montserrat', sans-serif;
+    --norelle-font-mono: 'Courier New', monospace;
+    
+    /* Font Hierarchy */
+    --norelle-h1: 3.5rem;      /* 56px */
+    --norelle-h2: 2.5rem;      /* 40px */
+    --norelle-h3: 2rem;        /* 32px */
+    --norelle-h4: 1.5rem;      /* 24px */
+    --norelle-h5: 1.25rem;    /* 20px */
+    --norelle-h6: 1rem;       /* 16px */
+    
+    /* Body Text */
+    --norelle-body-lg: 1.125rem; /* 18px */
+    --norelle-body: 1rem;        /* 16px */
+    --norelle-body-sm: 0.875rem; /* 14px */
+    --norelle-body-xs: 0.75rem;  /* 12px */
+    
+    /* Spacing Scale */
+    --norelle-space-xs: 0.25rem;   /* 4px */
+    --norelle-space-sm: 0.5rem;    /* 8px */
+    --norelle-space-md: 1rem;      /* 16px */
+    --norelle-space-lg: 1.5rem;    /* 24px */
+    --norelle-space-xl: 2rem;      /* 32px */
+    --norelle-space-2xl: 3rem;     /* 48px */
+    --norelle-space-3xl: 4rem;     /* 64px */
   }
 
   * {
@@ -20,27 +73,68 @@
 
   body {
     @apply bg-norelle-burgundy text-norelle-text;
+    font-family: var(--norelle-font-secondary);
+    font-size: var(--norelle-body);
+    line-height: 1.6;
     font-feature-settings: 'rlig' 1, 'calt' 1;
+    color: var(--norelle-cream);
   }
 
-  /* Mobile-first responsive text sizing */
-  body {
-    font-size: 15px;
-    line-height: 1.6rem;
+  /* Typography Classes */
+  .font-serif {
+    font-family: var(--norelle-font-primary);
   }
 
-  @media (min-width: 481px) {
-    body {
-      font-size: 16px;
-      line-height: 1.7rem;
-    }
+  .font-sans {
+    font-family: var(--norelle-font-secondary);
   }
 
-  @media (min-width: 769px) {
-    body {
-      font-size: 17px;
-      line-height: 1.8rem;
-    }
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--norelle-font-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--norelle-cream);
+  }
+
+  h1 { font-size: var(--norelle-h1); }
+  h2 { font-size: var(--norelle-h2); }
+  h3 { font-size: var(--norelle-h3); }
+  h4 { font-size: var(--norelle-h4); }
+  h5 { font-size: var(--norelle-h5); }
+  h6 { font-size: var(--norelle-h6); }
+
+  /* Responsive Typography */
+  @media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem; }
+    h5 { font-size: 1.125rem; }
+    h6 { font-size: 1rem; }
+  }
+
+  /* Links */
+  a {
+    color: var(--norelle-gold);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--norelle-gold-light);
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--norelle-gold);
+    color: var(--norelle-burgundy);
+  }
+
+  /* Focus */
+  :focus-visible {
+    outline: 2px solid var(--norelle-gold);
+    outline-offset: 2px;
   }
 }
 
