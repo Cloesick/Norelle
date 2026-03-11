@@ -4,9 +4,8 @@ import { getProducts } from '@/lib/woocommerce'
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
 
-  const params: Record<string, string | number | boolean> = {}
-  if (searchParams.get('category')) params.category = Number(searchParams.get('category'))
-  if (searchParams.get('featured')) params.featured = searchParams.get('featured') === 'true'
+  const params: Record<string, string | number> = {}
+  if (searchParams.get('category')) params.category = searchParams.get('category')!
   if (searchParams.get('search')) params.search = searchParams.get('search')!
   if (searchParams.get('per_page')) params.per_page = Number(searchParams.get('per_page'))
   if (searchParams.get('page')) params.page = Number(searchParams.get('page'))

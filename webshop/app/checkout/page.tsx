@@ -125,13 +125,13 @@ export default function CheckoutPage() {
   const validateStep = (step: CheckoutStep): boolean => {
     switch (step) {
       case 'customer':
-        return formData.email && formData.firstName && formData.lastName
+        return !!(formData.email && formData.firstName && formData.lastName)
       case 'shipping':
-        return formData.shippingAddress.address && 
+        return !!(formData.shippingAddress.address && 
                formData.shippingAddress.city && 
-               formData.shippingAddress.postalCode
+               formData.shippingAddress.postalCode)
       case 'payment':
-        return formData.paymentMethod && formData.acceptTerms
+        return !!(formData.paymentMethod && formData.acceptTerms)
       case 'review':
         return true // All validations done in previous steps
       default:

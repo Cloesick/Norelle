@@ -226,15 +226,15 @@ export function ProductStorytelling({ product }: ProductStorytellingProps) {
                   <div className="space-y-2 text-norelle-text-muted">
                     <div className="flex justify-between">
                       <span>Length</span>
-                      <span>{product.dimensions.length}cm</span>
+                      <span>{product.dimensions?.length}cm</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Width</span>
-                      <span>{product.dimensions.width}cm</span>
+                      <span>{product.dimensions?.width}cm</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Height</span>
-                      <span>{product.dimensions.height}cm</span>
+                      <span>{product.dimensions?.height}cm</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Weight</span>

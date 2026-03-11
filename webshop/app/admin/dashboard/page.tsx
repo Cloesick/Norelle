@@ -9,12 +9,11 @@ import {
   UserGroupIcon,
   CurrencyDollarIcon,
   CogIcon,
-  UsersIcon,
-  PackageIcon,
+  CubeIcon,
   CreditCardIcon,
   BellIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   ExclamationTriangleIcon,
   CheckCircleIcon,
   ClockIcon,
@@ -119,10 +118,10 @@ export default function AdminDashboard() {
 
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
-    { id: 'products', label: 'Products', icon: PackageIcon },
+    { id: 'products', label: 'Products', icon: CubeIcon },
     { id: 'orders', label: 'Orders', icon: ShoppingBagIcon },
     { id: 'customers', label: 'Customers', icon: UserGroupIcon },
-    { id: 'analytics', label: 'Analytics', icon: TrendingUpIcon },
+    { id: 'analytics', label: 'Analytics', icon: ArrowTrendingUpIcon },
     { id: 'settings', label: 'Settings', icon: CogIcon }
   ]
 
@@ -148,8 +147,8 @@ export default function AdminDashboard() {
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
-      case 'up': return <TrendingUpIcon className="w-4 h-4 text-green-400" />
-      case 'down': return <TrendingDownIcon className="w-4 h-4 text-red-400" />
+      case 'up': return <ArrowTrendingUpIcon className="w-4 h-4 text-green-400" />
+      case 'down': return <ArrowTrendingDownIcon className="w-4 h-4 text-red-400" />
       default: return <div className="w-4 h-4 bg-gray-400 rounded-full" />
     }
   }
@@ -183,7 +182,7 @@ export default function AdminDashboard() {
           </div>
           <div className="text-2xl font-bold text-norelle-cream">€{adminStats.revenue.month.toLocaleString()}</div>
           <div className="flex items-center space-x-2 text-sm">
-            <TrendingUpIcon className="w-4 h-4 text-green-400" />
+            <ArrowTrendingUpIcon className="w-4 h-4 text-green-400" />
             <span className="text-green-400">+{adminStats.revenue.growth}%</span>
             <span className="text-norelle-text-muted">vs last month</span>
           </div>
@@ -196,7 +195,7 @@ export default function AdminDashboard() {
           </div>
           <div className="text-2xl font-bold text-norelle-cream">{adminStats.orders.total}</div>
           <div className="flex items-center space-x-2 text-sm">
-            <TrendingUpIcon className="w-4 h-4 text-green-400" />
+            <ArrowTrendingUpIcon className="w-4 h-4 text-green-400" />
             <span className="text-green-400">+{adminStats.orders.growth}%</span>
             <span className="text-norelle-text-muted">vs last month</span>
           </div>
@@ -209,7 +208,7 @@ export default function AdminDashboard() {
           </div>
           <div className="text-2xl font-bold text-norelle-cream">{adminStats.customers.total}</div>
           <div className="flex items-center space-x-2 text-sm">
-            <TrendingUpIcon className="w-4 h-4 text-green-400" />
+            <ArrowTrendingUpIcon className="w-4 h-4 text-green-400" />
             <span className="text-green-400">+{adminStats.customers.growth}%</span>
             <span className="text-norelle-text-muted">new this month</span>
           </div>
@@ -222,7 +221,7 @@ export default function AdminDashboard() {
           </div>
           <div className="text-2xl font-bold text-norelle-cream">{adminStats.conversion.rate}%</div>
           <div className="flex items-center space-x-2 text-sm">
-            <TrendingDownIcon className="w-4 h-4 text-red-400" />
+            <ArrowTrendingDownIcon className="w-4 h-4 text-red-400" />
             <span className="text-red-400">{adminStats.conversion.change}%</span>
             <span className="text-norelle-text-muted">vs last month</span>
           </div>
@@ -398,7 +397,7 @@ export default function AdminDashboard() {
                   <td className="py-3 px-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 bg-norelle-burgundy border border-norelle-border rounded flex items-center justify-center">
-                        <PackageIcon className="w-6 h-6 text-norelle-cream" />
+                        <CubeIcon className="w-6 h-6 text-norelle-cream" />
                       </div>
                       <div>
                         <div className="text-norelle-cream font-medium">{product.name}</div>

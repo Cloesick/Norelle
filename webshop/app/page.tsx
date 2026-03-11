@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { getFeaturedProducts, categories } from '@/data/products'
+import { getFeaturedProducts, getStaticCategories } from '@/lib/product-source'
 import { ProductCard } from '@/components/ProductCard'
 
-export default function HomePage() {
-  const featuredProducts = getFeaturedProducts()
+export default async function HomePage() {
+  const featuredProducts = await getFeaturedProducts()
+  const categories = getStaticCategories()
 
   return (
     <div className="min-h-screen">

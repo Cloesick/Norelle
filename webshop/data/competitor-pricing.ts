@@ -303,7 +303,7 @@ export const costBreakdown = {
 export const regionalPricing = {
   europe: {
     multiplier: 1.0,   // Base pricing
-    vat: 0.21,        // 21% VAT
+    tax: 0.21,        // 21% VAT
     shipping: 8,      // €8 shipping
     preferredSize: '100ml'
   },

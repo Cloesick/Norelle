@@ -13,7 +13,7 @@ import {
   TagIcon,
   SparklesIcon,
   ShieldCheckIcon,
-  RulerIcon,
+  SwatchIcon,
   HeartIcon as HeartSolidIcon
 } from '@heroicons/react/24/outline'
 
@@ -358,7 +358,7 @@ export default function ArticlePage() {
                     <span>Care & Maintenance</span>
                   </Link>
                   <Link href="/knowledge/sizing" className="flex items-center space-x-2 text-norelle-cream hover:text-norelle-text-muted transition-colors duration-200">
-                    <RulerIcon className="w-4 h-4" />
+                    <SwatchIcon className="w-4 h-4" />
                     <span>Sizing & Fit</span>
                   </Link>
                   <Link href="/knowledge/warranty" className="flex items-center space-x-2 text-norelle-cream hover:text-norelle-text-muted transition-colors duration-200">

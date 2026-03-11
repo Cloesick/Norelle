@@ -8,7 +8,7 @@ import {
   QuestionMarkCircleIcon,
   SparklesIcon,
   ShieldCheckIcon,
-  RulerIcon,
+  SwatchIcon,
   HeartIcon,
   ChatBubbleLeftRightIcon,
   ChevronRightIcon,
@@ -67,7 +67,7 @@ export default function KnowledgeBasePage() {
     {
       id: 'sizing',
       title: 'Sizing & Fit Guides',
-      icon: RulerIcon,
+      icon: SwatchIcon,
       description: 'Find your perfect size with our comprehensive guides',
       articles: [
         { id: 19, title: 'Ring Sizing Guide', category: 'Rings' },
@@ -136,7 +136,7 @@ export default function KnowledgeBasePage() {
   ]
 
   const quickLinks = [
-    { title: 'Ring Sizing Guide', href: '/knowledge/sizing#rings', icon: RulerIcon },
+    { title: 'Ring Sizing Guide', href: '/knowledge/sizing#rings', icon: SwatchIcon },
     { title: 'Jewelry Care', href: '/knowledge/care', icon: HeartIcon },
     { title: 'Warranty Info', href: '/knowledge/warranty', icon: ShieldCheckIcon },
     { title: 'Contact Support', href: '/contact', icon: ChatBubbleLeftRightIcon }
