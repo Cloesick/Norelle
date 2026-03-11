@@ -2,10 +2,9 @@
   "ci": {
     "collect": {
       "url": [
-        "http://localhost:8080/",
-        "http://localhost:8080/shop/",
-        "http://localhost:8080/cart/",
-        "http://localhost:8080/checkout/"
+        "http://localhost:3000/",
+        "http://localhost:3000/shop",
+        "http://localhost:3000/cart"
       ],
       "numberOfRuns": 3,
       "settings": {
