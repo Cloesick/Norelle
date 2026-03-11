@@ -1,4 +1,4 @@
-import { Inter, Cormorant_Garamond } from 'next/font/google'
+import { Cormorant, Jost } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -6,16 +6,23 @@ import { CartProvider } from '@/context/CartContext'
 import { Toaster } from 'react-hot-toast'
 import CookieBanner from '@/components/security/CookieBanner'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const cormorant = Cormorant_Garamond({
+const cormorant = Cormorant({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500'],
   variable: '--font-cormorant',
+  display: 'swap',
+})
+
+const jost = Jost({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  variable: '--font-jost',
+  display: 'swap',
 })
 
 export const metadata = {
-  title: 'Norelle — Timeless Elegance',
-  description: 'Discover exquisite jewellery collections crafted with precision and passion. Premium necklaces, earrings, bracelets, and rings.',
+  title: 'Norēlle® — for those we live with',
+  description: 'Luxury Belgian pet fragrance. Refined scents composed to honour presence, softness and the quiet elegance of care.',
   metadataBase: new URL('https://norelle.com'),
 }
 
@@ -25,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`}>
-      <body className="min-h-screen bg-norelle-burgundy text-norelle-text font-sans">
+    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
+      <body className="min-h-screen bg-norelle-burgundy text-norelle-cream font-body">
         <CartProvider>
           <div className="relative min-h-screen flex flex-col">
             <Header />
@@ -40,9 +47,11 @@ export default function RootLayout({
             position="top-center"
             toastOptions={{
               style: {
-                background: '#5a1a1a',
-                color: '#eeefc9',
-                border: '1px solid rgba(238, 239, 201, 0.2)',
+                background: '#2F1B1A',
+                color: '#FFFAEB',
+                border: '1px solid rgba(255, 250, 235, 0.12)',
+                fontFamily: 'var(--font-jost)',
+                fontWeight: 300,
               },
             }}
           />

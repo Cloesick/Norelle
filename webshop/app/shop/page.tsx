@@ -81,14 +81,12 @@ export default function ShopPage() {
 
   return (
     <div className="min-h-screen bg-norelle-burgundy">
-      <div className="container-max section-padding">
+      <div className="max-w-6xl mx-auto px-6 py-16 md:py-24">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-serif font-bold text-norelle-cream mb-4">
-            Shop All
-          </h1>
-          <p className="text-norelle-text-muted">
-            Discover our complete collection of exquisite jewellery pieces
+        <div className="mb-12">
+          <h1 className="mb-4">All Fragrances</h1>
+          <p className="text-norelle-cream/50 text-sm font-light">
+            The complete Nor&#x0113;lle collection
           </p>
         </div>
 
@@ -112,12 +110,12 @@ export default function ShopPage() {
             </div>
 
             {/* Filters */}
-            <div className={`${showFilters ? 'block' : 'hidden'} lg:block bg-norelle-burgundy-light border border-norelle-border rounded-lg p-6`}>
+            <div className={`${showFilters ? 'block' : 'hidden'} lg:block border border-norelle-cream/10 p-6`}>
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-medium text-norelle-cream">Filters</h3>
+                <h3 className="text-sm font-body font-light text-norelle-cream uppercase tracking-brand">Filters</h3>
                 <button
                   onClick={clearFilters}
-                  className="text-sm text-norelle-text-muted hover:text-norelle-cream transition-colors duration-200"
+                  className="text-xs text-norelle-cream/40 hover:text-norelle-cream transition-colors duration-300 font-light"
                 >
                   Clear all
                 </button>
@@ -137,7 +135,7 @@ export default function ShopPage() {
                         onChange={() => handleCategoryToggle(category)}
                         className="w-4 h-4 text-norelle-cream bg-norelle-burgundy border-norelle-border rounded focus:ring-norelle-cream focus:ring-2"
                       />
-                      <span className="ml-3 text-sm text-norelle-text-muted">
+                      <span className="ml-3 text-xs text-norelle-cream/50 font-light">
                         {category}
                       </span>
                     </label>
@@ -172,7 +170,7 @@ export default function ShopPage() {
           <main className="flex-1">
             {/* Sort Bar */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-              <div className="text-norelle-text-muted">
+              <div className="text-norelle-cream/50 text-xs font-light">
                 {filteredAndSortedProducts.length} products found
               </div>
               

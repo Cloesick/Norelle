@@ -261,99 +261,99 @@ function generateEmailTemplate(code: string, type: VerificationCode['type']): st
   
   const templates = {
     email_verification: `
-      <div style="font-family: 'Montserrat', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #F5F2E8;">
-        <div style="background-color: #722F37; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
-          <h1 style="color: #F5F2E8; font-family: 'Playfair Display', serif; font-size: 32px; margin: 0;">Norelle</h1>
-          <p style="color: #D4AF37; margin: 10px 0 0; font-size: 16px;">Luxury Belgian Jewelry</p>
+      <div style="font-family: 'Jost', 'Helvetica Neue', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #FFFAEB;">
+        <div style="background-color: #3B0505; padding: 40px; text-align: center;">
+          <h1 style="color: #FFFAEB; font-family: 'Cormorant', Georgia, serif; font-size: 28px; font-weight: 300; margin: 0; letter-spacing: 2px;">Nor&#x0113;lle</h1>
+          <p style="color: rgba(255,250,235,0.5); margin: 8px 0 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 300;">for those we live with</p>
         </div>
         
-        <div style="background-color: white; padding: 40px; border-radius: 0 0 8px 8px; text-align: center;">
-          <h2 style="color: #722F37; font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">Verify Your Email</h2>
-          <p style="color: #2C2C2C; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-            Thank you for signing up with Norelle! Please use the verification code below to confirm your email address:
+        <div style="background-color: #FFFAEB; padding: 40px; text-align: center;">
+          <h2 style="color: #3B0505; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px;">Verify Your Email</h2>
+          <p style="color: #2F1B1A; font-size: 14px; line-height: 1.7; margin-bottom: 30px; font-weight: 300;">
+            Thank you for joining Nor&#x0113;lle. Please use the code below to confirm your email address.
           </p>
           
-          <div style="background-color: #F5F2E8; border: 2px solid #D4AF37; border-radius: 8px; padding: 20px; margin: 30px 0;">
-            <p style="font-size: 24px; font-weight: bold; color: #722F37; letter-spacing: 4px; margin: 0;">
+          <div style="background-color: #3B0505; padding: 20px; margin: 30px 0;">
+            <p style="font-size: 24px; font-weight: 300; color: #FFFAEB; letter-spacing: 6px; margin: 0; font-family: 'Jost', sans-serif;">
               ${code}
             </p>
           </div>
           
-          <p style="color: #666666; font-size: 14px; margin-top: 30px;">
-            This code will expire in 10 minutes. If you didn't request this verification, please ignore this email.
+          <p style="color: rgba(47,27,26,0.5); font-size: 12px; margin-top: 30px; font-weight: 300;">
+            This code will expire in 10 minutes. If you didn't request this, please ignore this email.
           </p>
           
-          <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #E8E5D8;">
-            <p style="color: #666666; font-size: 12px; margin: 0;">
-              © 2024 Norelle. All rights reserved.<br>
-              <a href="${baseUrl}/privacy" style="color: #722F37;">Privacy Policy</a> | 
-              <a href="${baseUrl}/terms" style="color: #722F37;">Terms of Service</a>
+          <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(59,5,5,0.1);">
+            <p style="color: rgba(47,27,26,0.4); font-size: 11px; margin: 0; font-weight: 300;">
+              &copy; 2024 Nor&#x0113;lle. All rights reserved.<br>
+              <a href="${baseUrl}/privacy" style="color: #3B0505;">Privacy Policy</a> | 
+              <a href="${baseUrl}/terms" style="color: #3B0505;">Terms of Service</a>
             </p>
           </div>
         </div>
       </div>
     `,
     password_reset: `
-      <div style="font-family: 'Montserrat', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #F5F2E8;">
-        <div style="background-color: #722F37; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
-          <h1 style="color: #F5F2E8; font-family: 'Playfair Display', serif; font-size: 32px; margin: 0;">Norelle</h1>
-          <p style="color: #D4AF37; margin: 10px 0 0; font-size: 16px;">Luxury Belgian Jewelry</p>
+      <div style="font-family: 'Jost', 'Helvetica Neue', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #FFFAEB;">
+        <div style="background-color: #3B0505; padding: 40px; text-align: center;">
+          <h1 style="color: #FFFAEB; font-family: 'Cormorant', Georgia, serif; font-size: 28px; font-weight: 300; margin: 0; letter-spacing: 2px;">Nor&#x0113;lle</h1>
+          <p style="color: rgba(255,250,235,0.5); margin: 8px 0 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 300;">for those we live with</p>
         </div>
         
-        <div style="background-color: white; padding: 40px; border-radius: 0 0 8px 8px; text-align: center;">
-          <h2 style="color: #722F37; font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">Reset Your Password</h2>
-          <p style="color: #2C2C2C; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-            We received a request to reset your password. Use the verification code below to proceed:
+        <div style="background-color: #FFFAEB; padding: 40px; text-align: center;">
+          <h2 style="color: #3B0505; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px;">Reset Your Password</h2>
+          <p style="color: #2F1B1A; font-size: 14px; line-height: 1.7; margin-bottom: 30px; font-weight: 300;">
+            We received a request to reset your password. Use the code below to proceed.
           </p>
           
-          <div style="background-color: #F5F2E8; border: 2px solid #D4AF37; border-radius: 8px; padding: 20px; margin: 30px 0;">
-            <p style="font-size: 24px; font-weight: bold; color: #722F37; letter-spacing: 4px; margin: 0;">
+          <div style="background-color: #3B0505; padding: 20px; margin: 30px 0;">
+            <p style="font-size: 24px; font-weight: 300; color: #FFFAEB; letter-spacing: 6px; margin: 0; font-family: 'Jost', sans-serif;">
               ${code}
             </p>
           </div>
           
-          <p style="color: #666666; font-size: 14px; margin-top: 30px;">
-            This code will expire in 10 minutes. If you didn't request this password reset, please secure your account immediately.
+          <p style="color: rgba(47,27,26,0.5); font-size: 12px; margin-top: 30px; font-weight: 300;">
+            This code will expire in 10 minutes. If you didn't request this, please secure your account immediately.
           </p>
           
-          <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #E8E5D8;">
-            <p style="color: #666666; font-size: 12px; margin: 0;">
-              © 2024 Norelle. All rights reserved.<br>
-              <a href="${baseUrl}/privacy" style="color: #722F37;">Privacy Policy</a> | 
-              <a href="${baseUrl}/terms" style="color: #722F37;">Terms of Service</a>
+          <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(59,5,5,0.1);">
+            <p style="color: rgba(47,27,26,0.4); font-size: 11px; margin: 0; font-weight: 300;">
+              &copy; 2024 Nor&#x0113;lle. All rights reserved.<br>
+              <a href="${baseUrl}/privacy" style="color: #3B0505;">Privacy Policy</a> | 
+              <a href="${baseUrl}/terms" style="color: #3B0505;">Terms of Service</a>
             </p>
           </div>
         </div>
       </div>
     `,
     account_confirmation: `
-      <div style="font-family: 'Montserrat', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #F5F2E8;">
-        <div style="background-color: #722F37; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
-          <h1 style="color: #F5F2E8; font-family: 'Playfair Display', serif; font-size: 32px; margin: 0;">Norelle</h1>
-          <p style="color: #D4AF37; margin: 10px 0 0; font-size: 16px;">Luxury Belgian Jewelry</p>
+      <div style="font-family: 'Jost', 'Helvetica Neue', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #FFFAEB;">
+        <div style="background-color: #3B0505; padding: 40px; text-align: center;">
+          <h1 style="color: #FFFAEB; font-family: 'Cormorant', Georgia, serif; font-size: 28px; font-weight: 300; margin: 0; letter-spacing: 2px;">Nor&#x0113;lle</h1>
+          <p style="color: rgba(255,250,235,0.5); margin: 8px 0 0; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 300;">for those we live with</p>
         </div>
         
-        <div style="background-color: white; padding: 40px; border-radius: 0 0 8px 8px; text-align: center;">
-          <h2 style="color: #722F37; font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 20px;">Confirm Your Account</h2>
-          <p style="color: #2C2C2C; font-size: 16px; line-height: 1.6; margin-bottom: 30px;">
-            Welcome to Norelle! Please use the verification code below to confirm your account:
+        <div style="background-color: #FFFAEB; padding: 40px; text-align: center;">
+          <h2 style="color: #3B0505; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px;">Confirm Your Account</h2>
+          <p style="color: #2F1B1A; font-size: 14px; line-height: 1.7; margin-bottom: 30px; font-weight: 300;">
+            Welcome to Nor&#x0113;lle. Please use the code below to confirm your account.
           </p>
           
-          <div style="background-color: #F5F2E8; border: 2px solid #D4AF37; border-radius: 8px; padding: 20px; margin: 30px 0;">
-            <p style="font-size: 24px; font-weight: bold; color: #722F37; letter-spacing: 4px; margin: 0;">
+          <div style="background-color: #3B0505; padding: 20px; margin: 30px 0;">
+            <p style="font-size: 24px; font-weight: 300; color: #FFFAEB; letter-spacing: 6px; margin: 0; font-family: 'Jost', sans-serif;">
               ${code}
             </p>
           </div>
           
-          <p style="color: #666666; font-size: 14px; margin-top: 30px;">
-            This code will expire in 10 minutes. If you didn't create an account with Norelle, please ignore this email.
+          <p style="color: rgba(47,27,26,0.5); font-size: 12px; margin-top: 30px; font-weight: 300;">
+            This code will expire in 10 minutes. If you didn't create an account with Nor&#x0113;lle, please ignore this email.
           </p>
           
-          <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid #E8E5D8;">
-            <p style="color: #666666; font-size: 12px; margin: 0;">
-              © 2024 Norelle. All rights reserved.<br>
-              <a href="${baseUrl}/privacy" style="color: #722F37;">Privacy Policy</a> | 
-              <a href="${baseUrl}/terms" style="color: #722F37;">Terms of Service</a>
+          <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(59,5,5,0.1);">
+            <p style="color: rgba(47,27,26,0.4); font-size: 11px; margin: 0; font-weight: 300;">
+              &copy; 2024 Nor&#x0113;lle. All rights reserved.<br>
+              <a href="${baseUrl}/privacy" style="color: #3B0505;">Privacy Policy</a> | 
+              <a href="${baseUrl}/terms" style="color: #3B0505;">Terms of Service</a>
             </p>
           </div>
         </div>
@@ -370,41 +370,41 @@ function generateEmailTemplate(code: string, type: VerificationCode['type']): st
 function generateTextTemplate(code: string, type: VerificationCode['type']): string {
   const templates = {
     email_verification: `
-Norelle - Email Verification
+Norēlle — Email Verification
 
-Thank you for signing up with Norelle! Please use the verification code below to confirm your email address:
+Thank you for joining Norēlle. Please use the code below to confirm your email address:
 
 Verification Code: ${code}
 
-This code will expire in 10 minutes. If you didn't request this verification, please ignore this email.
+This code will expire in 10 minutes. If you didn't request this, please ignore this email.
 
-© 2024 Norelle. All rights reserved.
+© 2024 Norēlle. All rights reserved.
 Privacy Policy: https://norelle.com/privacy
 Terms of Service: https://norelle.com/terms
     `,
     password_reset: `
-Norelle - Password Reset
+Norēlle — Password Reset
 
-We received a request to reset your password. Use the verification code below to proceed:
+We received a request to reset your password. Use the code below to proceed:
 
 Verification Code: ${code}
 
-This code will expire in 10 minutes. If you didn't request this password reset, please secure your account immediately.
+This code will expire in 10 minutes. If you didn't request this, please secure your account immediately.
 
-© 2024 Norelle. All rights reserved.
+© 2024 Norēlle. All rights reserved.
 Privacy Policy: https://norelle.com/privacy
 Terms of Service: https://norelle.com/terms
     `,
     account_confirmation: `
-Norelle - Account Confirmation
+Norēlle — Account Confirmation
 
-Welcome to Norelle! Please use the verification code below to confirm your account:
+Welcome to Norēlle. Please use the code below to confirm your account:
 
 Verification Code: ${code}
 
-This code will expire in 10 minutes. If you didn't create an account with Norelle, please ignore this email.
+This code will expire in 10 minutes. If you didn't create an account with Norēlle, please ignore this email.
 
-© 2024 Norelle. All rights reserved.
+© 2024 Norēlle. All rights reserved.
 Privacy Policy: https://norelle.com/privacy
 Terms of Service: https://norelle.com/terms
     `

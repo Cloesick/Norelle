@@ -132,17 +132,17 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 100 }}
-        className={`fixed bottom-0 left-0 right-0 bg-norelle-burgundy border-t border-norelle-border z-50 ${className}`}
+        className={`fixed bottom-0 left-0 right-0 bg-norelle-burgundy-dark border-t border-norelle-cream/10 z-50 ${className}`}
       >
-        <div className="container-max p-6">
+        <div className="max-w-6xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-start gap-3 flex-1">
-              <CookieIcon className="w-6 h-6 text-norelle-gold flex-shrink-0 mt-1" />
+              <CookieIcon className="w-5 h-5 text-norelle-cream/50 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <h3 className="text-norelle-cream font-serif text-lg mb-2">
+                <h3 className="text-norelle-cream font-body font-light text-sm uppercase tracking-brand mb-2">
                   Cookie Preferences
                 </h3>
-                <p className="text-norelle-text-muted text-sm leading-relaxed">
+                <p className="text-norelle-cream/50 text-xs font-light leading-relaxed">
                   We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. 
                   By clicking "Accept All", you consent to our use of cookies.
                 </p>
@@ -151,20 +151,20 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                   <div className="mt-3 flex flex-wrap gap-3">
                     <button
                       onClick={() => setShowDetails(true)}
-                      className="text-norelle-gold hover:text-norelle-gold-light text-sm font-medium transition-colors duration-200 flex items-center gap-1"
+                      className="text-norelle-cream/60 hover:text-norelle-cream text-xs font-light transition-colors duration-300 flex items-center gap-1"
                     >
                       <EyeIcon className="w-4 h-4" />
                       Customize Preferences
                     </button>
                     <a
                       href="/privacy"
-                      className="text-norelle-text-muted hover:text-norelle-cream text-sm transition-colors duration-200"
+                      className="text-norelle-cream/40 hover:text-norelle-cream text-xs font-light transition-colors duration-300"
                     >
                       Privacy Policy
                     </a>
                     <a
                       href="/cookies"
-                      className="text-norelle-text-muted hover:text-norelle-cream text-sm transition-colors duration-200"
+                      className="text-norelle-cream/40 hover:text-norelle-cream text-xs font-light transition-colors duration-300"
                     >
                       Cookie Policy
                     </a>
@@ -177,13 +177,13 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
               <div className="flex gap-3">
                 <button
                   onClick={handleAcceptNecessary}
-                  className="px-4 py-2 border border-norelle-border text-norelle-cream hover:bg-norelle-burgundy-light transition-colors duration-200 rounded-lg text-sm font-medium"
+                  className="btn-secondary text-xs py-2 px-4"
                 >
                   Necessary Only
                 </button>
                 <button
                   onClick={handleAcceptAll}
-                  className="px-4 py-2 bg-norelle-gold text-norelle-burgundy hover:bg-norelle-gold-light transition-colors duration-200 rounded-lg text-sm font-medium"
+                  className="btn-primary text-xs py-2 px-4"
                 >
                   Accept All
                 </button>
@@ -191,7 +191,7 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
             ) : (
               <button
                 onClick={() => setShowDetails(false)}
-                className="p-2 text-norelle-text-muted hover:text-norelle-cream transition-colors duration-200"
+                className="p-2 text-norelle-cream/40 hover:text-norelle-cream transition-colors duration-300"
               >
                 <XMarkIcon className="w-5 h-5" />
               </button>
@@ -203,24 +203,24 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="mt-6 pt-6 border-t border-norelle-border"
+              className="mt-6 pt-6 border-t border-norelle-cream/10"
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Necessary Cookies */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <ShieldCheckIcon className="w-4 h-4 text-norelle-gold" />
-                      <h4 className="text-norelle-cream font-medium">Essential Cookies</h4>
+                      <ShieldCheckIcon className="w-4 h-4 text-norelle-cream/50" />
+                      <h4 className="text-norelle-cream font-body font-light text-sm">Essential Cookies</h4>
                     </div>
                     <input
                       type="checkbox"
                       checked={preferences.necessary}
                       disabled
-                      className="w-4 h-4 text-norelle-gold border-norelle-border rounded focus:ring-norelle-gold disabled:opacity-50"
+                      className="w-4 h-4 accent-norelle-cream border-norelle-cream/20 rounded focus:ring-norelle-cream/30 disabled:opacity-50"
                     />
                   </div>
-                  <p className="text-norelle-text-muted text-sm">
+                  <p className="text-norelle-cream/40 text-xs font-light leading-relaxed">
                     Required for the website to function properly, including security, network management, and accessibility.
                   </p>
                 </div>
@@ -229,17 +229,17 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <EyeIcon className="w-4 h-4 text-norelle-gold" />
-                      <h4 className="text-norelle-cream font-medium">Analytics Cookies</h4>
+                      <EyeIcon className="w-4 h-4 text-norelle-cream/50" />
+                      <h4 className="text-norelle-cream font-body font-light text-sm">Analytics Cookies</h4>
                     </div>
                     <input
                       type="checkbox"
                       checked={preferences.analytics}
                       onChange={(e) => handlePreferenceChange('analytics', e.target.checked)}
-                      className="w-4 h-4 text-norelle-gold border-norelle-border rounded focus:ring-norelle-gold"
+                      className="w-4 h-4 accent-norelle-cream border-norelle-cream/20 rounded focus:ring-norelle-cream/30"
                     />
                   </div>
-                  <p className="text-norelle-text-muted text-sm">
+                  <p className="text-norelle-cream/40 text-xs font-light leading-relaxed">
                     Help us understand how visitors interact with our website by collecting and reporting information anonymously.
                   </p>
                 </div>
@@ -248,17 +248,17 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <CookieIcon className="w-4 h-4 text-norelle-gold" />
-                      <h4 className="text-norelle-cream font-medium">Marketing Cookies</h4>
+                      <CookieIcon className="w-4 h-4 text-norelle-cream/50" />
+                      <h4 className="text-norelle-cream font-body font-light text-sm">Marketing Cookies</h4>
                     </div>
                     <input
                       type="checkbox"
                       checked={preferences.marketing}
                       onChange={(e) => handlePreferenceChange('marketing', e.target.checked)}
-                      className="w-4 h-4 text-norelle-gold border-norelle-border rounded focus:ring-norelle-gold"
+                      className="w-4 h-4 accent-norelle-cream border-norelle-cream/20 rounded focus:ring-norelle-cream/30"
                     />
                   </div>
-                  <p className="text-norelle-text-muted text-sm">
+                  <p className="text-norelle-cream/40 text-xs font-light leading-relaxed">
                     Used to deliver advertisements that are relevant to you and your interests, including on third-party websites.
                   </p>
                 </div>
@@ -267,26 +267,26 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <CookieIcon className="w-4 h-4 text-norelle-gold" />
-                      <h4 className="text-norelle-cream font-medium">Personalization Cookies</h4>
+                      <CookieIcon className="w-4 h-4 text-norelle-cream/50" />
+                      <h4 className="text-norelle-cream font-body font-light text-sm">Personalization Cookies</h4>
                     </div>
                     <input
                       type="checkbox"
                       checked={preferences.personalization}
                       onChange={(e) => handlePreferenceChange('personalization', e.target.checked)}
-                      className="w-4 h-4 text-norelle-gold border-norelle-border rounded focus:ring-norelle-gold"
+                      className="w-4 h-4 accent-norelle-cream border-norelle-cream/20 rounded focus:ring-norelle-cream/30"
                     />
                   </div>
-                  <p className="text-norelle-text-muted text-sm">
+                  <p className="text-norelle-cream/40 text-xs font-light leading-relaxed">
                     Allow us to remember your preferences and personalize your experience on our website.
                   </p>
                 </div>
               </div>
               
               <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
-                <div className="text-sm text-norelle-text-muted">
+                <div className="text-xs text-norelle-cream/40 font-light">
                   You can change your preferences anytime in your{' '}
-                  <a href="/account/settings" className="text-norelle-gold hover:text-norelle-gold-light">
+                  <a href="/account/settings" className="text-norelle-cream/60 hover:text-norelle-cream">
                     account settings
                   </a>
                   .
@@ -295,13 +295,13 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 <div className="flex gap-3">
                   <button
                     onClick={handleAcceptNecessary}
-                    className="px-4 py-2 border border-norelle-border text-norelle-cream hover:bg-norelle-burgundy-light transition-colors duration-200 rounded-lg text-sm font-medium"
+                    className="btn-secondary text-xs py-2 px-4"
                   >
                     Accept Necessary
                   </button>
                   <button
                     onClick={handleSavePreferences}
-                    className="px-4 py-2 bg-norelle-gold text-norelle-burgundy hover:bg-norelle-gold-light transition-colors duration-200 rounded-lg text-sm font-medium"
+                    className="btn-primary text-xs py-2 px-4"
                   >
                     Save Preferences
                   </button>

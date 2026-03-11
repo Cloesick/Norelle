@@ -1,183 +1,156 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import { getFeaturedProducts, getSaleProducts } from '@/data/products'
+import { getFeaturedProducts, categories } from '@/data/products'
 import { ProductCard } from '@/components/ProductCard'
-import { ImmersiveHero } from '@/components/luxury/ImmersiveHero'
-import { ArrowRightIcon, SparklesIcon } from '@heroicons/react/24/outline'
 
 export default function HomePage() {
   const featuredProducts = getFeaturedProducts()
-  const saleProducts = getSaleProducts()
 
   return (
     <div className="min-h-screen">
-      {/* Immersive Hero Section */}
-      <ImmersiveHero />
+      {/* Hero — Full-screen, minimal, brand-first */}
+      <section className="-mt-24 relative min-h-screen flex items-center justify-center bg-norelle-burgundy">
+        <div className="absolute inset-0 bg-gradient-to-b from-norelle-burgundy-dark/40 via-transparent to-norelle-burgundy" />
+        <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+          <h1 className="font-display font-light text-norelle-cream normal-case tracking-wide text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.1] mb-8">
+            Nor&#x0113;lle<sup className="text-lg md:text-xl align-super">&#174;</sup>
+          </h1>
+          <p className="font-body font-light text-norelle-cream/60 text-sm sm:text-base tracking-[0.2em] uppercase mb-12">
+            for those we live with
+          </p>
+          <div className="w-px h-16 bg-norelle-cream/20 mx-auto mb-12" />
+          <p className="font-body font-light text-norelle-cream/50 text-sm leading-relaxed max-w-md mx-auto mb-12">
+            Luxury fragrance composed to honour presence, softness 
+            and the quiet elegance of care.
+          </p>
+          <Link 
+            href="/shop" 
+            className="btn-secondary text-xs"
+          >
+            Discover the collection
+          </Link>
+        </div>
+      </section>
 
-      {/* Trust Bar */}
-      <section className="bg-norelle-burgundy-light border-y border-norelle-border">
-        <div className="container-max py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="group">
-              <div className="text-3xl font-serif font-bold text-norelle-gold mb-1 group-hover:text-norelle-gold-light transition-colors duration-300">500+</div>
-              <div className="text-sm text-norelle-text-muted">Happy Customers</div>
-            </div>
-            <div className="group">
-              <div className="text-3xl font-serif font-bold text-norelle-gold mb-1 group-hover:text-norelle-gold-light transition-colors duration-300">50+</div>
-              <div className="text-sm text-norelle-text-muted">Unique Designs</div>
-            </div>
-            <div className="group">
-              <div className="text-3xl font-serif font-bold text-norelle-gold mb-1 group-hover:text-norelle-gold-light transition-colors duration-300">2 Years</div>
-              <div className="text-sm text-norelle-text-muted">Warranty</div>
-            </div>
-            <div className="group">
-              <div className="text-3xl font-serif font-bold text-norelle-gold mb-1 group-hover:text-norelle-gold-light transition-colors duration-300">Free</div>
-              <div className="text-sm text-norelle-text-muted">Shipping €75+</div>
-            </div>
+      {/* The Three Fragrances — Product philosophy */}
+      <section className="py-24 md:py-36 bg-norelle-burgundy">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="mb-6">Three moments of care</h2>
+            <p className="text-norelle-cream/50 font-light max-w-lg mx-auto leading-relaxed text-sm">
+              Each fragrance addresses a different ritual — a different way 
+              to honour the bond you share.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-16 md:gap-10">
+            {[
+              {
+                name: 'Élevé',
+                subtitle: 'Special occasions',
+                description: 'A subtle form of ceremony. For when their presence deserves that extra touch of radiance.',
+                notes: 'Warm amber · Soft musk · Bergamot',
+              },
+              {
+                name: 'Solène',
+                subtitle: 'Restoring freshness',
+                description: 'Not about hiding, but about restoring. A reset towards frisheid and elegance.',
+                notes: 'White tea · Fresh linen · Subtle cedar',
+              },
+              {
+                name: 'Fovère',
+                subtitle: 'Blending with home',
+                description: 'As if the scent naturally becomes part of your interior. Warm, enveloping, harmonious.',
+                notes: 'Cashmere woods · Vanilla · Sandalwood',
+              },
+            ].map((fragrance) => (
+              <div key={fragrance.name} className="text-center">
+                {/* Placeholder circle for product image */}
+                <div className="w-40 h-40 mx-auto mb-8 rounded-full border border-norelle-cream/10 flex items-center justify-center">
+                  <span className="font-display font-light text-norelle-cream/20 text-4xl normal-case">
+                    {fragrance.name[0]}
+                  </span>
+                </div>
+                <h3 className="font-display font-light text-norelle-cream text-2xl normal-case tracking-wide mb-2">
+                  {fragrance.name}
+                </h3>
+                <p className="text-norelle-cream/40 text-xs uppercase tracking-brand mb-4">
+                  {fragrance.subtitle}
+                </p>
+                <p className="text-norelle-cream/50 text-sm font-light leading-relaxed mb-4 max-w-xs mx-auto">
+                  {fragrance.description}
+                </p>
+                <p className="text-norelle-cream/30 text-xs tracking-wide">
+                  {fragrance.notes}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* Divider */}
+      <div className="flex justify-center py-2 bg-norelle-burgundy">
+        <div className="w-px h-20 bg-norelle-cream/10" />
+      </div>
+
       {/* Featured Products */}
-      <section className="section-padding bg-norelle-burgundy">
-        <div className="container-max">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-norelle-cream mb-4">
-              Featured <span className="text-norelle-gold">Pieces</span>
-            </h2>
-            <p className="text-norelle-text-muted max-w-2xl mx-auto text-lg">
-              Handpicked selections from our collection, representing the finest in Belgian craftsmanship and timeless design.
+      <section className="py-24 md:py-36 bg-norelle-burgundy">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="mb-6">The Collection</h2>
+            <p className="text-norelle-cream/50 font-light max-w-md mx-auto text-sm leading-relaxed">
+              Refined scents for those who give us everything, without condition.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 mb-16">
             {featuredProducts.slice(0, 6).map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
           <div className="text-center">
-            <Link 
-              href="/shop" 
-              className="btn-secondary inline-flex items-center group"
-            >
-              View All Products
-              <ArrowRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+            <Link href="/shop" className="btn-secondary text-xs">
+              View all fragrances
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Brand Story */}
-      <section className="section-padding bg-norelle-burgundy-light">
-        <div className="container-max">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-norelle-cream mb-6">
-                The Norelle Story
-              </h2>
-              <div className="space-y-4 text-norelle-text-muted leading-relaxed">
-                <p>
-                  Founded in Brussels, Norelle represents the perfect fusion of traditional craftsmanship 
-                  and contemporary design. Our journey began with a simple vision: to create jewellery that 
-                  celebrates life's most precious moments with timeless elegance.
-                </p>
-                <p>
-                  Each piece in our collection is meticulously crafted by skilled artisans who share our 
-                  passion for excellence. We source only the finest materials, from precious metals to 
-                  ethically sourced gemstones, ensuring that every creation meets our exacting standards.
-                </p>
-                <p>
-                  At Norelle, we believe that jewellery is more than just adornment—it's a expression of 
-                  individuality, a celebration of milestones, and a legacy to be cherished for generations.
-                </p>
-              </div>
-              <Link 
-                href="/about" 
-                className="btn-primary mt-8 inline-flex items-center group"
-              >
-                Learn More
-                <ArrowRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-              </Link>
-            </div>
-            <div className="relative h-96 lg:h-full min-h-96 rounded-lg overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-norelle-cream/20 to-norelle-burgundy/20" />
-              <Image
-                src="/images/brand-story.jpg"
-                alt="Norelle craftsmanship"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </div>
+      {/* Brand Philosophy */}
+      <section className="py-24 md:py-36 bg-norelle-mocha">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="font-display font-light text-norelle-cream/70 text-2xl md:text-3xl leading-relaxed normal-case mb-10">
+            &ldquo;Because they give us everything, without condition. 
+            So please care for them.&rdquo;
+          </p>
+          <div className="w-12 h-px bg-norelle-cream/20 mx-auto mb-10" />
+          <p className="text-norelle-cream/40 text-xs uppercase tracking-brand">
+            The Nor&#x0113;lle philosophy
+          </p>
         </div>
       </section>
 
-      {/* Sale Section */}
-      {saleProducts.length > 0 && (
-        <section className="section-padding bg-norelle-burgundy">
-          <div className="container-max">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center bg-norelle-cream text-norelle-burgundy px-4 py-2 rounded-sm font-medium mb-4">
-                Limited Time Offer
-              </div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-norelle-cream mb-4">
-                Special Sale
-              </h2>
-              <p className="text-norelle-text-muted max-w-2xl mx-auto">
-                Discover selected pieces at exceptional prices. These limited-time offers won't last long.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {saleProducts.slice(0, 3).map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-
-            <div className="text-center">
-              <Link 
-                href="/shop?filter=sale" 
-                className="btn-secondary inline-flex items-center group"
-              >
-                View All Sale Items
-                <ArrowRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-              </Link>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Categories Preview */}
-      <section className="section-padding bg-norelle-burgundy-light">
-        <div className="container-max">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-norelle-cream mb-4">
-              Shop by Category
-            </h2>
-            <p className="text-norelle-text-muted max-w-2xl mx-auto">
-              Explore our carefully curated collections, each designed to complement your unique style.
-            </p>
+      {/* Categories */}
+      <section className="py-24 md:py-36 bg-norelle-burgundy">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="mb-6">Shop by format</h2>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { name: 'Necklaces', slug: 'necklaces', count: 3 },
-              { name: 'Earrings', slug: 'earrings', count: 3 },
-              { name: 'Bracelets', slug: 'bracelets', count: 3 },
-              { name: 'Rings', slug: 'rings', count: 2 },
-            ].map((category) => (
+          <div className="grid md:grid-cols-3 gap-8">
+            {categories.map((category) => (
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
-                className="group block bg-norelle-burgundy border border-norelle-border rounded-lg p-6 text-center hover:border-norelle-cream transition-all duration-300"
+                className="group block border border-norelle-cream/10 p-10 text-center hover:border-norelle-cream/30 transition-all duration-500"
               >
-                <div className="w-16 h-16 bg-norelle-burgundy-light border border-norelle-border rounded-full flex items-center justify-center mx-auto mb-4 group-hover:border-norelle-cream transition-colors duration-300">
-                  <div className="w-8 h-8 bg-norelle-cream rounded-sm" />
-                </div>
-                <h3 className="text-norelle-cream font-medium mb-2">{category.name}</h3>
-                <p className="text-sm text-norelle-text-muted">{category.count} pieces</p>
+                <h3 className="text-norelle-cream font-body font-light text-sm uppercase tracking-brand mb-3 group-hover:text-norelle-cream transition-colors duration-300">
+                  {category.name}
+                </h3>
+                <p className="text-xs text-norelle-cream/40 font-light leading-relaxed">
+                  {category.description}
+                </p>
               </Link>
             ))}
           </div>
@@ -185,30 +158,27 @@ export default function HomePage() {
       </section>
 
       {/* Newsletter */}
-      <section className="section-padding bg-norelle-burgundy">
-        <div className="container-max">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-norelle-cream mb-4">
-              Stay in Touch
-            </h2>
-            <p className="text-norelle-text-muted mb-8">
-              Subscribe to receive exclusive offers, new arrivals, and the latest news from Norelle.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 input-field"
-                required
-              />
-              <button type="submit" className="btn-primary">
-                Subscribe
-              </button>
-            </form>
-            <p className="text-sm text-norelle-text-muted mt-4">
-              Join 500+ subscribers. Unsubscribe at any time.
-            </p>
-          </div>
+      <section className="py-24 md:py-36 bg-norelle-burgundy border-t border-norelle-cream/5">
+        <div className="max-w-md mx-auto px-6 text-center">
+          <h2 className="mb-6">Stay close</h2>
+          <p className="text-norelle-cream/50 text-sm font-light mb-10 leading-relaxed">
+            Receive updates on new compositions, limited editions, 
+            and the stories behind each fragrance.
+          </p>
+          <form className="space-y-4">
+            <input
+              type="email"
+              placeholder="Your email address"
+              className="w-full input-field text-center"
+              required
+            />
+            <button type="submit" className="btn-primary w-full text-xs">
+              Subscribe
+            </button>
+          </form>
+          <p className="text-xs text-norelle-cream/30 mt-6 font-light">
+            No spam. Unsubscribe at any time.
+          </p>
         </div>
       </section>
     </div>

@@ -9,52 +9,41 @@ module.exports = {
     extend: {
       colors: {
         norelle: {
-          /* Primary Brand Colors */
-          burgundy: '#722F37',
-          'burgundy-light': '#8B3F47',
-          'burgundy-dark': '#5A1F27',
-          gold: '#D4AF37',
-          'gold-light': '#E6C547',
-          'gold-dark': '#B8941F',
-          cream: '#F5F2E8',
-          'cream-light': '#FAF8F2',
-          'cream-dark': '#E8E5D8',
-          
-          /* Text Colors */
-          text: '#F5F2E8',
-          'text-muted': 'rgba(245, 242, 232, 0.7)',
-          'text-dim': 'rgba(245, 242, 232, 0.5)',
-          
-          /* Semantic Colors */
-          background: '#722F37',
-          border: 'rgba(245, 242, 232, 0.2)',
-          'border-light': 'rgba(245, 242, 232, 0.3)',
-          'border-dark': 'rgba(245, 242, 232, 0.1)',
-          
-          /* Supporting Colors */
-          charcoal: '#2C2C2C',
-          gray: '#666666',
-          silver: '#C0C0C0',
-          pearl: '#F8F6F0',
-          
-          /* Accent Colors */
-          'rose-gold': '#E8B4A0',
-          platinum: '#E5E4E2',
-          diamond: '#B9F2FF',
+          /* Brand Palette — from NORELLE.pdf (3 colors only) */
+          burgundy: '#3B0505',
+          cream: '#FFFAEB',
+          mocha: '#2F1B1A',
+
+          /* Functional tints derived from brand palette */
+          'burgundy-light': '#4E0E0E',
+          'burgundy-dark': '#2A0303',
+          'cream-dark': '#F0E6CC',
+
+          /* Semantic */
+          text: '#FFFAEB',
+          'text-muted': 'rgba(255, 250, 235, 0.6)',
+          'text-dim': 'rgba(255, 250, 235, 0.35)',
+          border: 'rgba(255, 250, 235, 0.12)',
+          'border-light': 'rgba(255, 250, 235, 0.2)',
         },
       },
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
-        sans: ['Montserrat', 'system-ui', 'sans-serif'],
-        mono: ['Courier New', 'monospace'],
+        display: ['var(--font-cormorant)', 'Cormorant', 'serif'],
+        body: ['var(--font-jost)', 'Jost', 'sans-serif'],
+        serif: ['var(--font-cormorant)', 'Cormorant', 'serif'],
+        sans: ['var(--font-jost)', 'Jost', 'sans-serif'],
+      },
+      letterSpacing: {
+        brand: '0.15em',
+        nav: '0.1em',
       },
       spacing: {
         '18': '4.5rem',
         '88': '22rem',
       },
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.3s ease-out',
+        'fade-in': 'fadeIn 0.6s ease-out',
+        'slide-up': 'slideUp 0.5s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -62,7 +51,7 @@ module.exports = {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
+          '0%': { transform: 'translateY(12px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
       },

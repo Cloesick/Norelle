@@ -162,15 +162,15 @@ export default function VerifyPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-block mb-6">
-            <h1 className="font-serif text-3xl text-norelle-cream tracking-wider">Norelle</h1>
-            <p className="text-norelle-gold text-xs tracking-[0.3em] uppercase mt-1">
-              Luxury Belgian Jewelry
+            <h1 className="font-display font-light text-3xl text-norelle-cream tracking-wide">Nor&#x0113;lle</h1>
+            <p className="text-norelle-cream/40 text-xs tracking-[0.2em] uppercase mt-1 font-body font-light">
+              for those we live with
             </p>
           </Link>
         </div>
 
         {/* Card */}
-        <div className="bg-[#3a1215] border border-norelle-border rounded-xl p-8 shadow-2xl">
+        <div className="bg-norelle-mocha border border-norelle-cream/10 p-8">
           <AnimatePresence mode="wait">
             {/* Step 1: Email */}
             {step === 'email' && (
@@ -180,14 +180,14 @@ export default function VerifyPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
               >
-                <h2 className="font-serif text-2xl text-norelle-cream mb-2">Verify Your Email</h2>
-                <p className="text-norelle-text-muted text-sm mb-6">
+                <h2 className="font-body font-light text-lg text-norelle-cream uppercase tracking-brand mb-3">Verify Your Email</h2>
+                <p className="text-norelle-cream/50 text-xs font-light mb-6">
                   Enter your email address and we&apos;ll send you a 6-character verification code.
                 </p>
 
                 <form onSubmit={handleSendCode} className="space-y-4">
                   <div>
-                    <label htmlFor="email" className="block text-norelle-cream text-sm font-medium mb-1.5">
+                    <label htmlFor="email" className="block text-norelle-cream/60 text-xs font-body font-light uppercase tracking-brand mb-2">
                       Email Address
                     </label>
                     <input
@@ -197,7 +197,7 @@ export default function VerifyPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="w-full px-4 py-3 bg-norelle-burgundy border border-norelle-border rounded-lg text-norelle-cream placeholder:text-norelle-text-muted/50 focus:outline-none focus:ring-2 focus:ring-norelle-gold/50 focus:border-norelle-gold transition-all"
+                      className="w-full input-field text-sm"
                     />
                   </div>
 
@@ -208,15 +208,15 @@ export default function VerifyPage() {
                   <button
                     type="submit"
                     disabled={loading || !email}
-                    className="w-full py-3 bg-norelle-gold text-norelle-burgundy font-medium rounded-lg hover:bg-norelle-gold/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="btn-primary w-full text-xs"
                   >
                     {loading ? 'Sending...' : 'Send Verification Code'}
                   </button>
                 </form>
 
-                <p className="text-norelle-text-muted text-xs text-center mt-6">
+                <p className="text-norelle-cream/30 text-xs text-center mt-6 font-light">
                   We&apos;ll never share your email. Read our{' '}
-                  <Link href="/privacy" className="text-norelle-gold hover:underline">Privacy Policy</Link>.
+                  <Link href="/privacy" className="text-norelle-cream/50 hover:text-norelle-cream">Privacy Policy</Link>.
                 </p>
               </motion.div>
             )}
@@ -229,11 +229,11 @@ export default function VerifyPage() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
               >
-                <h2 className="font-serif text-2xl text-norelle-cream mb-2">Enter Code</h2>
-                <p className="text-norelle-text-muted text-sm mb-1">
+                <h2 className="font-body font-light text-lg text-norelle-cream uppercase tracking-brand mb-3">Enter Code</h2>
+                <p className="text-norelle-cream/50 text-xs font-light mb-1">
                   We sent a 6-character code to
                 </p>
-                <p className="text-norelle-gold text-sm font-medium mb-6">{email}</p>
+                <p className="text-norelle-cream/70 text-xs font-light mb-6">{email}</p>
 
                 <form onSubmit={handleVerify} className="space-y-6">
                   {/* Code inputs */}
@@ -248,7 +248,7 @@ export default function VerifyPage() {
                         value={digit}
                         onChange={(e) => handleCodeInput(i, e.target.value)}
                         onKeyDown={(e) => handleCodeKeyDown(i, e)}
-                        className="w-12 h-14 text-center text-xl font-mono font-bold bg-norelle-burgundy border border-norelle-border rounded-lg text-norelle-cream focus:outline-none focus:ring-2 focus:ring-norelle-gold/50 focus:border-norelle-gold transition-all"
+                        className="w-12 h-14 text-center text-lg font-body font-light bg-transparent border-b border-norelle-cream/20 text-norelle-cream focus:outline-none focus:border-norelle-cream transition-colors duration-300"
                         aria-label={`Digit ${i + 1}`}
                       />
                     ))}
@@ -256,8 +256,8 @@ export default function VerifyPage() {
 
                   {/* Countdown */}
                   {countdown > 0 && (
-                    <p className="text-norelle-text-muted text-xs text-center">
-                      Code expires in <span className="text-norelle-gold font-mono">{formatCountdown(countdown)}</span>
+                    <p className="text-norelle-cream/40 text-xs text-center font-light">
+                      Code expires in <span className="text-norelle-cream/60 font-body">{formatCountdown(countdown)}</span>
                     </p>
                   )}
 
@@ -268,7 +268,7 @@ export default function VerifyPage() {
                   <button
                     type="submit"
                     disabled={loading || code.join('').length !== 6}
-                    className="w-full py-3 bg-norelle-gold text-norelle-burgundy font-medium rounded-lg hover:bg-norelle-gold/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="btn-primary w-full text-xs"
                   >
                     {loading ? 'Verifying...' : 'Verify'}
                   </button>
@@ -277,21 +277,21 @@ export default function VerifyPage() {
                 <div className="flex items-center justify-between mt-6">
                   <button
                     onClick={() => { setStep('email'); setCode(['', '', '', '', '', '']); setError('') }}
-                    className="text-norelle-text-muted text-sm hover:text-norelle-cream transition-colors"
+                    className="text-norelle-cream/40 text-xs font-light hover:text-norelle-cream transition-colors duration-300"
                   >
                     ← Change email
                   </button>
                   <button
                     onClick={handleResend}
                     disabled={countdown > 0 || loading}
-                    className="text-norelle-gold text-sm hover:underline disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    className="text-norelle-cream/50 text-xs font-light hover:text-norelle-cream disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-300"
                   >
                     Resend code
                   </button>
                 </div>
 
                 {/* Dev helper — shows the code in the server console */}
-                <p className="text-norelle-text-muted/40 text-[10px] text-center mt-4">
+                <p className="text-norelle-cream/20 text-[10px] text-center mt-4 font-light">
                   (Dev mode: check your terminal for the verification code)
                 </p>
               </motion.div>
@@ -305,20 +305,20 @@ export default function VerifyPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-4"
               >
-                <div className="w-16 h-16 bg-norelle-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-norelle-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-16 h-16 border border-norelle-cream/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-8 h-8 text-norelle-cream/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 className="font-serif text-2xl text-norelle-cream mb-2">Email Verified</h2>
-                <p className="text-norelle-text-muted text-sm mb-6">
-                  Your email <span className="text-norelle-gold">{email}</span> has been successfully verified.
+                <h2 className="font-body font-light text-lg text-norelle-cream uppercase tracking-brand mb-3">Email Verified</h2>
+                <p className="text-norelle-cream/50 text-xs font-light mb-6">
+                  Your email <span className="text-norelle-cream/70">{email}</span> has been successfully verified.
                 </p>
                 <Link
                   href="/"
-                  className="inline-block px-6 py-3 bg-norelle-gold text-norelle-burgundy font-medium rounded-lg hover:bg-norelle-gold/90 transition-all"
+                  className="btn-primary text-xs inline-block"
                 >
-                  Continue to Norelle
+                  Continue to Nor&#x0113;lle
                 </Link>
               </motion.div>
             )}
@@ -326,8 +326,8 @@ export default function VerifyPage() {
         </div>
 
         {/* Footer */}
-        <p className="text-norelle-text-muted/50 text-xs text-center mt-8">
-          &copy; {new Date().getFullYear()} Norelle. All rights reserved.
+        <p className="text-norelle-cream/20 text-[11px] text-center mt-8 font-light">
+          &copy; {new Date().getFullYear()} Nor&#x0113;lle. All rights reserved.
         </p>
       </motion.div>
     </div>
