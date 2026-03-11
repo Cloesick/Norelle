@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useCart } from '@/context/CartContext'
 import { 
   Bars3Icon, 
@@ -16,7 +16,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { getItemCount } = useCart()
-  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +29,7 @@ const Header = () => {
 
   useEffect(() => {
     setIsMenuOpen(false)
-  }, [router.asPath])
+  }, [pathname])
 
   const navigation = [
     { name: 'Shop', href: '/shop' },

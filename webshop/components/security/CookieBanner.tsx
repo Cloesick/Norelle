@@ -45,16 +45,22 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
     }
   }, [])
 
+  const updateGtagConsent = (consentUpdate: Record<string, 'granted' | 'denied'>) => {
+    const gtag = (window as any)?.gtag as undefined | ((...args: any[]) => void)
+    if (!gtag) return
+    gtag('consent', 'update', consentUpdate)
+  }
+
   const applyCookieConsent = (prefs: CookiePreferences) => {
     // Enable/disable analytics cookies
     if (prefs.analytics) {
       // Enable Google Analytics
-      window.gtag('consent', 'update', {
+      updateGtagConsent({
         analytics_storage: 'granted'
       })
     } else {
       // Disable analytics
-      window.gtag('consent', 'update', {
+      updateGtagConsent({
         analytics_storage: 'denied'
       })
     }
@@ -62,14 +68,14 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
     // Enable/disable marketing cookies
     if (prefs.marketing) {
       // Enable marketing cookies
-      window.gtag('consent', 'update', {
+      updateGtagConsent({
         ad_storage: 'granted',
         ad_user_data: 'granted',
         ad_personalization: 'granted'
       })
     } else {
       // Disable marketing cookies
-      window.gtag('consent', 'update', {
+      updateGtagConsent({
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied'
@@ -131,7 +137,7 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
         <div className="container-max p-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-start gap-3 flex-1">
-              <Cookie className="w-6 h-6 text-norelle-gold flex-shrink-0 mt-1" />
+              <CookieIcon className="w-6 h-6 text-norelle-gold flex-shrink-0 mt-1" />
               <div className="flex-1">
                 <h3 className="text-norelle-cream font-serif text-lg mb-2">
                   Cookie Preferences
@@ -147,7 +153,7 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                       onClick={() => setShowDetails(true)}
                       className="text-norelle-gold hover:text-norelle-gold-light text-sm font-medium transition-colors duration-200 flex items-center gap-1"
                     >
-                      <Eye className="w-4 h-4" />
+                      <EyeIcon className="w-4 h-4" />
                       Customize Preferences
                     </button>
                     <a
@@ -187,7 +193,7 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 onClick={() => setShowDetails(false)}
                 className="p-2 text-norelle-text-muted hover:text-norelle-cream transition-colors duration-200"
               >
-                <X className="w-5 h-5" />
+                <XMarkIcon className="w-5 h-5" />
               </button>
             )}
           </div>
@@ -204,7 +210,7 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-norelle-gold" />
+                      <ShieldCheckIcon className="w-4 h-4 text-norelle-gold" />
                       <h4 className="text-norelle-cream font-medium">Essential Cookies</h4>
                     </div>
                     <input
@@ -223,7 +229,7 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Eye className="w-4 h-4 text-norelle-gold" />
+                      <EyeIcon className="w-4 h-4 text-norelle-gold" />
                       <h4 className="text-norelle-cream font-medium">Analytics Cookies</h4>
                     </div>
                     <input
@@ -242,7 +248,7 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Cookie className="w-4 h-4 text-norelle-gold" />
+                      <CookieIcon className="w-4 h-4 text-norelle-gold" />
                       <h4 className="text-norelle-cream font-medium">Marketing Cookies</h4>
                     </div>
                     <input
@@ -261,7 +267,7 @@ export default function CookieBanner({ className = '' }: CookieBannerProps) {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Cookie className="w-4 h-4 text-norelle-gold" />
+                      <CookieIcon className="w-4 h-4 text-norelle-gold" />
                       <h4 className="text-norelle-cream font-medium">Personalization Cookies</h4>
                     </div>
                     <input
@@ -332,7 +338,9 @@ export const CookieManager = {
   resetConsent: () => {
     localStorage.removeItem('cookie-consent')
     // Reset Google Analytics consent
-    window.gtag('consent', 'update', {
+    const gtag = (window as any)?.gtag as undefined | ((...args: any[]) => void)
+    if (!gtag) return
+    gtag('consent', 'update', {
       analytics_storage: 'denied',
       ad_storage: 'denied',
       ad_user_data: 'denied',

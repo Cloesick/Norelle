@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { getFeaturedProducts, getSaleProducts } from '@/data/products'
 import { ProductCard } from '@/components/ProductCard'
 import { ImmersiveHero } from '@/components/luxury/ImmersiveHero'

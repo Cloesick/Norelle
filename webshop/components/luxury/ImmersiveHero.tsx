@@ -6,8 +6,8 @@ import Image from 'next/image'
 import { 
   PlayIcon, 
   PauseIcon, 
-  VolumeOffIcon,
-  VolumeOnIcon,
+  SpeakerXMarkIcon,
+  SpeakerWaveIcon,
   ChevronDownIcon
 } from '@heroicons/react/24/outline'
 
@@ -108,9 +108,9 @@ export function ImmersiveHero() {
             className="p-2 bg-black/20 backdrop-blur-sm rounded-full text-norelle-cream hover:bg-black/40 transition-all duration-300"
           >
             {isMuted ? (
-              <VolumeOffIcon className="w-5 h-5" />
+              <SpeakerXMarkIcon className="w-5 h-5" />
             ) : (
-              <VolumeOnIcon className="w-5 h-5" />
+              <SpeakerWaveIcon className="w-5 h-5" />
             )}
           </button>
           

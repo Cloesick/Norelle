@@ -15,8 +15,9 @@ const blockedIPs = new Set()
 /**
  * Rate limiting middleware
  */
-export function rateLimit(ip: string, limit: any) {
-  const key = `rate_limit_${ip}_${limit.windowMs}`
+export function rateLimit(ip: string | undefined, limit: any) {
+  const safeIp = ip || '127.0.0.1'
+  const key = `rate_limit_${safeIp}_${limit.windowMs}`
   const now = Date.now()
   const windowStart = now - limit.windowMs
   
@@ -50,7 +51,7 @@ export function rateLimit(ip: string, limit: any) {
  * Anti-scraping detection
  */
 export function detectScraping(request: NextRequest) {
-  const ip = request.ip
+  const ip = request.ip || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '127.0.0.1'
   const userAgent = request.headers.get('user-agent') || ''
   
   // Check user agent
@@ -106,6 +107,12 @@ export function detectScraping(request: NextRequest) {
  */
 export function validateCSRF(request: NextRequest) {
   if (request.method === 'GET' || request.method === 'HEAD' || request.method === 'OPTIONS') {
+    return { valid: true }
+  }
+
+  // CSRF enforcement requires a token generation endpoint first.
+  // Skip in development; enforce in production once the token flow exists.
+  if (process.env.NODE_ENV !== 'production') {
     return { valid: true }
   }
   
@@ -218,7 +225,7 @@ export function validateEmail(email: string): { valid: boolean; error?: string }
  * Main security middleware
  */
 export function securityMiddleware(request: NextRequest) {
-  const ip = request.ip
+  const ip = request.ip || request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '127.0.0.1'
   const url = request.nextUrl.pathname
   
   // Check if IP is blocked

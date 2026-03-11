@@ -49,11 +49,11 @@ export function createVerificationCode(
   const expiresAt = new Date(Date.now() + securityConfig.emailVerification.codeExpiry)
   
   // Remove any existing codes for this email
-  for (const [key, value] of verificationStore.entries()) {
-    if (value.email === email && value.type === type) {
+  verificationStore.forEach((value, key) => {
+    if (value.email === email.toLowerCase() && value.type === type) {
       verificationStore.delete(key)
     }
-  }
+  })
   
   // Store new verification code
   const verificationData: VerificationCode = {
@@ -144,15 +144,13 @@ export function hasPendingVerification(
   email: string,
   type: VerificationCode['type'] = 'email_verification'
 ): boolean {
-  for (const [key, value] of verificationStore.entries()) {
+  const entries = Array.from(verificationStore.entries())
+  for (const [key, value] of entries) {
     if (value.email === email.toLowerCase() && value.type === type) {
-      // Check if not expired
       if (Date.now() <= value.expiresAt.getTime()) {
         return true
-      } else {
-        // Remove expired code
-        verificationStore.delete(key)
       }
+      verificationStore.delete(key)
     }
   }
   
@@ -179,7 +177,8 @@ export function getCodeExpiryTime(code: string): number | null {
 export function cleanupExpiredCodes(): void {
   const now = Date.now()
   
-  for (const [key, value] of verificationStore.entries()) {
+  const entries = Array.from(verificationStore.entries())
+  for (const [key, value] of entries) {
     if (now > value.expiresAt.getTime()) {
       verificationStore.delete(key)
     }
@@ -190,7 +189,6 @@ export function cleanupExpiredCodes(): void {
  * Rate limiting for verification requests
  */
 export function checkVerificationRateLimit(email: string): EmailVerificationResult {
-  const rateLimitKey = `verification_${email.toLowerCase()}`
   const now = Date.now()
   const windowMs = securityConfig.emailVerification.rateLimit.windowMs
   const maxRequests = securityConfig.emailVerification.rateLimit.max
@@ -223,7 +221,10 @@ export async function sendVerificationEmail(
   type: VerificationCode['type'] = 'email_verification'
 ): Promise<EmailVerificationResult> {
   try {
-    const template = securityConfig.emailVerification.templates[type]
+    const template =
+      type === 'password_reset'
+        ? securityConfig.emailVerification.templates.passwordReset
+        : securityConfig.emailVerification.templates.verification
     
     // Mock email sending - in production, use actual email service
     console.log(`Sending ${type} email to ${email} with code: ${code}`)
@@ -452,6 +453,3 @@ export async function initiateEmailVerification(
     message: 'Verification code sent to your email'
   }
 }
-
-// Clean up expired codes periodically (every 5 minutes)
-setInterval(cleanupExpiredCodes, 5 * 60 * 1000)
