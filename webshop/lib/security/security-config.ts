@@ -106,8 +106,8 @@ export const securityConfig = {
     
     // IP rate limiting for scraping detection
     scrapingThreshold: {
-      requestsPerMinute: 30,
-      burstThreshold: 10,
+      requestsPerMinute: 120,
+      burstThreshold: 40,
       timeWindow: 60 * 1000, // 1 minute
     },
     

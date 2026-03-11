@@ -236,38 +236,42 @@ export function securityMiddleware(request: NextRequest) {
     )
   }
   
-  // Anti-scraping detection
-  const scrapingResult = detectScraping(request)
-  if (scrapingResult.blocked) {
-    return NextResponse.json(
-      { error: 'Access denied', reason: scrapingResult.reason },
-      { status: 403 }
-    )
-  }
-  
-  // Rate limiting based on endpoint
-  let rateLimitConfig = securityConfig.rateLimiting.api
-  
-  if (url.startsWith('/api/auth')) {
-    rateLimitConfig = {
-      ...securityConfig.rateLimiting.api,
-      ...securityConfig.rateLimiting.auth
+  // Anti-scraping + rate limiting only apply to API routes.
+  // Page navigations are protected by security headers instead.
+  if (url.startsWith('/api')) {
+    // Anti-scraping detection
+    const scrapingResult = detectScraping(request)
+    if (scrapingResult.blocked) {
+      return NextResponse.json(
+        { error: 'Access denied', reason: scrapingResult.reason },
+        { status: 403 }
+      )
     }
-  } else if (url.startsWith('/api/contact')) {
-    rateLimitConfig = {
-      ...securityConfig.rateLimiting.api,
-      ...securityConfig.rateLimiting.contact
+
+    // Rate limiting based on endpoint
+    let rateLimitConfig = securityConfig.rateLimiting.api
+
+    if (url.startsWith('/api/auth')) {
+      rateLimitConfig = {
+        ...securityConfig.rateLimiting.api,
+        ...securityConfig.rateLimiting.auth
+      }
+    } else if (url.startsWith('/api/contact')) {
+      rateLimitConfig = {
+        ...securityConfig.rateLimiting.api,
+        ...securityConfig.rateLimiting.contact
+      }
     }
-  }
-  
-  const rateLimitResult = rateLimit(ip, rateLimitConfig)
-  if (!rateLimitResult.success) {
-    const response = NextResponse.json(
-      { error: rateLimitResult.message },
-      { status: 429 }
-    )
-    response.headers.set('Retry-After', (rateLimitResult.retryAfter || 60).toString())
-    return response
+
+    const rateLimitResult = rateLimit(ip, rateLimitConfig)
+    if (!rateLimitResult.success) {
+      const response = NextResponse.json(
+        { error: rateLimitResult.message },
+        { status: 429 }
+      )
+      response.headers.set('Retry-After', (rateLimitResult.retryAfter || 60).toString())
+      return response
+    }
   }
   
   // CSRF protection for state-changing requests
