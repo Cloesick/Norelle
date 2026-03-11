@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { CartProvider } from '@/context/CartContext'
 import { Toaster } from 'react-hot-toast'
 import CookieBanner from '@/components/security/CookieBanner'
+import BottomNav from '@/components/BottomNav'
 
 const cormorant = Cormorant({
   subsets: ['latin'],
@@ -24,6 +25,20 @@ export const metadata = {
   title: 'Norēlle® — for those we live with',
   description: 'Luxury Belgian pet fragrance. Refined scents composed to honour presence, softness and the quiet elegance of care.',
   metadataBase: new URL('https://norelle.com'),
+  manifest: '/manifest.json',
+  themeColor: '#3B0505',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent' as const,
+    title: 'Norēlle',
+  },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: 'cover' as const,
 }
 
 export default function RootLayout({
@@ -37,11 +52,12 @@ export default function RootLayout({
         <CartProvider>
           <div className="relative min-h-screen flex flex-col">
             <Header />
-            <main className="flex-1">
+            <main className="flex-1 pb-20 lg:pb-0">
               {children}
             </main>
             <Footer />
           </div>
+          <BottomNav />
           <CookieBanner />
           <Toaster
             position="top-center"

@@ -38,7 +38,7 @@ export const products: Product[] = [
     images: [
       {
         id: '1',
-        url: '/images/products/eleve-edp.jpg',
+        url: '/images/products/eleve-edp.svg',
         alt: 'Élevé Eau de Parfum — burgundy sphere cap',
         isPrimary: true,
       },
@@ -72,7 +72,7 @@ export const products: Product[] = [
     images: [
       {
         id: '1',
-        url: '/images/products/solene-edp.jpg',
+        url: '/images/products/solene-edp.svg',
         alt: 'Solène Eau de Parfum — cream sphere cap',
         isPrimary: true,
       },
@@ -106,7 +106,7 @@ export const products: Product[] = [
     images: [
       {
         id: '1',
-        url: '/images/products/fovere-edp.jpg',
+        url: '/images/products/fovere-edp.svg',
         alt: 'Fovère Eau de Parfum — mocha sphere cap',
         isPrimary: true,
       },
@@ -140,7 +140,7 @@ export const products: Product[] = [
     images: [
       {
         id: '1',
-        url: '/images/products/eleve-travel.jpg',
+        url: '/images/products/eleve-travel.svg',
         alt: 'Élevé Travel Spray — burgundy cap',
         isPrimary: true,
       },
@@ -173,7 +173,7 @@ export const products: Product[] = [
     images: [
       {
         id: '1',
-        url: '/images/products/solene-travel.jpg',
+        url: '/images/products/solene-travel.svg',
         alt: 'Solène Travel Spray — cream cap',
         isPrimary: true,
       },
@@ -206,7 +206,7 @@ export const products: Product[] = [
     images: [
       {
         id: '1',
-        url: '/images/products/fovere-travel.jpg',
+        url: '/images/products/fovere-travel.svg',
         alt: 'Fovère Travel Spray — mocha cap',
         isPrimary: true,
       },
@@ -240,7 +240,7 @@ export const products: Product[] = [
     images: [
       {
         id: '1',
-        url: '/images/products/ritual-collection.jpg',
+        url: '/images/products/ritual-collection.svg',
         alt: 'The Ritual Collection gift box',
         isPrimary: true,
       },
@@ -273,7 +273,7 @@ export const products: Product[] = [
     images: [
       {
         id: '1',
-        url: '/images/products/discovery-set.jpg',
+        url: '/images/products/discovery-set.svg',
         alt: 'The Discovery Set — three sprays in linen pouch',
         isPrimary: true,
       },
