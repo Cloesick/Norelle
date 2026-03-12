@@ -1,11 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '8080',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
-  },
-  experimental: {
-    optimizeCss: true,
   },
 }
 

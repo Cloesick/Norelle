@@ -1,8 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
   <rect width="600" height="800" fill="#3B0505"/>
-  <rect x="220" y="280" width="40" height="160" rx="20" fill="none" stroke="#FFFAEB" stroke-width="0.4" opacity="0.2"/>
-  <rect x="280" y="280" width="40" height="160" rx="20" fill="none" stroke="#FFFAEB" stroke-width="0.4" opacity="0.2"/>
-  <rect x="340" y="280" width="40" height="160" rx="20" fill="none" stroke="#FFFAEB" stroke-width="0.4" opacity="0.2"/>
-  <text x="300" y="530" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="300" fill="#FFFAEB" opacity="0.6" letter-spacing="4">DISCOVERY</text>
-  <text x="300" y="555" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="10" font-weight="300" fill="#FFFAEB" opacity="0.3" letter-spacing="3">SET</text>
+  <!-- Shadow -->
+  <ellipse cx="300" cy="590" rx="160" ry="6" fill="#FFFAEB" opacity="0.03"/>
+  <!-- Pouch outline -->
+  <path d="M180 380 Q180 350 210 340 L390 340 Q420 350 420 380 L420 560 Q420 580 400 580 L200 580 Q180 580 180 560 Z" fill="#2F1B1A" stroke="#FFFAEB" stroke-width="0.4" opacity="0.5"/>
+  <!-- Pouch drawstring -->
+  <path d="M230 340 Q300 320 370 340" fill="none" stroke="#FFFAEB" stroke-width="0.4" opacity="0.3"/>
+  <!-- Three travel sprays emerging from pouch -->
+  <!-- Left spray (Élevé) -->
+  <rect x="225" y="220" width="28" height="170" rx="4" fill="#3B0505" stroke="#FFFAEB" stroke-width="0.4" opacity="0.85"/>
+  <rect x="230" y="200" width="18" height="22" rx="1" fill="#3B0505" stroke="#FFFAEB" stroke-width="0.4" opacity="0.85"/>
+  <!-- Center spray (Solène) -->
+  <rect x="286" y="200" width="28" height="190" rx="4" fill="#FFFAEB" stroke="#3B0505" stroke-width="0.3" opacity="0.15"/>
+  <rect x="286" y="200" width="28" height="190" rx="4" fill="none" stroke="#FFFAEB" stroke-width="0.4" opacity="0.85"/>
+  <rect x="291" y="180" width="18" height="22" rx="1" fill="none" stroke="#FFFAEB" stroke-width="0.4" opacity="0.85"/>
+  <!-- Right spray (Fovère) -->
+  <rect x="347" y="230" width="28" height="160" rx="4" fill="#2F1B1A" stroke="#FFFAEB" stroke-width="0.4" opacity="0.85"/>
+  <rect x="352" y="210" width="18" height="22" rx="1" fill="#2F1B1A" stroke="#FFFAEB" stroke-width="0.4" opacity="0.85"/>
+  <!-- Text -->
+  <text x="300" y="630" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="300" fill="#FFFAEB" opacity="0.5" letter-spacing="4">THE DISCOVERY SET</text>
+  <text x="300" y="652" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="300" fill="#FFFAEB" opacity="0.22" letter-spacing="2">3 × 10ML IN LINEN POUCH</text>
+  <!-- Brand mark -->
+  <text x="300" y="700" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" font-weight="300" fill="#FFFAEB" opacity="0.12" letter-spacing="4">NORĒLLE</text>
 </svg>

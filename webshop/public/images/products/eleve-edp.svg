@@ -1,7 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
   <rect width="600" height="800" fill="#2F1B1A"/>
-  <circle cx="300" cy="340" r="100" fill="none" stroke="#FFFAEB" stroke-width="0.5" opacity="0.3"/>
-  <circle cx="300" cy="340" r="60" fill="#3B0505"/>
-  <text x="300" y="520" text-anchor="middle" font-family="Georgia, serif" font-size="24" font-weight="300" fill="#FFFAEB" opacity="0.6" letter-spacing="4">ÉLEVÉ</text>
-  <text x="300" y="550" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="10" font-weight="300" fill="#FFFAEB" opacity="0.3" letter-spacing="3">EAU DE PARFUM</text>
+  <!-- Ambient glow -->
+  <ellipse cx="300" cy="620" rx="140" ry="8" fill="#FFFAEB" opacity="0.04"/>
+  <!-- Bottle body — tall, tapered silhouette -->
+  <path d="M255 280 L255 580 Q255 600 270 600 L330 600 Q345 600 345 580 L345 280 Z" fill="#3B0505" stroke="#FFFAEB" stroke-width="0.5" opacity="0.9"/>
+  <!-- Bottle shoulder curve -->
+  <path d="M255 280 Q255 260 275 255 L325 255 Q345 260 345 280" fill="#3B0505" stroke="#FFFAEB" stroke-width="0.5" opacity="0.9"/>
+  <!-- Neck -->
+  <rect x="280" y="210" width="40" height="45" fill="#3B0505" stroke="#FFFAEB" stroke-width="0.5" opacity="0.9"/>
+  <!-- Cap — geometric, minimal -->
+  <rect x="275" y="165" width="50" height="48" rx="2" fill="#FFFAEB" opacity="0.12"/>
+  <rect x="275" y="165" width="50" height="48" rx="2" fill="none" stroke="#FFFAEB" stroke-width="0.5" opacity="0.4"/>
+  <!-- Cap top accent -->
+  <line x1="285" y1="165" x2="315" y2="165" stroke="#FFFAEB" stroke-width="0.8" opacity="0.3"/>
+  <!-- Label area — subtle -->
+  <rect x="265" y="390" width="70" height="90" fill="none" stroke="#FFFAEB" stroke-width="0.3" opacity="0.15"/>
+  <!-- Label text -->
+  <text x="300" y="425" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="300" fill="#FFFAEB" opacity="0.5" letter-spacing="3">ÉLEVÉ</text>
+  <text x="300" y="445" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="300" fill="#FFFAEB" opacity="0.25" letter-spacing="2">EAU DE PARFUM</text>
+  <text x="300" y="465" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="300" fill="#FFFAEB" opacity="0.2" letter-spacing="2">100ML</text>
+  <!-- Liquid level hint -->
+  <rect x="256" y="440" width="88" height="159" fill="#FFFAEB" opacity="0.03" rx="1"/>
+  <!-- Brand mark at bottom -->
+  <text x="300" y="660" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10" font-weight="300" fill="#FFFAEB" opacity="0.15" letter-spacing="4">NORĒLLE</text>
 </svg>

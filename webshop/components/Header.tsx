@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCart } from '@/context/CartContext'
+import { useT } from '@/context/LocaleContext'
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 import { 
   ShoppingBagIcon,
 } from '@heroicons/react/24/outline'
@@ -11,7 +13,9 @@ import {
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const { getItemCount } = useCart()
+  const t = useT()
   const pathname = usePathname()
+  const isHomepage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,9 +27,9 @@ const Header = () => {
   }, [])
 
   const navigation = [
-    { name: 'Fragrances', href: '/shop' },
-    { name: 'Our Story', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: t.header.fragrances, href: '/shop' },
+    { name: t.header.ourStory, href: '/about' },
+    { name: t.header.contact, href: '/contact' },
   ]
 
   const itemCount = getItemCount()
@@ -54,8 +58,10 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Logo — Center */}
-            <div className="absolute left-1/2 -translate-x-1/2">
+            {/* Logo — Center (hidden on homepage until scrolled past hero) */}
+            <div className={`absolute left-1/2 -translate-x-1/2 transition-opacity duration-500 ${
+              isHomepage && !isScrolled ? 'opacity-0 pointer-events-none' : 'opacity-100'
+            }`}>
               <Link href="/" className="block">
                 <span className="text-2xl md:text-3xl font-display font-light text-norelle-cream tracking-wide">
                   Nor&#x0113;lle
@@ -65,6 +71,7 @@ const Header = () => {
 
             {/* Actions — Right */}
             <div className="hidden lg:flex items-center space-x-6 ml-auto">
+              <LanguageSwitcher />
               <Link 
                 href="/cart"
                 className="relative p-2 text-norelle-cream/80 hover:text-norelle-cream transition-all duration-300"
@@ -78,8 +85,10 @@ const Header = () => {
               </Link>
             </div>
 
-            {/* Mobile — just the cart icon (navigation handled by BottomNav) */}
-            <div className="lg:hidden ml-auto" />
+            {/* Mobile — language switcher (navigation handled by BottomNav) */}
+            <div className="lg:hidden ml-auto">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
 

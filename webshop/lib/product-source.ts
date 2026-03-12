@@ -9,6 +9,19 @@ import { Product, Category } from '@/types'
 import { getProducts as wcGetProducts, getProductBySlug as wcGetProductBySlug, type StoreProduct } from '@/lib/woocommerce'
 import { products as staticProducts, categories as staticCategories, getFeaturedProducts as staticGetFeatured } from '@/data/products'
 
+// ─── Slug → local image filename (WooCommerce slugs differ from SVG names) ──
+
+const slugToImage: Record<string, string> = {
+  'eleve-eau-de-parfum':  'eleve-edp.svg',
+  'solene-eau-de-parfum': 'solene-edp.svg',
+  'fovere-eau-de-parfum': 'fovere-edp.svg',
+  'eleve-travel-spray':   'eleve-travel.svg',
+  'solene-travel-spray':  'solene-travel.svg',
+  'fovere-travel-spray':  'fovere-travel.svg',
+  'the-ritual-collection':'ritual-collection.svg',
+  'the-discovery-set':    'discovery-set.svg',
+}
+
 // ─── Mapper: StoreProduct → Product ─────────────────────────
 
 function mapStoreProduct(sp: StoreProduct): Product {
@@ -48,7 +61,7 @@ function mapStoreProduct(sp: StoreProduct): Product {
         }))
       : [{
           id: '0',
-          url: `/images/products/${sp.slug}.svg`,
+          url: `/images/products/${slugToImage[sp.slug] || sp.slug + '.svg'}`,
           alt: sp.name,
           isPrimary: true,
         }],

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCart } from '@/context/CartContext'
+import { useT } from '@/context/LocaleContext'
 import {
   HomeIcon,
   MagnifyingGlassIcon,
@@ -16,17 +17,18 @@ import {
   UserIcon as UserIconSolid,
 } from '@heroicons/react/24/solid'
 
-const tabs = [
-  { name: 'Home', href: '/', icon: HomeIcon, activeIcon: HomeIconSolid },
-  { name: 'Shop', href: '/shop', icon: MagnifyingGlassIcon, activeIcon: MagnifyingGlassIconSolid },
-  { name: 'Bag', href: '/cart', icon: ShoppingBagIcon, activeIcon: ShoppingBagIconSolid },
-  { name: 'Account', href: '/account', icon: UserIcon, activeIcon: UserIconSolid },
-]
-
 export default function BottomNav() {
   const pathname = usePathname()
   const { getItemCount } = useCart()
+  const t = useT()
   const itemCount = getItemCount()
+
+  const tabs = [
+    { name: t.bottomNav.home, key: 'home', href: '/', icon: HomeIcon, activeIcon: HomeIconSolid },
+    { name: t.bottomNav.shop, key: 'shop', href: '/shop', icon: MagnifyingGlassIcon, activeIcon: MagnifyingGlassIconSolid },
+    { name: t.bottomNav.bag, key: 'bag', href: '/cart', icon: ShoppingBagIcon, activeIcon: ShoppingBagIconSolid },
+    { name: t.bottomNav.account, key: 'account', href: '/account', icon: UserIcon, activeIcon: UserIconSolid },
+  ]
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
@@ -46,7 +48,7 @@ export default function BottomNav() {
 
             return (
               <Link
-                key={tab.name}
+                key={tab.key}
                 href={tab.href}
                 className={`relative flex flex-col items-center justify-center w-full h-full transition-all duration-200 ${
                   active ? 'text-norelle-cream' : 'text-norelle-cream/40'
@@ -54,7 +56,7 @@ export default function BottomNav() {
               >
                 <div className="relative">
                   <Icon className="w-5 h-5" strokeWidth={active ? 2 : 1.5} />
-                  {tab.name === 'Bag' && itemCount > 0 && (
+                  {tab.key === 'bag' && itemCount > 0 && (
                     <span className="absolute -top-1.5 -right-2 bg-norelle-cream text-norelle-burgundy text-[9px] font-body font-normal rounded-full min-w-[16px] h-4 flex items-center justify-center px-1">
                       {itemCount > 99 ? '99+' : itemCount}
                     </span>

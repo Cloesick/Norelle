@@ -2,30 +2,32 @@
 
 import React from 'react'
 import Link from 'next/link'
+import { useT } from '@/context/LocaleContext'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const t = useT()
 
   const footerLinks = {
     fragrances: [
       { name: 'Élevé', href: '/product/eleve-eau-de-parfum' },
       { name: 'Solène', href: '/product/solene-eau-de-parfum' },
       { name: 'Fovère', href: '/product/fovere-eau-de-parfum' },
-      { name: 'Travel Sprays', href: '/category/travel' },
-      { name: 'Gift Sets', href: '/category/gift-sets' },
+      { name: t.footer.travelSprays, href: '/category/travel' },
+      { name: t.footer.giftSets, href: '/category/gift-sets' },
     ],
     help: [
-      { name: 'Shipping', href: '/shipping' },
-      { name: 'Returns', href: '/returns' },
-      { name: 'Care Guide', href: '/care' },
-      { name: 'Contact', href: '/contact' },
+      { name: t.footer.shipping, href: '/shipping' },
+      { name: t.footer.returns, href: '/returns' },
+      { name: t.footer.careGuide, href: '/care' },
+      { name: t.footer.contact, href: '/contact' },
     ],
     company: [
-      { name: 'Our Story', href: '/about' },
-      { name: 'Sustainability', href: '/sustainability' },
-      { name: 'Privacy Policy', href: '/privacy' },
-      { name: 'Terms', href: '/terms' },
-      { name: 'Cookie Policy', href: '/cookies' },
+      { name: t.footer.ourStory, href: '/about' },
+      { name: t.footer.sustainability, href: '/sustainability' },
+      { name: t.footer.privacyPolicy, href: '/privacy' },
+      { name: t.footer.terms, href: '/terms' },
+      { name: t.footer.cookiePolicy, href: '/cookies' },
     ],
   }
 
@@ -42,8 +44,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-norelle-cream/40 text-xs font-light leading-relaxed mb-6">
-              Luxury Belgian pet fragrance. Refined scents composed to honour 
-              presence, softness and the quiet elegance of care.
+              {t.footer.brandDescription}
             </p>
             <p className="text-norelle-cream/30 text-xs font-light">
               hello@norelle.com
@@ -53,7 +54,7 @@ const Footer = () => {
           {/* Fragrances */}
           <div>
             <h4 className="text-norelle-cream/50 text-xs font-body font-light uppercase tracking-brand mb-6">
-              Fragrances
+              {t.footer.fragrances}
             </h4>
             <ul className="space-y-3">
               {footerLinks.fragrances.map((link) => (
@@ -72,7 +73,7 @@ const Footer = () => {
           {/* Help */}
           <div>
             <h4 className="text-norelle-cream/50 text-xs font-body font-light uppercase tracking-brand mb-6">
-              Help
+              {t.footer.help}
             </h4>
             <ul className="space-y-3">
               {footerLinks.help.map((link) => (
@@ -91,7 +92,7 @@ const Footer = () => {
           {/* Company */}
           <div>
             <h4 className="text-norelle-cream/50 text-xs font-body font-light uppercase tracking-brand mb-6">
-              Company
+              {t.footer.company}
             </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
@@ -111,7 +112,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-norelle-cream/5 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-norelle-cream/25 text-[11px] font-light tracking-wide">
-            &copy; {currentYear} Nor&#x0113;lle. All rights reserved.
+            &copy; {currentYear} Nor&#x0113;lle. {t.footer.allRightsReserved}
           </p>
           <div className="flex items-center gap-8">
             {['Instagram', 'Facebook'].map((social) => (

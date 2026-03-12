@@ -1,6 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
   <rect width="600" height="800" fill="#FFFAEB"/>
-  <rect x="270" y="260" width="60" height="200" rx="30" fill="none" stroke="#3B0505" stroke-width="0.5" opacity="0.2"/>
-  <text x="300" y="540" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="300" fill="#3B0505" opacity="0.5" letter-spacing="4">SOLÈNE</text>
-  <text x="300" y="565" text-anchor="middle" font-family="Helvetica, sans-serif" font-size="10" font-weight="300" fill="#3B0505" opacity="0.25" letter-spacing="3">TRAVEL SPRAY</text>
+  <!-- Shadow -->
+  <ellipse cx="300" cy="610" rx="55" ry="4" fill="#3B0505" opacity="0.06"/>
+  <!-- Spray tube body -->
+  <rect x="280" y="250" width="40" height="340" rx="6" fill="#FFFAEB" stroke="#3B0505" stroke-width="0.5" opacity="0.9"/>
+  <!-- Spray nozzle -->
+  <rect x="287" y="220" width="26" height="32" rx="2" fill="#FFFAEB" stroke="#3B0505" stroke-width="0.5" opacity="0.9"/>
+  <!-- Spray button -->
+  <path d="M313 230 L330 225 L330 240 L313 245" fill="#FFFAEB" stroke="#3B0505" stroke-width="0.4" opacity="0.6"/>
+  <!-- Cap -->
+  <rect x="278" y="190" width="44" height="30" rx="3" fill="#3B0505" opacity="0.06"/>
+  <rect x="278" y="190" width="44" height="30" rx="3" fill="none" stroke="#3B0505" stroke-width="0.4" opacity="0.2"/>
+  <!-- Label -->
+  <text x="300" y="430" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" font-weight="300" fill="#3B0505" opacity="0.4" letter-spacing="2" transform="rotate(-90 300 430)">SOLÈNE</text>
+  <!-- Bottom text -->
+  <text x="300" y="640" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="12" font-weight="300" fill="#3B0505" opacity="0.35" letter-spacing="3">SOLÈNE</text>
+  <text x="300" y="658" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="7" font-weight="300" fill="#3B0505" opacity="0.18" letter-spacing="2">TRAVEL SPRAY · 10ML</text>
+  <!-- Brand mark -->
+  <text x="300" y="700" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="9" font-weight="300" fill="#3B0505" opacity="0.1" letter-spacing="4">NORĒLLE</text>
 </svg>

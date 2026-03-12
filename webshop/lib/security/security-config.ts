@@ -71,6 +71,7 @@ export const securityConfig = {
       ],
       connectSrc: [
         "'self'",
+        "http://localhost:8080",
         "https://api.stripe.com",
         "https://www.google-analytics.com",
         "https://analytics.google.com",

@@ -130,12 +130,17 @@ export function validateCSRF(request: NextRequest) {
  * Security headers middleware
  */
 export function addSecurityHeaders(response: NextResponse) {
-  // Content Security Policy
+  // Content Security Policy — convert camelCase keys to kebab-case
   const cspDirectives = Object.entries(securityConfig.csp.directives)
     .map(([directive, values]) => {
+      const kebab = directive.replace(/([A-Z])/g, '-$1').toLowerCase()
+      if (typeof values === 'boolean') {
+        return values ? kebab : null
+      }
       const valueArray = Array.isArray(values) ? values : [values]
-      return `${directive} ${valueArray.join(' ')}`
+      return `${kebab} ${valueArray.join(' ')}`
     })
+    .filter(Boolean)
     .join('; ')
   
   response.headers.set('Content-Security-Policy', cspDirectives)

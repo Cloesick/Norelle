@@ -6,6 +6,7 @@ import { CartProvider } from '@/context/CartContext'
 import { Toaster } from 'react-hot-toast'
 import CookieBanner from '@/components/security/CookieBanner'
 import BottomNav from '@/components/BottomNav'
+import { LocaleProvider } from '@/context/LocaleContext'
 
 const cormorant = Cormorant({
   subsets: ['latin'],
@@ -26,11 +27,12 @@ export const metadata = {
   description: 'Luxury Belgian pet fragrance. Refined scents composed to honour presence, softness and the quiet elegance of care.',
   metadataBase: new URL('https://norelle.com'),
   manifest: '/manifest.json',
-  themeColor: '#3B0505',
   appleWebApp: {
-    capable: true,
     statusBarStyle: 'black-translucent' as const,
     title: 'Norēlle',
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
   },
 }
 
@@ -39,6 +41,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
   viewportFit: 'cover' as const,
+  themeColor: '#3B0505',
 }
 
 export default function RootLayout({
@@ -47,8 +50,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${jost.variable}`} suppressHydrationWarning>
       <body className="min-h-screen bg-norelle-burgundy text-norelle-cream font-body">
+        <LocaleProvider>
         <CartProvider>
           <div className="relative min-h-screen flex flex-col">
             <Header />
@@ -72,6 +76,7 @@ export default function RootLayout({
             }}
           />
         </CartProvider>
+        </LocaleProvider>
       </body>
     </html>
   )

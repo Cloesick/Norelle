@@ -30,8 +30,12 @@ NORELLE-original.pdf
 docs/pdf-analysis/
 .docker-config-nocreds/
 
-# Node (if added later)
+# Node
 node_modules/
+
+# Next.js build output
+.next/
+out/
 
 # Logs
 *.log
