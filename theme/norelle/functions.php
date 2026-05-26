@@ -40,7 +40,7 @@ add_action('wp_enqueue_scripts', 'norelle_enqueue_styles', 20);
 
 /**
  * Replace the WordPress custom logo with a tight-cropped inline SVG.
- * The original Logo-06.svg has viewBox 0 0 1080 1080 (square) — too much
+ * The original Logo-06.webp has viewBox 0 0 1080 1080 (square) — too much
  * padding. We crop to viewBox="230 430 620 220" which tightly wraps the
  * "Norēlle®" wordmark + "for those we live with" tagline.
  */
@@ -61,7 +61,7 @@ function norelle_custom_logo_svg( $html ) {
     }
 
     if ( ! $logo_url ) {
-        $logo_url = get_stylesheet_directory_uri() . '/images/logo-header.svg';
+        $logo_url = get_stylesheet_directory_uri() . '/images/logo-header.webp';
     }
 
     $out  = '<a href="' . $home . '" class="custom-logo-link" rel="home" aria-label="Norelle — Home">';
@@ -86,11 +86,26 @@ function norelle_header_quicklinks() {
 
     echo '<nav class="norelle-header-quicklinks" aria-label="Shop quick links">';
     echo '<a class="norelle-quicklink" href="' . esc_url($shop_url) . '">Shop</a>';
-    echo '<a class="norelle-quicklink" href="' . esc_url($cart_url) . '">Cart</a>';
+    echo '<a class="norelle-quicklink norelle-quicklink-cart" href="' . esc_url($cart_url) . '">Cart' . norelle_cart_count_badge_html() . '</a>';
     echo '<a class="norelle-quicklink" href="' . esc_url($acct_url) . '">Account</a>';
     echo '</nav>';
 }
 add_action('storefront_header', 'norelle_header_quicklinks', 68);
+
+function norelle_cart_count_badge_html() {
+    if ( ! function_exists('WC') || ! WC()->cart ) {
+        return '<span class="norelle-cart-count" data-count="0">0</span>';
+    }
+
+    $count = (int) WC()->cart->get_cart_contents_count();
+    return '<span class="norelle-cart-count" data-count="' . esc_attr($count) . '">' . esc_html($count) . '</span>';
+}
+
+function norelle_cart_count_fragments( $fragments ) {
+    $fragments['span.norelle-cart-count'] = norelle_cart_count_badge_html();
+    return $fragments;
+}
+add_filter('woocommerce_add_to_cart_fragments', 'norelle_cart_count_fragments');
 
 function norelle_mobile_menu_script() {
     ?>
@@ -99,6 +114,17 @@ function norelle_mobile_menu_script() {
         var nav = document.querySelector('.main-navigation');
         var btn = document.querySelector('.norelle-hamburger');
         if (!btn || !nav) return;
+
+        // Mobile menu CTA (Shop now)
+        try {
+            if (!nav.querySelector('.norelle-mobile-menu-cta')) {
+                var cta = document.createElement('a');
+                cta.className = 'norelle-mobile-menu-cta';
+                cta.href = <?php echo wp_json_encode( function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/') ); ?>;
+                cta.textContent = 'Shop now';
+                nav.insertBefore(cta, nav.firstChild);
+            }
+        } catch (e) {}
 
         btn.addEventListener('click', function(e) {
             e.preventDefault();

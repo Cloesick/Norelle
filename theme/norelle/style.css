@@ -594,6 +594,50 @@ a:focus {
   background: rgba(255, 250, 235, 0.04);
 }
 
+.norelle-cart-count {
+  margin-left: 0.45rem;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--norelle-cream);
+  color: var(--norelle-burgundy);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.norelle-cart-count[data-count="0"] {
+  opacity: 0.5;
+}
+
+.norelle-mobile-menu-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  margin: 0.75rem 0 0.25rem;
+  background-color: var(--norelle-cream) !important;
+  color: var(--norelle-burgundy) !important;
+  border: 1px solid var(--norelle-cream) !important;
+  border-radius: var(--norelle-radius);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.norelle-mobile-menu-cta:hover {
+  background-color: transparent !important;
+  color: var(--norelle-cream) !important;
+}
+
 .norelle-header-quicklinks .norelle-quicklink:hover {
   opacity: 0.8;
 }

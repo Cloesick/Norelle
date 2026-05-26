@@ -97,7 +97,7 @@ Norelle/
 │   └── norelle/                    # Custom WooCommerce child theme
 │       ├── style.css               # Mobile-first CSS (2500+ lines)
 │       ├── functions.php           # Theme logic, hooks, 40+ functions
-│       └── screenshot.png          # Theme thumbnail (1200×900)
+│       └── screenshot.webp          # Theme thumbnail (1200×900)
 ├── scripts/
 │   └── setup.sh                    # Docker WP-CLI setup (alternative)
 ├── plugins/                        # Custom plugins (reserved)

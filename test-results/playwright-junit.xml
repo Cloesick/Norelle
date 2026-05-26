@@ -1,0 +1,271 @@
+<testsuites id="" name="" tests="20" failures="5" skipped="0" errors="0" time="187.36860599999997">
+<testsuite name="account-and-checkout.spec.ts" timestamp="2026-03-06T11:26:35.575Z" hostname="chromium" tests="2" failures="0" skipped="0" time="9.804" errors="0">
+<testcase name="my account page renders login/register area" classname="account-and-checkout.spec.ts" time="5.808">
+</testcase>
+<testcase name="checkout requires cart (should show checkout form or cart-empty notice)" classname="account-and-checkout.spec.ts" time="3.996">
+</testcase>
+</testsuite>
+<testsuite name="navigation-and-search.spec.ts" timestamp="2026-03-06T11:26:35.575Z" hostname="chromium" tests="2" failures="2" skipped="0" time="75.004" errors="0">
+<testcase name="header quicklinks work" classname="navigation-and-search.spec.ts" time="63.664">
+<failure message="navigation-and-search.spec.ts:13:5 header quicklinks work" type="FAILURE">
+<![CDATA[  [chromium] › navigation-and-search.spec.ts:13:5 › header quicklinks work ─────────────────────────
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for locator('.norelle-header-quicklinks a').filter({ hasText: /^cart/i }).first()
+        - locator resolved to <a href="http://localhost:8082/cart/" class="norelle-quicklink norelle-quicklink-cart">…</a>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is not visible
+        - retrying click action
+          - waiting 100ms
+        111 × waiting for element to be visible, enabled and stable
+            - element is not visible
+          - retrying click action
+            - waiting 500ms
+
+
+      4 |   const quick = page.locator('.norelle-header-quicklinks a', { hasText: name });
+      5 |   if (await quick.count()) {
+    > 6 |     await quick.first().click();
+        |                         ^
+      7 |     return;
+      8 |   }
+      9 |
+        at clickNavLink (C:\Users\prova\Documents\Projects\Norelle\tests\e2e\navigation-and-search.spec.ts:6:25)
+        at C:\Users\prova\Documents\Projects\Norelle\tests\e2e\navigation-and-search.spec.ts:19:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\navigation-and-search-header-quicklinks-work-chromium\test-failed-1.webp
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\navigation-and-search-header-quicklinks-work-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\playwright\navigation-and-search-header-quicklinks-work-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright\navigation-and-search-header-quicklinks-work-chromium\test-failed-1.webp]]
+
+[[ATTACHMENT|playwright\navigation-and-search-header-quicklinks-work-chromium\video.webm]]
+
+[[ATTACHMENT|playwright\navigation-and-search-header-quicklinks-work-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="shop search form exists (if theme provides it)" classname="navigation-and-search.spec.ts" time="11.34">
+<failure message="navigation-and-search.spec.ts:26:5 shop search form exists (if theme provides it)" type="FAILURE">
+<![CDATA[  [chromium] › navigation-and-search.spec.ts:26:5 › shop search form exists (if theme provides it) ─
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('form.search-form input[type="search"], form.woocommerce-product-search input[type="search"], input[type="search"]').first()
+    Expected: visible
+    Received: hidden
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 10000ms
+      - waiting for locator('form.search-form input[type="search"], form.woocommerce-product-search input[type="search"], input[type="search"]').first()
+        13 × locator resolved to <input value="" name="s" type="search" class="search-field" placeholder="Search products…" id="woocommerce-product-search-field-0"/>
+           - unexpected value "hidden"
+
+
+      31 |     test.skip(true, 'No search input found on this shop template');
+      32 |   }
+    > 33 |   await expect(search).toBeVisible();
+         |                        ^
+      34 | });
+      35 |
+        at C:\Users\prova\Documents\Projects\Norelle\tests\e2e\navigation-and-search.spec.ts:33:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\navigation-and-search-shop-ef0c3-xists-if-theme-provides-it--chromium\test-failed-1.webp
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\navigation-and-search-shop-ef0c3-xists-if-theme-provides-it--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\playwright\navigation-and-search-shop-ef0c3-xists-if-theme-provides-it--chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright\navigation-and-search-shop-ef0c3-xists-if-theme-provides-it--chromium\test-failed-1.webp]]
+
+[[ATTACHMENT|playwright\navigation-and-search-shop-ef0c3-xists-if-theme-provides-it--chromium\video.webm]]
+
+[[ATTACHMENT|playwright\navigation-and-search-shop-ef0c3-xists-if-theme-provides-it--chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="security-wall.spec.ts" timestamp="2026-03-06T11:26:35.575Z" hostname="chromium" tests="2" failures="0" skipped="0" time="0.402" errors="0">
+<testcase name="xmlrpc is blocked (security wall)" classname="security-wall.spec.ts" time="0.071">
+</testcase>
+<testcase name="security headers present (security wall)" classname="security-wall.spec.ts" time="0.331">
+</testcase>
+</testsuite>
+<testsuite name="webshop-smoke.spec.ts" timestamp="2026-03-06T11:26:35.575Z" hostname="chromium" tests="4" failures="1" skipped="0" time="7.234" errors="0">
+<testcase name="home loads" classname="webshop-smoke.spec.ts" time="1.646">
+</testcase>
+<testcase name="shop loads and has products" classname="webshop-smoke.spec.ts" time="1.438">
+</testcase>
+<testcase name="can add first product to cart" classname="webshop-smoke.spec.ts" time="2.364">
+<failure message="webshop-smoke.spec.ts:22:5 can add first product to cart" type="FAILURE">
+<![CDATA[  [chromium] › webshop-smoke.spec.ts:22:5 › can add first product to cart ──────────────────────────
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      57 |   const blockCartItems = page.locator('.wc-block-cart-items__row');
+      58 |   const cartCount = (await classicCartItems.count()) + (await blockCartItems.count());
+    > 59 |   expect(cartCount).toBeGreaterThan(0);
+         |                     ^
+      60 | });
+      61 |
+      62 | test('checkout page renders', async ({ page }) => {
+        at C:\Users\prova\Documents\Projects\Norelle\tests\e2e\webshop-smoke.spec.ts:59:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\webshop-smoke-can-add-first-product-to-cart-chromium\test-failed-1.webp
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\webshop-smoke-can-add-first-product-to-cart-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\playwright\webshop-smoke-can-add-first-product-to-cart-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright\webshop-smoke-can-add-first-product-to-cart-chromium\test-failed-1.webp]]
+
+[[ATTACHMENT|playwright\webshop-smoke-can-add-first-product-to-cart-chromium\video.webm]]
+
+[[ATTACHMENT|playwright\webshop-smoke-can-add-first-product-to-cart-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="checkout page renders" classname="webshop-smoke.spec.ts" time="1.786">
+</testcase>
+</testsuite>
+<testsuite name="account-and-checkout.spec.ts" timestamp="2026-03-06T11:26:35.575Z" hostname="mobile-chrome" tests="2" failures="0" skipped="0" time="2.498" errors="0">
+<testcase name="my account page renders login/register area" classname="account-and-checkout.spec.ts" time="1.202">
+</testcase>
+<testcase name="checkout requires cart (should show checkout form or cart-empty notice)" classname="account-and-checkout.spec.ts" time="1.296">
+</testcase>
+</testsuite>
+<testsuite name="navigation-and-search.spec.ts" timestamp="2026-03-06T11:26:35.575Z" hostname="mobile-chrome" tests="2" failures="1" skipped="0" time="63.939" errors="0">
+<testcase name="header quicklinks work" classname="navigation-and-search.spec.ts" time="62.527">
+<failure message="navigation-and-search.spec.ts:13:5 header quicklinks work" type="FAILURE">
+<![CDATA[  [mobile-chrome] › navigation-and-search.spec.ts:13:5 › header quicklinks work ────────────────────
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByRole('link', { name: /^cart/i }).first()
+
+
+       8 |   }
+       9 |
+    > 10 |   await page.getByRole('link', { name }).first().click();
+         |                                                  ^
+      11 | }
+      12 |
+      13 | test('header quicklinks work', async ({ page }) => {
+        at clickNavLink (C:\Users\prova\Documents\Projects\Norelle\tests\e2e\navigation-and-search.spec.ts:10:50)
+        at C:\Users\prova\Documents\Projects\Norelle\tests\e2e\navigation-and-search.spec.ts:19:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\navigation-and-search-header-quicklinks-work-mobile-chrome\test-failed-1.webp
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\navigation-and-search-header-quicklinks-work-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\playwright\navigation-and-search-header-quicklinks-work-mobile-chrome\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright\navigation-and-search-header-quicklinks-work-mobile-chrome\test-failed-1.webp]]
+
+[[ATTACHMENT|playwright\navigation-and-search-header-quicklinks-work-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|playwright\navigation-and-search-header-quicklinks-work-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="shop search form exists (if theme provides it)" classname="navigation-and-search.spec.ts" time="1.412">
+</testcase>
+</testsuite>
+<testsuite name="security-wall.spec.ts" timestamp="2026-03-06T11:26:35.575Z" hostname="mobile-chrome" tests="2" failures="0" skipped="0" time="0.268" errors="0">
+<testcase name="xmlrpc is blocked (security wall)" classname="security-wall.spec.ts" time="0.074">
+</testcase>
+<testcase name="security headers present (security wall)" classname="security-wall.spec.ts" time="0.194">
+</testcase>
+</testsuite>
+<testsuite name="webshop-smoke.spec.ts" timestamp="2026-03-06T11:26:35.575Z" hostname="mobile-chrome" tests="4" failures="1" skipped="0" time="5.713" errors="0">
+<testcase name="home loads" classname="webshop-smoke.spec.ts" time="0.927">
+</testcase>
+<testcase name="shop loads and has products" classname="webshop-smoke.spec.ts" time="1.069">
+</testcase>
+<testcase name="can add first product to cart" classname="webshop-smoke.spec.ts" time="2.022">
+<failure message="webshop-smoke.spec.ts:22:5 can add first product to cart" type="FAILURE">
+<![CDATA[  [mobile-chrome] › webshop-smoke.spec.ts:22:5 › can add first product to cart ─────────────────────
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      57 |   const blockCartItems = page.locator('.wc-block-cart-items__row');
+      58 |   const cartCount = (await classicCartItems.count()) + (await blockCartItems.count());
+    > 59 |   expect(cartCount).toBeGreaterThan(0);
+         |                     ^
+      60 | });
+      61 |
+      62 | test('checkout page renders', async ({ page }) => {
+        at C:\Users\prova\Documents\Projects\Norelle\tests\e2e\webshop-smoke.spec.ts:59:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\webshop-smoke-can-add-first-product-to-cart-mobile-chrome\test-failed-1.webp
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\playwright\webshop-smoke-can-add-first-product-to-cart-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\playwright\webshop-smoke-can-add-first-product-to-cart-mobile-chrome\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|playwright\webshop-smoke-can-add-first-product-to-cart-mobile-chrome\test-failed-1.webp]]
+
+[[ATTACHMENT|playwright\webshop-smoke-can-add-first-product-to-cart-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|playwright\webshop-smoke-can-add-first-product-to-cart-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="checkout page renders" classname="webshop-smoke.spec.ts" time="1.695">
+</testcase>
+</testsuite>
+</testsuites>

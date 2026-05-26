@@ -1,0 +1,148 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Skip to navigation" [ref=e5] [cursor=pointer]:
+        - /url: "#site-navigation"
+      - link "Skip to content" [ref=e6] [cursor=pointer]:
+        - /url: "#content"
+      - link "Norelle" [ref=e9] [cursor=pointer]:
+        - /url: http://localhost:8082/
+    - generic [ref=e11]:
+      - navigation "Primary Navigation" [ref=e12]:
+        - link "Shop now" [ref=e13] [cursor=pointer]:
+          - /url: http://localhost:8082/shop/
+        - button "Menu" [ref=e14]
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - link "Home" [ref=e18] [cursor=pointer]:
+              - /url: http://localhost:8082/
+          - listitem [ref=e19]:
+            - link "Cart" [ref=e20] [cursor=pointer]:
+              - /url: http://localhost:8082/cart/
+          - listitem [ref=e21]:
+            - link "Checkout" [ref=e22] [cursor=pointer]:
+              - /url: http://localhost:8082/checkout/
+          - listitem [ref=e23]:
+            - link "My account" [ref=e24] [cursor=pointer]:
+              - /url: http://localhost:8082/my-account/
+          - listitem [ref=e25]:
+            - link "Shop" [ref=e26] [cursor=pointer]:
+              - /url: http://localhost:8082/shop/
+        - list [ref=e28]:
+          - listitem [ref=e29]:
+            - link "Home" [ref=e30] [cursor=pointer]:
+              - /url: http://localhost:8082/
+          - listitem [ref=e31]:
+            - link "Cart" [ref=e32] [cursor=pointer]:
+              - /url: http://localhost:8082/cart/
+          - listitem [ref=e33]:
+            - link "Checkout" [ref=e34] [cursor=pointer]:
+              - /url: http://localhost:8082/checkout/
+          - listitem [ref=e35]:
+            - link "My account" [ref=e36] [cursor=pointer]:
+              - /url: http://localhost:8082/my-account/
+          - listitem [ref=e37]:
+            - link "Shop" [ref=e38] [cursor=pointer]:
+              - /url: http://localhost:8082/shop/
+      - list [ref=e39]:
+        - listitem [ref=e40]:
+          - link "€ 0,00 0 items" [ref=e41] [cursor=pointer]:
+            - /url: http://localhost:8082/cart/
+            - generic [ref=e42]: € 0,00
+            - text: 0 items
+        - listitem [ref=e43]
+      - navigation "Shop quick links" [ref=e44]:
+        - link "Shop" [ref=e45] [cursor=pointer]:
+          - /url: http://localhost:8082/shop/
+        - link "Cart0" [ref=e46] [cursor=pointer]:
+          - /url: http://localhost:8082/cart/
+        - link "Account" [ref=e47] [cursor=pointer]:
+          - /url: http://localhost:8082/my-account/
+    - button "Menu" [ref=e48]: ☰
+  - navigation "Purchase progress" [ref=e49]:
+    - list [ref=e50]:
+      - listitem [ref=e51]:
+        - img "✨" [ref=e53]
+        - text: Discover
+      - listitem [ref=e54]
+      - listitem [ref=e55]:
+        - img "💎" [ref=e57]
+        - text: Select
+      - listitem [ref=e58]
+      - listitem [ref=e59]:
+        - img "📝" [ref=e61]
+        - text: Summary
+      - listitem [ref=e62]
+      - listitem [ref=e63]:
+        - img "💳" [ref=e65]
+        - text: Payment
+      - listitem [ref=e66]
+      - listitem [ref=e67]: ✓Confirmed
+  - navigation "breadcrumbs" [ref=e70]:
+    - link "Home" [ref=e71] [cursor=pointer]:
+      - /url: http://localhost:8082
+    - text: / Cart
+  - main [ref=e75]:
+    - article [ref=e76]:
+      - heading "Cart" [level=1] [ref=e78]
+      - generic [ref=e80]: ···
+  - contentinfo [ref=e90]:
+    - generic [ref=e91]:
+      - generic [ref=e92]:
+        - generic [ref=e93]:
+          - heading "Norelle" [level=4] [ref=e94]
+          - paragraph [ref=e95]: Timeless elegance, crafted with care. Every piece tells a story.
+        - generic [ref=e96]:
+          - heading "Shop" [level=4] [ref=e97]
+          - list [ref=e98]:
+            - listitem [ref=e99]:
+              - link "All Products" [ref=e100] [cursor=pointer]:
+                - /url: http://localhost:8082/shop/
+            - listitem [ref=e101]:
+              - link "Necklaces" [ref=e102] [cursor=pointer]:
+                - /url: http://localhost:8082/product-category/necklaces/
+            - listitem [ref=e103]:
+              - link "Earrings" [ref=e104] [cursor=pointer]:
+                - /url: http://localhost:8082/product-category/earrings/
+            - listitem [ref=e105]:
+              - link "Bracelets" [ref=e106] [cursor=pointer]:
+                - /url: http://localhost:8082/product-category/bracelets/
+            - listitem [ref=e107]:
+              - link "Rings" [ref=e108] [cursor=pointer]:
+                - /url: http://localhost:8082/product-category/rings/
+        - generic [ref=e109]:
+          - heading "Help" [level=4] [ref=e110]
+          - list [ref=e111]:
+            - listitem [ref=e112]:
+              - link "Shipping" [ref=e113] [cursor=pointer]:
+                - /url: http://localhost:8082/cart/
+            - listitem [ref=e114]:
+              - link "Returns & Refunds" [ref=e115] [cursor=pointer]:
+                - /url: http://localhost:8082/cart/
+            - listitem [ref=e116]:
+              - link "Terms & Conditions" [ref=e117] [cursor=pointer]:
+                - /url: http://localhost:8082/cart/
+            - listitem [ref=e118]:
+              - link "Privacy Policy" [ref=e119] [cursor=pointer]:
+                - /url: http://localhost:8082/?page_id=3
+            - listitem [ref=e120]:
+              - link "Contact" [ref=e121] [cursor=pointer]:
+                - /url: http://localhost:8082/cart/
+        - generic [ref=e122]:
+          - heading "Stay Connected" [level=4] [ref=e123]
+          - paragraph [ref=e124]: Follow us for new arrivals and exclusive offers.
+          - generic [ref=e125]:
+            - link "Instagram" [ref=e126] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e127]
+            - link "Facebook" [ref=e130] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e131]
+            - link "Pinterest" [ref=e133] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e134]
+      - generic [ref=e137]: © 2026 Norelle. All rights reserved.
+```

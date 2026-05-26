@@ -1,0 +1,196 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - link "Skip to navigation" [ref=e5] [cursor=pointer]:
+          - /url: "#site-navigation"
+        - link "Skip to content" [ref=e6] [cursor=pointer]:
+          - /url: "#content"
+        - link "Norelle" [ref=e9] [cursor=pointer]:
+          - /url: http://localhost:8082/
+      - generic [ref=e11]:
+        - navigation "Primary Navigation" [ref=e12]:
+          - link "Shop now" [ref=e13] [cursor=pointer]:
+            - /url: http://localhost:8082/shop/
+          - list [ref=e15]:
+            - listitem [ref=e16]:
+              - link "Home" [ref=e17] [cursor=pointer]:
+                - /url: http://localhost:8082/
+            - listitem [ref=e18]:
+              - link "Cart" [ref=e19] [cursor=pointer]:
+                - /url: http://localhost:8082/cart/
+            - listitem [ref=e20]:
+              - link "Checkout" [ref=e21] [cursor=pointer]:
+                - /url: http://localhost:8082/checkout/
+            - listitem [ref=e22]:
+              - link "My account" [ref=e23] [cursor=pointer]:
+                - /url: http://localhost:8082/my-account/
+            - listitem [ref=e24]:
+              - link "Shop" [ref=e25] [cursor=pointer]:
+                - /url: http://localhost:8082/shop/
+          - generic:
+            - list:
+              - listitem [ref=e26]:
+                - link "Home" [ref=e27] [cursor=pointer]:
+                  - /url: http://localhost:8082/
+              - listitem [ref=e28]:
+                - link "Cart" [ref=e29] [cursor=pointer]:
+                  - /url: http://localhost:8082/cart/
+              - listitem [ref=e30]:
+                - link "Checkout" [ref=e31] [cursor=pointer]:
+                  - /url: http://localhost:8082/checkout/
+              - listitem [ref=e32]:
+                - link "My account" [ref=e33] [cursor=pointer]:
+                  - /url: http://localhost:8082/my-account/
+              - listitem [ref=e34]:
+                - link "Shop" [ref=e35] [cursor=pointer]:
+                  - /url: http://localhost:8082/shop/
+        - list [ref=e36]:
+          - listitem [ref=e37]:
+            - link "€ 0,00 0 items " [ref=e38] [cursor=pointer]:
+              - /url: http://localhost:8082/cart/
+              - generic [ref=e39]: € 0,00
+              - text: 0 items 
+          - listitem:
+            - paragraph [ref=e42]: No products in the cart.
+    - navigation "breadcrumbs" [ref=e45]:
+      - link " Home" [ref=e46] [cursor=pointer]:
+        - /url: http://localhost:8082
+      - generic [ref=e47]: / 
+      - text: Shop
+    - main [ref=e51]:
+      - heading "Shop" [level=1] [ref=e53]
+      - generic [ref=e54]:
+        - button "Grid view" [ref=e55] [cursor=pointer]:
+          - img "▪" [ref=e56]
+          - img "▪" [ref=e57]
+          - img "▪" [ref=e58]
+          - img "▪" [ref=e59]
+        - button "List view" [ref=e60] [cursor=pointer]: ☰
+      - generic [ref=e61]:
+        - combobox "Shop order" [ref=e63]:
+          - option "Default sorting" [selected]
+          - option "Sort by popularity"
+          - option "Sort by average rating"
+          - option "Sort by latest"
+          - 'option "Sort by price: low to high"'
+          - 'option "Sort by price: high to low"'
+          - option "New Collection"
+          - option "Outlet"
+        - alert [ref=e64]: Showing all 6 results
+      - list [ref=e65]:
+        - listitem [ref=e66]:
+          - link "Norelle Classic Bracelet Norelle Classic Bracelet € 75,00" [ref=e67] [cursor=pointer]:
+            - /url: http://localhost:8082/product/norelle-classic-bracelet/
+            - img "Norelle Classic Bracelet" [ref=e68]
+            - heading "Norelle Classic Bracelet" [level=2] [ref=e69]
+            - generic [ref=e72]: € 75,00
+          - 'button "Add to cart: “Norelle Classic Bracelet”" [ref=e73] [cursor=pointer]': Add to Bag
+        - listitem [ref=e75]:
+          - link "Norelle Layered Necklace Norelle Layered Necklace € 99,00" [ref=e76] [cursor=pointer]:
+            - /url: http://localhost:8082/product/norelle-layered-necklace/
+            - img "Norelle Layered Necklace" [ref=e77]
+            - heading "Norelle Layered Necklace" [level=2] [ref=e78]
+            - generic [ref=e81]: € 99,00
+          - 'button "Add to cart: “Norelle Layered Necklace”" [ref=e82] [cursor=pointer]': Add to Bag
+        - listitem [ref=e84]:
+          - link "Norelle Minimal Ring Norelle Minimal Ring € 59,00" [ref=e85] [cursor=pointer]:
+            - /url: http://localhost:8082/product/norelle-minimal-ring/
+            - img "Norelle Minimal Ring" [ref=e86]
+            - heading "Norelle Minimal Ring" [level=2] [ref=e87]
+            - generic [ref=e90]: € 59,00
+          - 'button "Add to cart: “Norelle Minimal Ring”" [ref=e91] [cursor=pointer]': Add to Bag
+        - listitem [ref=e93]:
+          - link "Norelle Pearl Drop Earrings Norelle Pearl Drop Earrings € 69,00" [ref=e94] [cursor=pointer]:
+            - /url: http://localhost:8082/product/norelle-pearl-drop-earrings/
+            - img "Norelle Pearl Drop Earrings" [ref=e95]
+            - heading "Norelle Pearl Drop Earrings" [level=2] [ref=e96]
+            - generic [ref=e99]: € 69,00
+          - 'button "Add to cart: “Norelle Pearl Drop Earrings”" [ref=e100] [cursor=pointer]': Add to Bag
+        - listitem [ref=e102]:
+          - link "Placeholder Norelle Signature Necklace € 89,00" [ref=e103] [cursor=pointer]:
+            - /url: http://localhost:8082/product/norelle-signature-necklace/
+            - img "Placeholder" [ref=e104]
+            - heading "Norelle Signature Necklace" [level=2] [ref=e105]
+            - generic [ref=e108]: € 89,00
+          - 'button "Add to cart: “Norelle Signature Necklace”" [ref=e109] [cursor=pointer]': Add to Bag
+        - listitem [ref=e111]:
+          - link "Norelle Stacking Ring Set Norelle Stacking Ring Set € 79,00" [ref=e112] [cursor=pointer]:
+            - /url: http://localhost:8082/product/norelle-stacking-ring-set/
+            - img "Norelle Stacking Ring Set" [ref=e113]
+            - heading "Norelle Stacking Ring Set" [level=2] [ref=e114]
+            - generic [ref=e117]: € 79,00
+          - 'button "Add to cart: “Norelle Stacking Ring Set”" [ref=e118] [cursor=pointer]': Add to Bag
+      - generic [ref=e120]:
+        - combobox "Shop order" [ref=e122]:
+          - option "Default sorting" [selected]
+          - option "Sort by popularity"
+          - option "Sort by average rating"
+          - option "Sort by latest"
+          - 'option "Sort by price: low to high"'
+          - 'option "Sort by price: high to low"'
+          - option "New Collection"
+          - option "Outlet"
+        - alert [ref=e123]: Showing all 6 results
+    - contentinfo [ref=e124]:
+      - generic [ref=e125]:
+        - generic [ref=e126]:
+          - generic [ref=e127]:
+            - heading "Norelle" [level=4] [ref=e128]
+            - paragraph [ref=e129]: Timeless elegance, crafted with care. Every piece tells a story.
+          - generic [ref=e130]:
+            - heading "Shop" [level=4] [ref=e131]
+            - list [ref=e132]:
+              - listitem [ref=e133]:
+                - link "All Products" [ref=e134] [cursor=pointer]:
+                  - /url: http://localhost:8082/shop/
+              - listitem [ref=e135]:
+                - link "Necklaces" [ref=e136] [cursor=pointer]:
+                  - /url: http://localhost:8082/product-category/necklaces/
+              - listitem [ref=e137]:
+                - link "Earrings" [ref=e138] [cursor=pointer]:
+                  - /url: http://localhost:8082/product-category/earrings/
+              - listitem [ref=e139]:
+                - link "Bracelets" [ref=e140] [cursor=pointer]:
+                  - /url: http://localhost:8082/product-category/bracelets/
+              - listitem [ref=e141]:
+                - link "Rings" [ref=e142] [cursor=pointer]:
+                  - /url: http://localhost:8082/product-category/rings/
+          - generic [ref=e143]:
+            - heading "Help" [level=4] [ref=e144]
+            - list [ref=e145]:
+              - listitem [ref=e146]:
+                - link "Shipping" [ref=e147] [cursor=pointer]:
+                  - /url: http://localhost:8082/product/norelle-stacking-ring-set/
+              - listitem [ref=e148]:
+                - link "Returns & Refunds" [ref=e149] [cursor=pointer]:
+                  - /url: http://localhost:8082/product/norelle-stacking-ring-set/
+              - listitem [ref=e150]:
+                - link "Terms & Conditions" [ref=e151] [cursor=pointer]:
+                  - /url: http://localhost:8082/product/norelle-stacking-ring-set/
+              - listitem [ref=e152]:
+                - link "Privacy Policy" [ref=e153] [cursor=pointer]:
+                  - /url: http://localhost:8082/?page_id=3
+              - listitem [ref=e154]:
+                - link "Contact" [ref=e155] [cursor=pointer]:
+                  - /url: http://localhost:8082/product/norelle-stacking-ring-set/
+          - generic [ref=e156]:
+            - heading "Stay Connected" [level=4] [ref=e157]
+            - paragraph [ref=e158]: Follow us for new arrivals and exclusive offers.
+            - generic [ref=e159]:
+              - link "Instagram" [ref=e160] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e161]
+              - link "Facebook" [ref=e164] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e165]
+              - link "Pinterest" [ref=e167] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e168]
+        - generic [ref=e171]: © 2026 Norelle. All rights reserved.
+        - text:    
+  - status [ref=e172]
+```

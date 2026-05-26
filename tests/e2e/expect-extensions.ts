@@ -13,7 +13,7 @@ expect.extend({
 });
 
 declare module '@playwright/test' {
-  interface Matchers<R> {
+  interface Matchers<R, T> {
     toHaveCountGreaterThan(expected: number): R;
   }
 }
